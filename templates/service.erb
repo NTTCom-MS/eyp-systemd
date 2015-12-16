@@ -1,0 +1,11 @@
+[Service]
+ExecStart=<%= @execstart %>
+Restart=<%= @restart %>
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=<%= @servicename %>
+User=<%= @user %>
+Group=<%= @group %>
+
+[Install]
+WantedBy=multi-user.target
