@@ -45,11 +45,15 @@ etc.), mention it here.
 
 ### Beginning with systemd
 
-The very basic steps needed for a user to get the module up and running.
+basic example from eyp-kibana:
 
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+```puppet
+systemd::service { 'kibana':
+  execstart => "${basedir}/${productname}/bin/kibana",
+  require   => [ Class['systemd'], File["${basedir}/${productname}/config/kibana.yml"] ],
+  before => Service['kibana'],
+}
+```
 
 ## Usage
 
@@ -65,15 +69,9 @@ with things. (We are working on automating this section!)
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+Should work anywhere, tested on CentOS 7
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
-
-## Release Notes/Contributors/Etc **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
+We are pushing to have acceptance testing in place, so any new feature should
+have some test to check both presence and absence of any feature
