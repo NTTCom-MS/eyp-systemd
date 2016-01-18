@@ -6,6 +6,9 @@ StandardError=syslog
 SyslogIdentifier=<%= @servicename %>
 User=<%= @user %>
 Group=<%= @group %>
+<% @forking -%>
+Type=forking
+<% end -%>
 
 [Install]
 WantedBy=multi-user.target
