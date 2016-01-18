@@ -1,6 +1,6 @@
 [Service]
 ExecStart=<%= @execstart %>
-<% defined?(@execstop) -%>
+<% if defined?(@execstop) -%>
 ExecStop=<%= @execstop %>
 <% end -%>
 Restart=<%= @restart %>
