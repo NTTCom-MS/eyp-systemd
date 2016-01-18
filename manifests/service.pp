@@ -22,7 +22,6 @@ define systemd::service (
     mode    => '0644',
     content => template("${module_name}/service.erb"),
     notify  => Exec['systemctl reload'],
-    require => Class['systemd'],
   }
 
 }
