@@ -1,11 +1,17 @@
 [Service]
 ExecStart=<%= @execstart %>
+<% if defined?(@execstop) -%>
+ExecStop=<%= @execstop %>
+<% end -%>
 Restart=<%= @restart %>
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=<%= @servicename %>
 User=<%= @user %>
 Group=<%= @group %>
+<% if @forking -%>
+Type=forking
+<% end -%>
 
 [Install]
 WantedBy=multi-user.target
