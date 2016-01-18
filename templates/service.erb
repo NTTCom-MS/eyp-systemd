@@ -6,7 +6,7 @@ StandardError=syslog
 SyslogIdentifier=<%= @servicename %>
 User=<%= @user %>
 Group=<%= @group %>
-<% @forking -%>
+<% if @forking -%>
 Type=forking
 <% end -%>
 
