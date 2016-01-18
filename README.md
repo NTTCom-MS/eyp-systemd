@@ -31,12 +31,9 @@ management, etc.) this is the time to mention it.
 
 ### What systemd affects
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
+It creates files on **/etc/systemd/system/${servicename}.service**
 
-### Setup Requirements **OPTIONAL**
+### Setup Requirements
 
 If your module requires anything extra before setting up (pluginsync enabled,
 etc.), mention it here.
