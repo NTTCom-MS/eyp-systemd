@@ -1,5 +1,8 @@
 [Service]
 ExecStart=<%= @execstart %>
+<% defined?(@execstop) -%>
+ExecStop=<%= @execstop %>
+<% end -%>
 Restart=<%= @restart %>
 StandardOutput=syslog
 StandardError=syslog

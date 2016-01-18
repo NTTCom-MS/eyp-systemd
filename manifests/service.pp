@@ -1,5 +1,6 @@
 define systemd::service (
                           $execstart,
+                          $execstop=undef,
                           $restart='always',
                           $user='root',
                           $group='root',
