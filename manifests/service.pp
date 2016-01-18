@@ -16,6 +16,8 @@ define systemd::service (
     fail('You must include the systemd base class before using any systemd defined resources')
   }
 
+  validate_re($restart, [ '^always$', '^no$'], "Not a supported restart type: ${restart}")
+
   file { "/etc/systemd/system/${servicename}.service":
     ensure  => 'present',
     owner   => 'root',
