@@ -1,0 +1,15 @@
+---
+language: ruby
+sudo: required
+services:
+  - docker
+script:
+  - bundle exec rspec spec/acceptance
+bundler_args: --without system_tests
+matrix:
+  include:
+  - rvm: default
+    env: LINT=metadata
+    dist: trusty
+    bundler_args:
+    script: bundle exec rake metadata_lint
