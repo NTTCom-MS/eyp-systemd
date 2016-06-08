@@ -35,8 +35,7 @@ It creates files on **/etc/systemd/system/${servicename}.service**
 
 ### Setup Requirements
 
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
+This module requires pluginsync enabled
 
 ### Beginning with systemd
 
