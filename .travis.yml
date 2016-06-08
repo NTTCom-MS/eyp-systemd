@@ -9,7 +9,17 @@ bundler_args: --without system_tests
 matrix:
   include:
   - rvm: default
+    env: LINT=puppetcode
+    dist: trusty
+    bundler_args:
+    script: bundle exec rake lint
+  - rvm: default
     env: LINT=metadata
     dist: trusty
     bundler_args:
     script: bundle exec rake metadata_lint
+  - rvm: default
+    env: JOB=validate
+    dist: trusty
+    bundler_args:
+    script: bundle exec rake validate

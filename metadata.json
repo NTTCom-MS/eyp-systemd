@@ -1,10 +1,10 @@
 {
   "name": "eyp-systemd",
-  "version": "0.1.7",
+  "version": "0.1.9",
   "author": "eyp",
   "summary": "basic management of systemd services (/etc/systemd/system/...)",
   "license": "Apache-2.0",
-  "source": "https://github.com/AtlasIT-AM/eyp-systemd",
+  "source": "https://github.com/NTTCom-MS/eyp-systemd",
   "project_page": null,
   "issues_url": null,
   "operatingsystem_support": [
