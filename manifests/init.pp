@@ -1,5 +1,5 @@
 #
-class systemd($sremoveipc='no') inherits systemd::params {
+class systemd($removeipc='no') inherits systemd::params {
 
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
