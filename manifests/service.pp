@@ -1,11 +1,11 @@
 define systemd::service (
                           $execstart,
-                          $execstop=undef,
-                          $restart='always',
-                          $user='root',
-                          $group='root',
-                          $servicename=$name,
-                          $forking=false,
+                          $execstop    = undef,
+                          $restart     = 'always',
+                          $user        = 'root',
+                          $group       = 'root',
+                          $servicename = $name,
+                          $forking     = false,
                         ) {
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',

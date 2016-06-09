@@ -19,19 +19,16 @@ systemd service support
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
-
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+basic systemd support implemented:
+* service definitions
+* logind.conf (disables IPC deletion on user logout)
 
 ## Setup
 
 ### What systemd affects
 
-It creates files on **/etc/systemd/system/${servicename}.service**
+- Creates service definitions: **/etc/systemd/system/${servicename}.service**
+- Manages **/etc/systemd/logind.conf**
 
 ### Setup Requirements
 
@@ -56,10 +53,23 @@ the fancy stuff with your module here.
 
 ## Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+### classes
+
+#### systemd
+
+* **removeipc**: IPC deletion on user logout (default: no)
+
+### defines
+
+#### systemd::service
+
+* **execstart**: command to start daemon
+* **execstop**: command to stop daemon (if any)
+* **restart**: restart daemon if crashes (default: always)
+* **user**: username to use (default: root)
+* **group**: group to use (default: root)
+* **servicename**: service name (default: resource's name)
+* **forking**: expect fork to background (default: false)
 
 ## Limitations
 
@@ -69,3 +79,11 @@ Should work anywhere, tested on CentOS 7
 
 We are pushing to have acceptance testing in place, so any new feature should
 have some test to check both presence and absence of any feature
+
+### Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Added some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
