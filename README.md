@@ -7,13 +7,14 @@
 1. [Overview](#overview)
 2. [Module Description](#module-description)
 3. [Setup](#setup)
-    * [What systemd affects](#what-systemd-affects)
+    * [What apache affects](#what-apache-affects)
     * [Setup requirements](#setup-requirements)
-    * [Beginning with systemd](#beginning-with-systemd)
+    * [Beginning with apache](#beginning-with-apache)
 4. [Usage](#usage)
 5. [Reference](#reference)
 5. [Limitations](#limitations)
 6. [Development](#development)
+    * [Contributing](#contributing)
 
 ## Overview
 
