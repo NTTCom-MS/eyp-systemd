@@ -14,6 +14,7 @@
 5. [Reference](#reference)
 5. [Limitations](#limitations)
 6. [Development](#development)
+    * [Contributing](#contributing)
 
 ## Overview
 

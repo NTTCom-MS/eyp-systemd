@@ -1,4 +1,6 @@
 #
+# https://wiki.archlinux.org/index.php/systemd#Service_types
+#
 class systemd($removeipc='no') inherits systemd::params {
 
   Exec {
