@@ -12,6 +12,9 @@ Group=<%= @group %>
 <% if @forking -%>
 Type=forking
 <% end -%>
+<% if defined?(@pid_file) -%>
+PIDFile=<%= @pid_file %>
+<% end -%>
 
 [Install]
 WantedBy=multi-user.target
