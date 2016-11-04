@@ -6,6 +6,7 @@ define systemd::service (
                           $group       = 'root',
                           $servicename = $name,
                           $forking     = false,
+                          $pid_file    = undef,
                         ) {
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
