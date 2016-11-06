@@ -1,8 +1,9 @@
 # CHANGELOG
 
-## 0.1.13
+## 0.1.14
 
 * added **eyp_systemd_available** fact
+* added configurable check time for sysv wrapper
 
 ## 0.1.12
 
