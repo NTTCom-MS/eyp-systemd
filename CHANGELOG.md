@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.12
+
+* added sysvwrapper for sysv init scripts without PIDFILE
+
 ## 0.1.11
 
 *  pidfile for systemd::service

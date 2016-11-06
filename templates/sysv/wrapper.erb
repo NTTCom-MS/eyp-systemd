@@ -1,0 +1,23 @@
+#!/bin/bash
+
+#
+# puppet managed file
+#
+
+PIDFILE=/var/run/<%= @servicename %>.sysvwrapper.pid
+
+case $1 in
+  start)
+    <%= @initscript %> $@
+    sleep 1s;
+    <%= @initscript %>.sysvwrapper.status &
+    echo $! > $PIDFILE
+
+    <%= @initscript %> status
+    exit $?
+  ;;
+  *)
+    <%= @initscript %> $@
+    exit $?
+  ;;
+esac

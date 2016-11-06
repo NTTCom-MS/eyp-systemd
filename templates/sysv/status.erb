@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#
+# puppet managed file
+#
+
+while true;
+do
+  <%= @initscript %> status
+  if [ "$?" -ne 0 ];
+  then
+    exit 1;
+  fi
+
+  sleep <%= @check_time %>
+done
