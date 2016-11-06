@@ -9,11 +9,12 @@ PIDFILE=/var/run/<%= @servicename %>.sysvwrapper.pid
 case $1 in
   start)
     <%= @initscript %> $@
-    START_EXITCODE=$?
     sleep 1s;
     <%= @initscript %>.sysvwrapper.status &
     echo $! > $PIDFILE
-    exit $START_EXITCODE
+
+    <%= @initscript %> status
+    exit $?
   ;;
   *)
     <%= @initscript %> $@
