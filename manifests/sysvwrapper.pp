@@ -31,8 +31,6 @@ define systemd::sysvwrapper (
                       "/etc/init.d/${servicename}.sysvwrapper.wrapper",
                       "/etc/init.d/${servicename}.sysvwrapper.status",
                       ] ],
-    before    => Service[$servicename],
-    notify    => Service[$servicename],
     forking   => true,
     restart   => 'no',
     pid_file  => "/var/run/${servicename}.sysvwrapper.pid",
