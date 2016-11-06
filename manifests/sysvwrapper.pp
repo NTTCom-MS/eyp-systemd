@@ -25,8 +25,8 @@ define systemd::sysvwrapper (
   }
 
   systemd::service { $servicename:
-    execstart => "/bin/bash ${initscript} start",
-    execstop  => "/bin/bash ${initscript} stop",
+    execstart => "/bin/bash ${initscript}.sysvwrapper.wrapper start",
+    execstop  => "/bin/bash ${initscript}.sysvwrapper.wrapper stop",
     require   => File[ [
                       "/etc/init.d/${servicename}.sysvwrapper.wrapper",
                       "/etc/init.d/${servicename}.sysvwrapper.status",
