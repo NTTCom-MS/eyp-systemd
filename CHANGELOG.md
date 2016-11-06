@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.13
+
+* added **eyp_systemd_available** fact
+
 ## 0.1.12
 
 * added sysvwrapper for sysv init scripts without PIDFILE
