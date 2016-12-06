@@ -3,6 +3,7 @@
 ## 0.1.15
 
 * added description
+* added Ubuntu 16.04
 
 ## 0.1.14
 
