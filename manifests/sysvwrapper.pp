@@ -1,6 +1,7 @@
 define systemd::sysvwrapper (
                               $initscript,
-                              $servicename=$name,
+                              $servicename = $name,
+                              $check_time  = '10m',
                             ) {
 
   if ! defined(Class['systemd'])

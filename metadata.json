@@ -1,6 +1,6 @@
 {
   "name": "eyp-systemd",
-  "version": "0.1.12",
+  "version": "0.1.15",
   "author": "eyp",
   "summary": "basic management of systemd services (/etc/systemd/system/...)",
   "license": "Apache-2.0",
@@ -27,6 +27,10 @@
     {
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [ "7" ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [ "16.04" ]
     }
   ],
   "requirements": [

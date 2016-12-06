@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.1.15
+
+* added description
+* added Ubuntu 16.04
+
+## 0.1.14
+
+* added **eyp_systemd_available** fact
+* added configurable check time for sysv wrapper
+
 ## 0.1.12
 
 * added sysvwrapper for sysv init scripts without PIDFILE

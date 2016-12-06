@@ -2,6 +2,7 @@
 pkg/
 controller-v4.0.6.1.sh
 .vagrant
+/.dirty_lips_mood
 junit
 log
 spec/fixtures/
