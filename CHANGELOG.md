@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.1.15
+## 0.1.16
 
 * added description
 * added Ubuntu 16.04
