@@ -1,12 +1,18 @@
 <% if defined?(@description) -%>
 [Unit]
 Description = <%= @description %>
+<% if defined?(@after) -%>
+After=<%= @after %>
+<% end -%>
 
 <% end -%>
 [Service]
 ExecStart=<%= @execstart %>
 <% if defined?(@execstop) -%>
 ExecStop=<%= @execstop %>
+<% end -%>
+<% if defined?(@execreload) -%>
+ExecReload=<%= @execreload %>
 <% end -%>
 Restart=<%= @restart %>
 StandardOutput=syslog
@@ -19,6 +25,12 @@ Type=forking
 <% end -%>
 <% if defined?(@pid_file) -%>
 PIDFile=<%= @pid_file %>
+<% end -%>
+<% if defined?(@remain_after_exit) -%>
+RemainAfterExit=<%= scope.function_bool2yesno([@remain_after_exit]) %>
+<% end -%>
+<% if defined?(@type) -%>
+Type=<%= @type %>
 <% end -%>
 
 [Install]
