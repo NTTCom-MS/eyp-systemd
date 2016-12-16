@@ -1,11 +1,11 @@
-<% if defined?(@description) -%>
 [Unit]
+<% if defined?(@description) -%>
 Description = <%= @description %>
+<% end -%>
 <% if defined?(@after) -%>
 After=<%= @after %>
 <% end -%>
 
-<% end -%>
 [Service]
 ExecStart=<%= @execstart %>
 <% if defined?(@execstop) -%>
