@@ -2,7 +2,11 @@
 
 ## 0.1.17
 
-* added after
+* added options:
+  * after
+  * remain_after_exit
+  * type
+  * execreload
 
 ## 0.1.16
 
