@@ -7,6 +7,10 @@
   "source": "https://github.com/NTTCom-MS/eyp-systemd",
   "project_page": null,
   "issues_url": null,
+  "dependencies": [
+    {"name":"puppetlabs/stdlib","version_requirement":">= 1.0.0"},
+    {"name":"eyp/eyplib","version_requirement":">= 0.1.0 < 0.2.0"}
+  ],
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
@@ -42,8 +46,5 @@
       "name": "puppet",
       "version_requirement": ">= 3.0.0"
     }
-  ],
-  "dependencies": [
-    {"name":"puppetlabs/stdlib","version_requirement":">= 1.0.0"}
   ]
 }

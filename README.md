@@ -51,8 +51,19 @@ systemd::service { 'kibana':
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+add service dependency:
+
+```puppet
+systemd::service { 'oracleasm':
+  description       => 'Load oracleasm Modules',
+  after             => 'iscsi.service',
+  type              => 'oneshot',
+  remain_after_exit => true,
+  execstart         => '/usr/sbin/service oracleasm start_sysctl',
+  execstop          => '/usr/sbin/service oracleasm stop_sysctl',
+  execreload        => '/usr/sbin/service oracleasm restart_sysctl',
+}
+```
 
 ## Reference
 
