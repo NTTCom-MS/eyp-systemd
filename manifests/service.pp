@@ -17,7 +17,7 @@ define systemd::service (
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
   }
-  
+
   if ($env_vars != undef )
   {
     validate_array($env_vars)
