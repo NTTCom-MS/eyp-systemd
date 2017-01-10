@@ -65,6 +65,23 @@ systemd::service { 'oracleasm':
 }
 ```
 
+env_vars usage example:
+
+```puppet
+systemd::service { 'tomcat7':
+  user        => 'tomcat',
+  group       => 'tomcat',
+  execstart   => '/apps/tomcat/bin/startup.sh',
+  execstop    => '/apps/tomcat/bin/startup.sh',
+  forking     => true,
+  description => 'Apache Tomcat Web Application Container',
+  after       => 'network.target',
+  restart     => 'no',
+  env_vars    => ['"JAVA_OPTS=-Xms2048m -Xmx2048m -XX:MaxMetaspaceSize=512m"',
+                  '"CATALINA_PID=/apps/tomcat/logs/catalina.pid"'],
+}
+```
+
 ## Reference
 
 ### classes
@@ -78,12 +95,19 @@ systemd::service { 'oracleasm':
 #### systemd::service
 
 * **execstart**: command to start daemon
-* **execstop**: command to stop daemon (if any)
+* **execstop**: command to stop daemon (default: undef)
+* **execreload**: commands or scripts to be executed when the unit is reloaded (default: undef)
 * **restart**: restart daemon if crashes (default: always)
 * **user**: username to use (default: root)
 * **group**: group to use (default: root)
 * **servicename**: service name (default: resource's name)
 * **forking**: expect fork to background (default: false)
+* **pid_file**: PIDFile specifies a stable PID for the main process of the service (default: undef)
+* **description**: A meaningful description of the unit. This text is displayed for example in the output of the systemctl status command (default: undef)
+* **after**: Defines the order in which units are started (default: undef)
+* **remain_after_exit**: If set to True, the service is considered active even when all its processes exited. (default: undef)
+* **type**: Configures the unit process startup type that affects the functionality of ExecStart and related options (default: undef)
+* **env_vars**: array of environment variables (default: undef)
 
 ## Limitations
 

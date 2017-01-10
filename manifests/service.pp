@@ -12,9 +12,15 @@ define systemd::service (
                           $after             = undef,
                           $remain_after_exit = undef,
                           $type              = undef,
+                          $env_vars          = undef,
                         ) {
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
+  }
+  
+  if ($env_vars != undef )
+  {
+    validate_array($env_vars)
   }
 
   if($type!=undef and $forking==true)

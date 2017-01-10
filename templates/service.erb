@@ -32,6 +32,11 @@ RemainAfterExit=<%= scope.function_bool2yesno([@remain_after_exit]) %>
 <% if defined?(@type) -%>
 Type=<%= @type %>
 <% end -%>
+<% if defined?(@env_vars) -%>
+<%   @env_vars.each do |env| -%>
+Environment=<%= env %>
+<%   end -%>
+<% end -%>
 
 [Install]
 WantedBy=multi-user.target
