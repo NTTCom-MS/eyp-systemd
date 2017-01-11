@@ -2,6 +2,7 @@
 
 ## 0.1.17
 
+* added **env_vars** - thanks to **dzmitryv** for this PR
 * added options:
   * after
   * remain_after_exit
