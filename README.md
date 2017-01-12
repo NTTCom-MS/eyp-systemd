@@ -82,6 +82,82 @@ systemd::service { 'tomcat7':
 }
 ```
 
+system-v compatibility mode:
+
+Use case: **eyp-mcaffee** uses the following to enable the ma service on CentOS 7
+
+```puppet
+include systemd
+
+systemd::sysvwrapper { 'ma':
+  initscript => '/etc/init.d/ma',
+  notify     => Service['ma'],
+  before     => Service['ma'],
+}
+```
+
+This creates the following on the system:
+
+systed service definition:
+```
+# cat /etc/systemd/system/ma.service
+[Unit]
+
+[Service]
+ExecStart=/bin/bash /etc/init.d/ma.sysvwrapper.wrapper start
+ExecStop=/bin/bash /etc/init.d/ma.sysvwrapper.wrapper stop
+Restart=no
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=ma
+User=root
+Group=root
+Type=forking
+PIDFile=/var/run/ma.sysvwrapper.pid
+
+[Install]
+WantedBy=multi-user.target
+```
+
+control script:
+```
+# cat /etc/init.d/ma.sysvwrapper.wrapper
+#!/bin/bash
+
+#
+# puppet managed file
+#
+
+PIDFILE=/var/run/ma.sysvwrapper.pid
+
+case $1 in
+  start)
+    /etc/init.d/ma $@
+    sleep 1s;
+    /etc/init.d/ma.sysvwrapper.status &
+    echo $! > $PIDFILE
+
+    /etc/init.d/ma status
+    exit $?
+  ;;
+  *)
+    /etc/init.d/ma $@
+    exit $?
+  ;;
+esac
+```
+
+process checking ma status (to be able to report status to systemd):
+
+```
+ps auxf
+(...)
+root     27399  0.0  0.0 113120  1396 ?        S    Jan09   0:00 /bin/bash /etc/init.d/ma.sysvwrapper.status
+root      7173  0.0  0.0 107896   608 ?        S    10:34   0:00  \_ sleep 10m
+```
+
+
+
 ## Reference
 
 ### classes
@@ -108,6 +184,14 @@ systemd::service { 'tomcat7':
 * **remain_after_exit**: If set to True, the service is considered active even when all its processes exited. (default: undef)
 * **type**: Configures the unit process startup type that affects the functionality of ExecStart and related options (default: undef)
 * **env_vars**: array of environment variables (default: undef)
+
+#### systemd::sysvwrapper
+
+system-v compatibility
+
+* **initscript**: requred (system-v init script to use)
+* **servicename**: service name (default: resource's name)
+* **check_time**: check interval -time between **initscript** status checks- (default: 10m)
 
 ## Limitations
 
