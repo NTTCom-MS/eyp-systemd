@@ -99,6 +99,7 @@ systemd::sysvwrapper { 'ma':
 This creates the following on the system:
 
 systed service definition:
+
 ```
 # cat /etc/systemd/system/ma.service
 [Unit]
