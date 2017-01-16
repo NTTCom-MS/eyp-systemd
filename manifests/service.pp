@@ -40,8 +40,8 @@ define systemd::service (
   validate_array($wants)
   validate_array($wantedby)
   validate_array($requiredby)
-  validate_array($after)
-  validate_array($before)
+  validate_array($after_units)
+  validate_array($before_units)
   validate_array($requires)
   validate_array($conflicts)
 
