@@ -16,8 +16,8 @@ define systemd::service (
                           $wants             = [],
                           $wantedby          = [ 'multi-user.target' ],
                           $requiredby        = [],
-                          $after             = [],
-                          $before            = [],
+                          $after_units       = [],
+                          $before_units      = [],
                           $requires          = [],
                           $conflicts         = [],
                         ) {

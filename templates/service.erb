@@ -8,11 +8,11 @@ After=<%= @after %>
 <% if @wants.any? -%>
 Wants=<%= @wants.join(' ') %>
 <% end -%>
-<% if @after.any? -%>
-After=<%= @after.join(' ') %>
+<% if @after_units.any? -%>
+After=<%= @after_units.join(' ') %>
 <% end -%>
-<% if @before.any? -%>
-Before=<%= @before.join(' ') %>
+<% if @before_units.any? -%>
+Before=<%= @before_units.join(' ') %>
 <% end -%>
 <% if @conflicts.any? -%>
 Conflicts=<%= @conflicts.join(' ') %>
