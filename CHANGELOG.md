@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.1.18
+
+* added service ordering variables:
+  * wants
+  * before
+  * after
+  * requires
+  * conflicts
+* added **wantedby** and **requiredby**
+
 ## 0.1.17
 
 * added **env_vars** - thanks to **dzmitryv** for this PR

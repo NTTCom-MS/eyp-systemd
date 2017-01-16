@@ -13,6 +13,13 @@ define systemd::service (
                           $remain_after_exit = undef,
                           $type              = undef,
                           $env_vars          = undef,
+                          $wants             = [],
+                          $wantedby          = [ 'multi-user.target' ],
+                          $requiredby        = [],
+                          $after_units       = [],
+                          $before_units      = [],
+                          $requires          = [],
+                          $conflicts         = [],
                         ) {
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
@@ -28,12 +35,17 @@ define systemd::service (
     fail('Incompatible options: type / forking')
   }
 
-  if ! defined(Class['systemd'])
-  {
-    fail('You must include the systemd base class before using any systemd defined resources')
-  }
-
   validate_re($restart, [ '^always$', '^no$'], "Not a supported restart type: ${restart}")
+
+  validate_array($wants)
+  validate_array($wantedby)
+  validate_array($requiredby)
+  validate_array($after_units)
+  validate_array($before_units)
+  validate_array($requires)
+  validate_array($conflicts)
+
+  include ::systemd
 
   file { "/etc/systemd/system/${servicename}.service":
     ensure  => 'present',

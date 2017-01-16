@@ -5,6 +5,21 @@ Description = <%= @description %>
 <% if defined?(@after) -%>
 After=<%= @after %>
 <% end -%>
+<% if @wants.any? -%>
+Wants=<%= @wants.join(' ') %>
+<% end -%>
+<% if @after_units.any? -%>
+After=<%= @after_units.join(' ') %>
+<% end -%>
+<% if @before_units.any? -%>
+Before=<%= @before_units.join(' ') %>
+<% end -%>
+<% if @conflicts.any? -%>
+Conflicts=<%= @conflicts.join(' ') %>
+<% end -%>
+<% if @requires.any? -%>
+Requires=<%= @requires.join(' ') %>
+<% end -%>
 
 [Service]
 ExecStart=<%= @execstart %>
@@ -39,4 +54,7 @@ Environment=<%= env %>
 <% end -%>
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=<%= @wantedby.join(' ') %>
+<% if @requiredby.any? -%>
+RequiredBy=<%= @requiredby.join(' ') %>
+<% end -%>
