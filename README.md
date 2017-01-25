@@ -1,6 +1,4 @@
-# systemd
-
-![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
+# systemd ![status ready](https://img.shields.io/badge/status-ready-brightgreen.svg) ![doc completed](https://img.shields.io/badge/doc-completed-brightgreen.svg)
 
 #### Table of Contents
 
@@ -23,7 +21,7 @@ systemd service support
 ## Module Description
 
 basic systemd support implemented:
-* service definitions
+* service definitions (sys-v wrapper also available)
 * logind.conf (disables IPC deletion on user logout)
 
 ## Setup
@@ -87,8 +85,6 @@ system-v compatibility mode:
 Use case: **eyp-mcaffee** uses the following to enable the ma service on CentOS 7
 
 ```puppet
-include systemd
-
 systemd::sysvwrapper { 'ma':
   initscript => '/etc/init.d/ma',
   notify     => Service['ma'],
