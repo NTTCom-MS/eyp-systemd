@@ -85,8 +85,6 @@ system-v compatibility mode:
 Use case: **eyp-mcaffee** uses the following to enable the ma service on CentOS 7
 
 ```puppet
-include systemd
-
 systemd::sysvwrapper { 'ma':
   initscript => '/etc/init.d/ma',
   notify     => Service['ma'],
