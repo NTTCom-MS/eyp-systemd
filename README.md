@@ -21,7 +21,7 @@ systemd service support
 ## Module Description
 
 basic systemd support implemented:
-* service definitions
+* service definitions (sys-v wrapper also available)
 * logind.conf (disables IPC deletion on user logout)
 
 ## Setup
