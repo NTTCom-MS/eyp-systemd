@@ -24,6 +24,11 @@ basic systemd support implemented:
 * service definitions (sys-v wrapper also available)
 * logind.conf (disables IPC deletion on user logout)
 
+For systemd related questions please refer to:
+
+* [Service](https://www.freedesktop.org/software/systemd/man/systemd.service.html)
+* [Unit](https://www.freedesktop.org/software/systemd/man/systemd.exec.html)
+
 ## Setup
 
 ### What systemd affects
@@ -152,8 +157,6 @@ ps auxf
 root     27399  0.0  0.0 113120  1396 ?        S    Jan09   0:00 /bin/bash /etc/init.d/ma.sysvwrapper.status
 root      7173  0.0  0.0 107896   608 ?        S    10:34   0:00  \_ sleep 10m
 ```
-
-
 
 ## Reference
 
