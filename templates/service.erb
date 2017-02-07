@@ -29,6 +29,15 @@ ExecStop=<%= @execstop %>
 <% if defined?(@execreload) -%>
 ExecReload=<%= @execreload %>
 <% end -%>
+<% if defined?(@execstartpre) -%>
+  <%- if @execstartpre.kind_of?(Array) -%>
+    <%- @execstartpre.each do |val| -%>
+ExecStartPre=<%= val %>
+    <%- end -%>
+  <%- else -%>
+ExecStartPre=<%= @execstartpre= %>
+  <%- end -%>
+<% end -%>
 Restart=<%= @restart %>
 StandardOutput=syslog
 StandardError=syslog
@@ -52,6 +61,24 @@ Type=<%= @type %>
 Environment=<%= env %>
 <%   end -%>
 <% end -%>
+PermissionsStartOnly=<%= @permissions_start_only %>
+<% if defined?(@timeoutstartsec) -%>
+TimeoutStartSec=<%= @timeoutstartsec %>
+<% end -%>
+<% if defined?(@timeoutstopsec) -%>
+TimeoutStopSec=<%= @timeoutstopsec %>
+<% end -%>
+<% if defined?(@timeoutsec) -%>
+TimeoutSec=<%= @timeoutsec %>
+<% end -%>
+<% if defined?(@restart_prevent_exit_status) -%>
+  <%- if @restart_prevent_exit_status.kind_of?(Array) -%>
+RestartPreventExitStatus=<%= @restart_prevent_exit_status.join(' ') %>
+  <%- else -%>
+RestartPreventExitStatus=<%= @restart_prevent_exit_status %>
+  <%- end -%>
+<% end -%>
+
 
 [Install]
 WantedBy=<%= @wantedby.join(' ') %>
