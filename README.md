@@ -189,6 +189,7 @@ root      7173  0.0  0.0 107896   608 ?        S    10:34   0:00  \_ sleep 10m
 * **wantedby**: Array, this has the effect that a dependency of type **Wants=** is added from the listed unit to the current unit (default: ['multi-user.target'])
 * **requiredby**: Array, this has the effect that a dependency of type **Requires=** is added from the listed unit to the current unit (default: [])
 * **permissions_start_only**: If **true**, the permission-related execution options, as configured with User= and similar options, are only applied to the process started with ExecStart=, and not to the various other ExecStartPre=, ExecStartPost=, ExecReload=, ExecStop=, and ExecStopPost= commands. If **false**, the setting is applied to all configured commands the same way (default: false)
+* **execstartpre**: Additional commands that are executed before the command in ExecStart= Syntax is the same as for ExecStart=, except that multiple command lines are allowed and the commands are executed one after the other, serially. (default: undef)
 
 #### systemd::sysvwrapper
 

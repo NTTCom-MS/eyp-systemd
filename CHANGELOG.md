@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.1.19
+
+* added service variables:
+  * permissions_start_only
+  * execstartpre
+
 ## 0.1.18
 
 * added service ordering variables:
