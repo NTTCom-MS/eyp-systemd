@@ -188,6 +188,7 @@ root      7173  0.0  0.0 107896   608 ?        S    10:34   0:00  \_ sleep 10m
 * **conflicts**: A space-separated list of unit names. Configures negative requirement dependencies. If a unit has a Conflicts= setting on another unit, starting the former will stop the latter and vice versa (default: [])
 * **wantedby**: Array, this has the effect that a dependency of type **Wants=** is added from the listed unit to the current unit (default: ['multi-user.target'])
 * **requiredby**: Array, this has the effect that a dependency of type **Requires=** is added from the listed unit to the current unit (default: [])
+* **permissions_start_only**: If **true**, the permission-related execution options, as configured with User= and similar options, are only applied to the process started with ExecStart=, and not to the various other ExecStartPre=, ExecStartPost=, ExecReload=, ExecStop=, and ExecStopPost= commands. If **false**, the setting is applied to all configured commands the same way (default: false)
 
 #### systemd::sysvwrapper
 
