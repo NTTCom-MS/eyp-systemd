@@ -5,6 +5,10 @@
 * added service variables:
   * permissions_start_only
   * execstartpre
+  * timeoutstartsec
+  * timeoutstopsec
+  * timeoutsec
+  * restart_prevent_exit_status
 
 ## 0.1.18
 
