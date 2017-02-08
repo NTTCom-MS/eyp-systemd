@@ -91,6 +91,9 @@ RuntimeDirectory=<%= @runtime_directory %>
 <% if defined?(@runtime_directory_mode) -%>
 RuntimeDirectoryMode=<%= @runtime_directory_mode %>
 <% end -%>
+<% if defined?(@restart_sec) -%>
+RestartSec=<%= @restart_sec %>
+<% end -%>
 
 [Install]
 WantedBy=<%= @wantedby.join(' ') %>

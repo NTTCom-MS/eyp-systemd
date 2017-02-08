@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.20
+
+* added restart_sec to **systemd::service**
+
 ## 0.1.19
 
 * added service variables:
