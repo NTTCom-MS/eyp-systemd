@@ -26,6 +26,9 @@ define systemd::service (
                           $timeoutstopsec              = undef,
                           $timeoutsec                  = undef,
                           $restart_prevent_exit_status = undef,
+                          $limit_nofile                = undef,
+                          $runtime_directory           = undef,
+                          $runtime_directory_mode      = undef,
                         ) {
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',

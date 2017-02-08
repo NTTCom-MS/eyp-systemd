@@ -9,6 +9,9 @@
   * timeoutstopsec
   * timeoutsec
   * restart_prevent_exit_status
+  * limit_nofile
+  * runtime_directory
+  * runtime_directory_mode
 
 ## 0.1.18
 

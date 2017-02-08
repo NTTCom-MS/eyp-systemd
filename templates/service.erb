@@ -78,7 +78,19 @@ RestartPreventExitStatus=<%= @restart_prevent_exit_status.join(' ') %>
 RestartPreventExitStatus=<%= @restart_prevent_exit_status %>
   <%- end -%>
 <% end -%>
-
+<% if defined?(@limit_nofile) -%>
+LimitNOFILE = <%= @limit_nofile %>
+<% end -%>
+<% if defined?(@runtime_directory) -%>
+  <%- if @runtime_directory.kind_of?(Array) -%>
+RuntimeDirectory=<%= @runtime_directory.join(' ') %>
+  <%- else -%>
+RuntimeDirectory=<%= @runtime_directory %>
+  <%- end -%>
+<% end -%>
+<% if defined?(@runtime_directory_mode) -%>
+RuntimeDirectoryMode=<%= @runtime_directory_mode %>
+<% end -%>
 
 [Install]
 WantedBy=<%= @wantedby.join(' ') %>
