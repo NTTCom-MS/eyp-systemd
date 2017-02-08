@@ -6,6 +6,7 @@
   * restart_sec
   * private_tmp
   * limit_nproc
+  * limit_nice
 * enhanced restart validation
 
 ## 0.1.19

@@ -84,6 +84,9 @@ LimitNOFILE = <%= @limit_nofile %>
 <% if defined?(@limit_nproc) -%>
 LimitNPROC = <%= @limit_nproc %>
 <% end -%>
+<% if defined?(@limit_nice) -%>
+LimitNICE = <%= @limit_nice %>
+<% end -%>
 <% if defined?(@runtime_directory) -%>
   <%- if @runtime_directory.kind_of?(Array) -%>
 RuntimeDirectory=<%= @runtime_directory.join(' ') %>

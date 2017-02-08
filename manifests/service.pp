@@ -28,6 +28,7 @@ define systemd::service (
                           $restart_prevent_exit_status = undef,
                           $limit_nofile                = undef,
                           $limit_nproc                 = undef,
+                          $limit_nice                  = undef,
                           $runtime_directory           = undef,
                           $runtime_directory_mode      = undef,
                           $restart_sec                 = undef,
