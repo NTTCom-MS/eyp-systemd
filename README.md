@@ -216,7 +216,7 @@ system-v compatibility
 
 ## Limitations
 
-Should work anywhere, tested on CentOS 7
+Should work anywhere, tested on CentOS 7 and Ubuntu 16
 
 ## Development
 
