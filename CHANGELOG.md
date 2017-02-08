@@ -2,7 +2,10 @@
 
 ## 0.1.20
 
-* added restart_sec to **systemd::service**
+* added to **systemd::service**:
+  * restart_sec
+  * private_tmp
+  * limit_nproc
 * enhanced restart validation
 
 ## 0.1.19
