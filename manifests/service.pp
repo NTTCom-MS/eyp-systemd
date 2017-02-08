@@ -45,7 +45,7 @@ define systemd::service (
     fail('Incompatible options: type / forking')
   }
 
-  validate_re($restart, [ '^always$', '^no$'], "Not a supported restart type: ${restart}")
+  validate_re($restart, [ '^always$', '^no$', '^on-failure$', '^on-success$', '^on-abnormal$', '^on-abort$', '^on-watchdog$' ], "Not a supported restart type: ${restart}")
 
   validate_array($wants)
   validate_array($wantedby)
