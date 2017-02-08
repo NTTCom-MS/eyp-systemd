@@ -1,6 +1,6 @@
 {
   "name": "eyp-systemd",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "author": "eyp",
   "summary": "management of systemd services (/etc/systemd/system/...)",
   "license": "Apache-2.0",
@@ -35,6 +35,14 @@
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [ "16.04" ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [ "8" ]
+    },
+    {
+      "operatingsystem": "SLES",
+      "operatingsystemrelease": [ "12", "12.1", "12.2" ]
     }
   ],
   "requirements": [

@@ -33,6 +33,8 @@ define systemd::service (
                           $runtime_directory_mode      = undef,
                           $restart_sec                 = undef,
                           $private_tmp                 = false,
+                          $working_directory           = undef,
+                          $root_directory              = undef,
                         ) {
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
