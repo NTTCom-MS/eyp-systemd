@@ -27,8 +27,12 @@ define systemd::service (
                           $timeoutsec                  = undef,
                           $restart_prevent_exit_status = undef,
                           $limit_nofile                = undef,
+                          $limit_nproc                 = undef,
+                          $limit_nice                  = undef,
                           $runtime_directory           = undef,
                           $runtime_directory_mode      = undef,
+                          $restart_sec                 = undef,
+                          $private_tmp                 = false,
                         ) {
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
@@ -44,7 +48,8 @@ define systemd::service (
     fail('Incompatible options: type / forking')
   }
 
-  validate_re($restart, [ '^always$', '^no$'], "Not a supported restart type: ${restart}")
+  # Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always.
+  validate_re($restart, [ '^no$', '^on-success$', '^on-failure$', '^on-abnormal$', '^on-watchdog$', '^on-abort$', '^always$'], "Not a supported restart type: ${restart} - Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always")
 
   validate_array($wants)
   validate_array($wantedby)
