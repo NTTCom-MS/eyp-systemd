@@ -2,7 +2,7 @@
 
 ## 0.1.21
 
-* added SuSE support
+* added SLES12 support 
 * added to **systemd::service**:
   * working_directory
   * root_directory
