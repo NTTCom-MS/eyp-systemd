@@ -3,6 +3,9 @@
 ## 0.1.21
 
 * added SuSE support
+* added to **systemd::service**:
+  * working_directory
+  * root_directory
 
 ## 0.1.20
 

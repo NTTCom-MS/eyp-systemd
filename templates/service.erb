@@ -101,6 +101,12 @@ RuntimeDirectoryMode=<%= @runtime_directory_mode %>
 RestartSec=<%= @restart_sec %>
 <% end -%>
 PrivateTmp=<%= scope.function_bool2yesno([@private_tmp]) %>
+<% if defined?(@working_directory) -%>
+WorkingDirectory=<%= @working_directory %>
+<% end -%>
+<% if defined?(@root_directory) -%>
+RootDirectory=<%= @root_directory %>
+<% end -%>
 
 [Install]
 WantedBy=<%= @wantedby.join(' ') %>
