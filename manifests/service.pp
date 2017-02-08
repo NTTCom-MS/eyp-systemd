@@ -29,6 +29,7 @@ define systemd::service (
                           $limit_nofile                = undef,
                           $runtime_directory           = undef,
                           $runtime_directory_mode      = undef,
+                          $environment_files           = undef,
                         ) {
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
