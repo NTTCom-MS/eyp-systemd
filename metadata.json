@@ -35,6 +35,14 @@
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [ "16.04" ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [ "8" ]
+    },
+    {
+      "operatingsystem": "SLES",
+      "operatingsystemrelease": [ "12" ]
     }
   ],
   "requirements": [

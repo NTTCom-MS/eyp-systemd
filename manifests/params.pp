@@ -43,7 +43,7 @@ class systemd::params {
     {
       case $::operatingsystemrelease
       {
-        /^13.2|42.*$/:
+        /^1[23].*$/:
         {
         }
         default: { fail('Unsupported Suse/OpenSuse version!')  }
