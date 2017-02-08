@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.21
+
+* added SuSE support
+
 ## 0.1.20
 
 * added to **systemd::service**:
