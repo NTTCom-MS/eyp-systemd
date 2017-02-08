@@ -24,6 +24,11 @@ basic systemd support implemented:
 * service definitions (sys-v wrapper also available)
 * logind.conf (disables IPC deletion on user logout)
 
+For systemd related questions please refer to:
+
+* [Service](https://www.freedesktop.org/software/systemd/man/systemd.service.html)
+* [Unit](https://www.freedesktop.org/software/systemd/man/systemd.exec.html)
+
 ## Setup
 
 ### What systemd affects
@@ -153,8 +158,6 @@ root     27399  0.0  0.0 113120  1396 ?        S    Jan09   0:00 /bin/bash /etc/
 root      7173  0.0  0.0 107896   608 ?        S    10:34   0:00  \_ sleep 10m
 ```
 
-
-
 ## Reference
 
 ### classes
@@ -194,6 +197,9 @@ root      7173  0.0  0.0 107896   608 ?        S    10:34   0:00  \_ sleep 10m
 * **timeoutstopsec**: Configures the time to wait for stop. If a service is asked to stop, but does not terminate in the specified time, it will be terminated forcibly via SIGTERM, and after another timeout of equal duration with SIGKILL. Takes a unit-less value in seconds, or a time span value such as "5min 20s". Pass "infinity" to disable the timeout logic. (default: undef)
 * **timeoutsec**: A shorthand for configuring both **TimeoutStartSec=** and **TimeoutStopSec=** to the specified value. (default: undef)
 * **restart_prevent_exit_status**: Takes a list of exit status definitions that, when returned by the main service process, will prevent automatic service restarts, regardless of the restart setting configured with Restart=. Exit status definitions can either be numeric exit codes or termination signal names, and are separated by spaces. Defaults to the empty list, so that, by default, no exit status is excluded from the configured restart logic. For example: **RestartPreventExitStatus=1 6 SIGABRT** ensures that exit codes 1 and 6 and the termination signal SIGABRT will not result in automatic service restarting. This option may appear more than once, in which case the list of restart-preventing statuses is merged. If the empty string is assigned to this option, the list is reset and all prior assignments of this option will have no effect. (default: undef)
+* **limit_nofile**: Limit number of File Descriptors *ulimit -n* (default: undef)
+* **runtime_directory**: Takes a list of directory names. If set, one or more directories by the specified names will be created below /run (for system services) or below $XDG_RUNTIME_DIR (for user services) when the unit is started, and removed when the unit is stopped. The directories will have the access mode specified in RuntimeDirectoryMode=, and will be owned by the user and group specified in User= and Group=. Use this to manage one or more runtime directories of the unit and bind their lifetime to the daemon runtime. The specified directory names must be relative, and may not include a "/", i.e. must refer to simple directories to create or remove. This is particularly useful for unprivileged daemons that cannot create runtime directories in /run due to lack of privileges, and to make sure the runtime directory is cleaned up automatically after use (default: undef)
+* **runtime_directory_mode**: Directory mode for **runtime_directory** (default: undef)
 
 
 #### systemd::sysvwrapper
