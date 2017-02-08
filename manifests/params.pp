@@ -39,6 +39,16 @@ class systemd::params {
         default: { fail('Unsupported Debian flavour!')  }
       }
     }
+    'Suse' :
+    {
+      case $::operatingsystemrelease
+      {
+        /^13.2|42.*$/:
+        {
+        }
+        default: { fail('Unsupported Suse/OpenSuse version!')  }
+      }
+    }
     default  : { fail('Unsupported OS!') }
   }
 }
