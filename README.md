@@ -173,7 +173,7 @@ root      7173  0.0  0.0 107896   608 ?        S    10:34   0:00  \_ sleep 10m
 * **execstart**: command to start daemon
 * **execstop**: command to stop daemon (default: undef)
 * **execreload**: commands or scripts to be executed when the unit is reloaded (default: undef)
-* **restart**: restart daemon if crashes. Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always(default: always)
+* **restart**: restart daemon if crashes. Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always (default: always)
 * **user**: username to use (default: root)
 * **group**: group to use (default: root)
 * **servicename**: service name (default: resource's name)
