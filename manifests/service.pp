@@ -35,6 +35,7 @@ define systemd::service (
                           $private_tmp                 = false,
                           $working_directory           = undef,
                           $root_directory              = undef,
+                          $environment_files           = undef,
                         ) {
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',

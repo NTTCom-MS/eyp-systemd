@@ -206,6 +206,7 @@ root      7173  0.0  0.0 107896   608 ?        S    10:34   0:00  \_ sleep 10m
 * **private_tmp**: If true, sets up a new file system namespace for the executed processes and mounts private /tmp and /var/tmp directories inside it that is not shared by processes outside of the namespace. This is useful to secure access to temporary files of the process, but makes sharing between processes via /tmp or /var/tmp impossible. If this is enabled, all temporary files created by a service in these directories will be removed after the service is stopped (default: false)
 * **working_directory**: Takes a directory path relative to the service's root directory specified by RootDirectory= (default: undef)
 * **root_directory**: Sets the root directory for executed processes, with the chroot(2) system call (default: undef)
+* **environment_files**: Similar to **env_vars** but reads the environment variables from a text file.
 
 
 #### systemd::sysvwrapper
