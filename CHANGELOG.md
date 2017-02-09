@@ -2,7 +2,9 @@
 
 ## 0.1.22
 
-* added **environment_files** to **systemd::service** - thanks to **oOHenry** for this PR
+* added to **systemd::service**
+  * environment_files - thanks to **oOHenry** for this PR
+  * umask
 
 ## 0.1.21
 

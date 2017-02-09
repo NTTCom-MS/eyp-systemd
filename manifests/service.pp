@@ -36,6 +36,7 @@ define systemd::service (
                           $private_tmp                 = false,
                           $working_directory           = undef,
                           $root_directory              = undef,
+                          $umask                       = '0022',
                         ) {
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',

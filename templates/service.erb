@@ -112,6 +112,7 @@ WorkingDirectory=<%= @working_directory %>
 <% if defined?(@root_directory) -%>
 RootDirectory=<%= @root_directory %>
 <% end -%>
+Umask=<%= @umask %>
 
 [Install]
 WantedBy=<%= @wantedby.join(' ') %>
