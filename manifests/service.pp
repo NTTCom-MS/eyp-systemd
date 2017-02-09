@@ -13,7 +13,8 @@ define systemd::service (
                           $after                       = undef,
                           $remain_after_exit           = undef,
                           $type                        = undef,
-                          $env_vars                    = undef,
+                          $env_vars                    = [],
+                          $environment_files           = [],
                           $wants                       = [],
                           $wantedby                    = [ 'multi-user.target' ],
                           $requiredby                  = [],
@@ -35,7 +36,9 @@ define systemd::service (
                           $private_tmp                 = false,
                           $working_directory           = undef,
                           $root_directory              = undef,
-                          $environment_files           = undef,
+                          $umask                       = '0022',
+                          $nice                        = undef,
+                          $oom_score_adjust            = undef,
                         ) {
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
