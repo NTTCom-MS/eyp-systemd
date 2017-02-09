@@ -208,6 +208,7 @@ root      7173  0.0  0.0 107896   608 ?        S    10:34   0:00  \_ sleep 10m
 * **root_directory**: Sets the root directory for executed processes, with the chroot(2) system call (default: undef)
 * **environment_files**: Similar to **env_vars** but reads the environment variables from a text file. The text file should contain new-line-separated variable assignments. Empty lines, lines without an "=" separator, or lines starting with ; or # will be ignored, which may be used for commenting. A line ending with a backslash will be concatenated with the following one, allowing multiline variable definitions (default: undef)
 * **umask**: Controls the file mode creation mask. Takes an access mode in octal notation. (default: 0022)
+* **nice**: Sets the default nice level (scheduling priority) for executed processes. Takes an integer between -20 *highest priority* and 19 *lowest priority* (default: undef)
 
 
 #### systemd::sysvwrapper

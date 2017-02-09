@@ -113,6 +113,9 @@ WorkingDirectory=<%= @working_directory %>
 RootDirectory=<%= @root_directory %>
 <% end -%>
 Umask=<%= @umask %>
+<% if defined?(@nice) -%>
+Nice=<%= @nice %>
+<% end -%>
 
 [Install]
 WantedBy=<%= @wantedby.join(' ') %>

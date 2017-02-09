@@ -5,6 +5,7 @@
 * added to **systemd::service**
   * environment_files - thanks to **oOHenry** for this PR
   * umask
+  * nice
 
 ## 0.1.21
 
