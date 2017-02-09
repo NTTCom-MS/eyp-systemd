@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.1.21
+
+* added SLES12 support 
+* added to **systemd::service**:
+  * working_directory
+  * root_directory
+
+## 0.1.20
+
+* added to **systemd::service**:
+  * restart_sec
+  * private_tmp
+  * limit_nproc
+  * limit_nice
+* enhanced restart validation
+
 ## 0.1.19
 
 * added service variables:
