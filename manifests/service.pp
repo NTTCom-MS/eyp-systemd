@@ -38,6 +38,7 @@ define systemd::service (
                           $root_directory              = undef,
                           $umask                       = '0022',
                           $nice                        = undef,
+                          $oom_score_adjust            = undef,
                         ) {
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',

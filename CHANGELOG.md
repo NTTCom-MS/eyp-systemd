@@ -6,6 +6,7 @@
   * environment_files - thanks to **oOHenry** for this PR
   * umask
   * nice
+  * oom_score_adjust
 
 ## 0.1.21
 

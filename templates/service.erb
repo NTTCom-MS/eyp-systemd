@@ -116,6 +116,9 @@ Umask=<%= @umask %>
 <% if defined?(@nice) -%>
 Nice=<%= @nice %>
 <% end -%>
+<% if defined?(@oom_score_adjust) -%>
+OOMScoreAdjust=<%= @oom_score_adjust %>
+<% end -%>
 
 [Install]
 WantedBy=<%= @wantedby.join(' ') %>
