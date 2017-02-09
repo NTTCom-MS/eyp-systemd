@@ -1,8 +1,12 @@
 # CHANGELOG
 
+## 0.1.22
+
+* added **environment_files** to **systemd::service** - thanks to **oOHenry** for this PR
+
 ## 0.1.21
 
-* added SLES12 support 
+* added SLES12 support
 * added to **systemd::service**:
   * working_directory
   * root_directory
