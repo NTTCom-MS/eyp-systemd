@@ -36,7 +36,7 @@ define systemd::service (
                           $private_tmp                 = false,
                           $working_directory           = undef,
                           $root_directory              = undef,
-                          $umask                       = '0022',
+                          $umask                       = undef,
                           $nice                        = undef,
                           $oom_score_adjust            = undef,
                         ) {
