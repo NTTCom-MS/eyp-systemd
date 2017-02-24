@@ -112,7 +112,9 @@ WorkingDirectory=<%= @working_directory %>
 <% if defined?(@root_directory) -%>
 RootDirectory=<%= @root_directory %>
 <% end -%>
-Umask=<%= @umask %>
+<% if defined?(@umask) -%>
+UMask=<%= @umask %>
+<% end -%>
 <% if defined?(@nice) -%>
 Nice=<%= @nice %>
 <% end -%>
