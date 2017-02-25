@@ -42,9 +42,6 @@ define systemd::service (
                           $startlimitinterval          = undef,
                           $startlimitburst             = undef,
                         ) {
-  Exec {
-    path => '/bin:/sbin:/usr/bin:/usr/sbin',
-  }
 
   if ($env_vars != undef )
   {
