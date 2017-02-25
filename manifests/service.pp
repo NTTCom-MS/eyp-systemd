@@ -39,6 +39,8 @@ define systemd::service (
                           $umask                       = undef,
                           $nice                        = undef,
                           $oom_score_adjust            = undef,
+                          $startlimitinterval          = undef,
+                          $startlimitburst             = undef
                         ) {
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
