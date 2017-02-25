@@ -121,6 +121,12 @@ Nice=<%= @nice %>
 <% if defined?(@oom_score_adjust) -%>
 OOMScoreAdjust=<%= @oom_score_adjust %>
 <% end -%>
+<% if defined?(@startlimitinterval) -%>
+StartLimitInterval=<%= @startlimitinterval %>
+<% end -%>
+<% if defined?(@startlimitburst) -%>
+StartLimitBurst=<%= @startlimitburst %>
+<% end -%>
 
 [Install]
 WantedBy=<%= @wantedby.join(' ') %>
