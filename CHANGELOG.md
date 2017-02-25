@@ -1,9 +1,14 @@
 # CHANGELOG
 
+## 0.1.23
+
+* Added StartLimitInterval and StartLimitBurst - thanks to [steveniemitz](https://github.com/steveniemitz) for this PR
+* Fixed UMask casing and removed redundant default - thanks to [steveniemitz](https://github.com/steveniemitz) for this PR
+
 ## 0.1.22
 
 * added to **systemd::service**
-  * environment_files - thanks to **oOHenry** for this PR
+  * environment_files - thanks to [oOHenry](https://github.com/oOHenry) for this PR
   * umask
   * nice
   * oom_score_adjust
@@ -49,7 +54,7 @@
 
 ## 0.1.17
 
-* added **env_vars** - thanks to **dzmitryv** for this PR
+* added **env_vars** - thanks to [dzmitryv](https://github.com/dzmitryv) for this PR
 * added options:
   * after
   * remain_after_exit
