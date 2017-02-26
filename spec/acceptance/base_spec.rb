@@ -11,8 +11,8 @@ describe 'systemd class' do
       class { 'systemd': }
 
       systemd::service { 'test':
-        execstart => "sleep 60",
-        before => Service['test'],
+        execstart => 'sleep 60',
+        before    => Service['test'],
       }
 
       service { 'test':
