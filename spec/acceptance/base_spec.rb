@@ -28,7 +28,7 @@ describe 'systemd class' do
 
     describe file("/etc/systemd/system/test.service") do
       it { should be_file }
-      its(:content) { should match 'ExecStart=sleep 60' }
+      its(:content) { should match 'ExecStart=/bin/sleep 60' }
     end
 
     it "sleep 60 running" do
@@ -38,14 +38,5 @@ describe 'systemd class' do
     it "systemctl status" do
       expect(shell("systemctl status test").exit_code).to be_zero
     end
-
-    it "sleep 60 deixem pasar" do
-      expect(shell("sleep 60").exit_code).to be_zero
-    end
-
-    it "systemctl status no hi hauria de ser" do
-      expect(shell("systemctl status test").exit_code).to_not be_zero
-    end
-
   end
 end
