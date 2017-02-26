@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.24
+
+* acceptance testing skeleton
+
 ## 0.1.23
 
 * Added StartLimitInterval and StartLimitBurst - thanks to [steveniemitz](https://github.com/steveniemitz) for this PR
