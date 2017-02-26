@@ -26,6 +26,11 @@ describe 'systemd class' do
       expect(apply_manifest(pp).exit_code).to eq(0)
     end
 
+    describe file("/etc/systemd/system/test.service") do
+      it { should be_file }
+      its(:content) { should match 'ExecStart=sleep 60' }
+    end
+
     it "sleep 60 running" do
       expect(shell("ps -fea | grep sleep 60").exit_code).to be_zero
     end
