@@ -32,7 +32,7 @@ describe 'systemd class' do
     end
 
     it "sleep 60 running" do
-      expect(shell("ps -fea | grep sleep 60").exit_code).to be_zero
+      expect(shell("/bin/ps -fea | /bin/grep sleep 60").exit_code).to be_zero
     end
 
     it "systemctl status" do
