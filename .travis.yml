@@ -23,3 +23,13 @@ matrix:
     dist: trusty
     bundler_args:
     script: bundle exec rake validate
+  - rvm: default
+    env: BEAKER_set="centos7-docker"
+    dist: trusty
+    bundler_args:
+    script: sudo service docker restart ; sleep 10 && bundle exec rspec spec/acceptance/*_spec.rb
+  - rvm: default
+    env: BEAKER_set="ubuntu16-docker"
+    dist: trusty
+    bundler_args:
+    script: sudo service docker restart ; sleep 10 && bundle exec rspec spec/acceptance/*_spec.rb

@@ -40,11 +40,8 @@ define systemd::service (
                           $nice                        = undef,
                           $oom_score_adjust            = undef,
                           $startlimitinterval          = undef,
-                          $startlimitburst             = undef
+                          $startlimitburst             = undef,
                         ) {
-  Exec {
-    path => '/bin:/sbin:/usr/bin:/usr/sbin',
-  }
 
   if ($env_vars != undef )
   {
