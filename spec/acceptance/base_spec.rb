@@ -34,5 +34,9 @@ describe 'systemd class' do
     it "systemctl status" do
       expect(shell("systemctl status test").exit_code).to be_zero
     end
+
+    it "check sleep" do
+      expect(shell("ps -fea | grep sleep").exit_code).to be_zero
+    end
   end
 end
