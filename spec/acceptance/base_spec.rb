@@ -31,10 +31,6 @@ describe 'systemd class' do
       its(:content) { should match 'ExecStart=/bin/sleep 60' }
     end
 
-    it "sleep 60 running" do
-      expect(shell("/bin/ps -fea | /bin/grep sleep 60").exit_code).to be_zero
-    end
-
     it "systemctl status" do
       expect(shell("systemctl status test").exit_code).to be_zero
     end
