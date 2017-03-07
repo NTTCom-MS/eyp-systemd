@@ -6,7 +6,6 @@ define systemd::service (
                           $restart                     = 'no',
                           $user                        = 'root',
                           $group                       = 'root',
-                          $umask                       = undef,
                           $servicename                 = $name,
                           $forking                     = false,
                           $pid_file                    = undef,
