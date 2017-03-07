@@ -3,9 +3,10 @@ define systemd::service (
                           $execstop                    = undef,
                           $execreload                  = undef,
                           $execstartpre                = undef,
-                          $restart                     = 'always',
+                          $restart                     = 'no',
                           $user                        = 'root',
                           $group                       = 'root',
+                          $umask                       = undef,
                           $servicename                 = $name,
                           $forking                     = false,
                           $pid_file                    = undef,
@@ -16,7 +17,7 @@ define systemd::service (
                           $env_vars                    = [],
                           $environment_files           = [],
                           $wants                       = [],
-                          $wantedby                    = [ 'multi-user.target' ],
+                          $wantedby                    = [],
                           $requiredby                  = [],
                           $after_units                 = [],
                           $before_units                = [],
@@ -51,6 +52,22 @@ define systemd::service (
   if($type!=undef and $forking==true)
   {
     fail('Incompatible options: type / forking')
+  }
+
+  if($type != "oneshot" and is_array($execstart) and count($execstart) > 1)
+  {
+    fail('Incompatible options: There are multiple execstart values and Type is not "oneshot"')
+  }
+  else
+  {
+    if($type == "oneshot" and  is_array($execstart))
+    {
+      $execstart_entries = $execstart
+    }
+    else
+    {
+      $execstart_entries = any2array($execstart)
+    }
   }
 
   # Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always.
