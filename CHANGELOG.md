@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.25
+
+* added minimal socket support
+
 ## 0.1.24
 
 * acceptance testing skeleton
