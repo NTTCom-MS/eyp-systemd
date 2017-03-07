@@ -54,13 +54,13 @@ define systemd::service (
     fail('Incompatible options: type / forking')
   }
 
-  if($type != "oneshot" and is_array($execstart) and count($execstart) > 1)
+  if($type != 'oneshot' and is_array($execstart) and count($execstart) > 1)
   {
     fail('Incompatible options: There are multiple execstart values and Type is not "oneshot"')
   }
   else
   {
-    if($type == "oneshot" and  is_array($execstart))
+    if($type == 'oneshot' and  is_array($execstart))
     {
       $execstart_entries = $execstart
     }
