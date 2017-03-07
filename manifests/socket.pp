@@ -15,12 +15,12 @@ define systemd::socket(
                       ) {
   include ::systemd
 
-  file { "/etc/systemd/system/${servicename}.service":
+  file { "/etc/systemd/system/${socket_name}.socket":
     ensure  => 'present',
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template("${module_name}/service.erb"),
+    content => template("${module_name}/socket.erb"),
     notify  => Exec['systemctl reload'],
   }
 }
