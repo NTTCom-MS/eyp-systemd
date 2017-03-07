@@ -1,0 +1,13 @@
+[Socket]
+<% @listen_stream.each do |val| -%>
+ListenStream=<%= val %>
+<% end -%>
+<% if @after_units.any? -%>
+After=<%= @after_units.join(' ') %>
+<% end -%>
+<% if @requires.any? -%>
+Requires=<%= @requires.join(' ') %>
+<% end -%>
+
+[Install]
+WantedBy=<%= @wantedby.join(' ') %>
