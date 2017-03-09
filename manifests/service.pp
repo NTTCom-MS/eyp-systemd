@@ -3,6 +3,7 @@ define systemd::service (
                           $execstop                    = undef,
                           $execreload                  = undef,
                           $execstartpre                = undef,
+                          $execstartpost               = undef,
                           $restart                     = 'always',
                           $user                        = 'root',
                           $group                       = 'root',
