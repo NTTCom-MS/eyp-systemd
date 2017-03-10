@@ -42,15 +42,34 @@ This module requires pluginsync enabled
 
 ### Beginning with systemd
 
-basic example from eyp-kibana:
+basic example:
 
 ```puppet
 systemd::service { 'kibana':
   execstart => "${basedir}/${productname}/bin/kibana",
-  require   => [ Class['systemd'], File["${basedir}/${productname}/config/kibana.yml"] ],
-  before    => Service['kibana'],
 }
 ```
+
+This is going to create the following service:
+
+```
+[Unit]
+
+[Service]
+ExecStart=/usr/bin/kibana
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=kibana
+User=root
+Group=root
+PermissionsStartOnly=false
+PrivateTmp=no
+
+[Install]
+WantedBy=multi-user.target
+```
+Please be aware this module defaults (documented in the [reference](#reference) section) differ from systemd's defaults
 
 ## Usage
 
