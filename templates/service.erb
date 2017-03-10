@@ -22,9 +22,23 @@ Requires=<%= @requires.join(' ') %>
 <% end -%>
 
 [Service]
+<% if defined?(@execstart) -%>
+  <%- if @execstart.kind_of?(Array) -%>
+    <%- @execstart.each do |val| -%>
+ExecStart=<%= val %>
+    <%- end -%>
+  <%- else -%>
 ExecStart=<%= @execstart %>
+  <%- end -%>
+<% end -%>
 <% if defined?(@execstop) -%>
+  <%- if @execstop.kind_of?(Array) -%>
+    <%- @execstop.each do |val| -%>
+ExecStop=<%= val %>
+    <%- end -%>
+  <%- else -%>
 ExecStop=<%= @execstop %>
+  <%- end -%>
 <% end -%>
 <% if defined?(@execreload) -%>
 ExecReload=<%= @execreload %>

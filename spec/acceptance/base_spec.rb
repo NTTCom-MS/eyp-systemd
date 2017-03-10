@@ -16,7 +16,8 @@ describe 'systemd class' do
       }
 
       service { 'test':
-        ensure => 'running',
+        ensure  => 'running',
+        require => Class['::systemd'],
       }
 
       EOF
