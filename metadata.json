@@ -1,8 +1,8 @@
 {
   "name": "eyp-systemd",
-  "version": "0.1.26",
+  "version": "0.1.27",
   "author": "eyp",
-  "summary": "management of systemd services (/etc/systemd/system/...)",
+  "summary": "management of systemd services (/etc/systemd/system/...), basic socket management",
   "license": "Apache-2.0",
   "source": "https://github.com/NTTCom-MS/eyp-systemd",
   "project_page": null,

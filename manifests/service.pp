@@ -42,6 +42,8 @@ define systemd::service (
                           $oom_score_adjust            = undef,
                           $startlimitinterval          = undef,
                           $startlimitburst             = undef,
+                          $standard_output             = 'syslog',
+                          $standard_error              = 'syslog',
                         ) {
 
   if ($env_vars != undef )
