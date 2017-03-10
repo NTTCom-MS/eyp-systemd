@@ -38,6 +38,15 @@ ExecStartPre=<%= val %>
 ExecStartPre=<%= @execstartpre %>
   <%- end -%>
 <% end -%>
+<% if defined?(@execstartpost) -%>
+  <%- if @execstartpost.kind_of?(Array) -%>
+    <%- @execstartpost.each do |val| -%>
+ExecStartPost=<%= val %>
+    <%- end -%>
+  <%- else -%>
+ExecStartPost=<%= @execstartpost %>
+  <%- end -%>
+<% end -%>
 Restart=<%= @restart %>
 StandardOutput=syslog
 StandardError=syslog
