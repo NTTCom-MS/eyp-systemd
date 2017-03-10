@@ -3,6 +3,7 @@
 ## 0.1.26
 
 * added ExecStartPost options to **systemd::service**
+* allow multiple commands for **ExecStart** and **ExecStop** (besed on [PR-32](https://github.com/NTTCom-MS/eyp-systemd/pull/32))
 
 ## 0.1.25
 
