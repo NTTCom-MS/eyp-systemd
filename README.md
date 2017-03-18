@@ -231,6 +231,7 @@ root      7173  0.0  0.0 107896   608 ?        S    10:34   0:00  \_ sleep 10m
 * **oom_score_adjust**: Sets the adjustment level for the **Out-Of-Memory killer** for executed processes. Takes an integer between -1000 *to disable OOM killing* and 1000 *to make killing of this process under memory pressure very likely* (default: undef)
 * **startlimitinterval**:  Configures the checking interval (default: undef)
 * **startlimitburst**: Configures how many starts per interval are allowed (default: undef)
+* **killmode**: Specifies how processes of this unit shall be killed. One of control-group, process, mixed, none. (default: undef)
 
 
 #### systemd::sysvwrapper
