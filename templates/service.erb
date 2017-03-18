@@ -62,8 +62,8 @@ ExecStartPost=<%= @execstartpost %>
   <%- end -%>
 <% end -%>
 Restart=<%= @restart %>
-StandardOutput=syslog
-StandardError=syslog
+StandardOutput=<%= @standard_output %>
+StandardError=<%= @standard_error %>
 SyslogIdentifier=<%= @servicename %>
 User=<%= @user %>
 Group=<%= @group %>

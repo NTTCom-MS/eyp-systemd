@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.27
+
+* added standard_error and standard_output variables to **systemd::service** (default to syslog, keeping compatibility)
+
 ## 0.1.26
 
 * added ExecStartPost options to **systemd::service**
