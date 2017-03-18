@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.28
+
+* addded KillMode to **systemd::service**
+
 ## 0.1.27
 
 * added standard_error and standard_output variables to **systemd::service** (default to syslog, keeping compatibility)

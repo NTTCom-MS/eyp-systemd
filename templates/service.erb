@@ -150,6 +150,9 @@ StartLimitInterval=<%= @startlimitinterval %>
 <% if defined?(@startlimitburst) -%>
 StartLimitBurst=<%= @startlimitburst %>
 <% end -%>
+<% if defined?(@killmode) -%>
+KillMode=<%= @killmode %>
+<% end -%>
 
 [Install]
 WantedBy=<%= @wantedby.join(' ') %>
