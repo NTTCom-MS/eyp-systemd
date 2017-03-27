@@ -2,7 +2,7 @@
 
 ## 0.1.28
 
-* addded KillMode to **systemd::service**
+* added KillMode to **systemd::service**
 
 ## 0.1.27
 
