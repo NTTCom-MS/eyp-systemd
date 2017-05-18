@@ -1,3 +1,8 @@
+[Unit]
+<% if defined?(@description) -%>
+Description = <%= @description %>
+<% end -%>
+
 [Socket]
 <% @listen_stream.each do |val| -%>
 ListenStream=<%= val %>

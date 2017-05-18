@@ -1,8 +1,12 @@
 # CHANGELOG
 
+## 0.1.29
+
+* added **description** to **systemd::socket**
+
 ## 0.1.28
 
-* addded KillMode to **systemd::service**
+* added KillMode to **systemd::service**
 
 ## 0.1.27
 
