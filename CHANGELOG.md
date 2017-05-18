@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.30
+
+* added ArchLinux support
+
 ## 0.1.29
 
 * added **description** to **systemd::socket**
