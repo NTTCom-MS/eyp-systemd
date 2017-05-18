@@ -9,7 +9,7 @@
 define systemd::socket(
                         $listen_stream,
                         $socket_name = $name,
-                        $after       = [],
+                        $after_units = [],
                         $requires    = [],
                         $description = undef,
                         $wantedby    = [ 'multi-user.target' ],
