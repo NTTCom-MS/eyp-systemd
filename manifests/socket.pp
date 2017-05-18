@@ -11,6 +11,7 @@ define systemd::socket(
                         $socket_name = $name,
                         $after       = [],
                         $requires    = [],
+                        $description = undef,
                         $wantedby    = [ 'multi-user.target' ],
                       ) {
   include ::systemd
