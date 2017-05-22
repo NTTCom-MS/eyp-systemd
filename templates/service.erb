@@ -22,24 +22,12 @@ Requires=<%= @requires.join(' ') %>
 <% end -%>
 
 [Service]
-<% if defined?(@execstart) -%>
-  <%- if @execstart.kind_of?(Array) -%>
-    <%- @execstart.each do |val| -%>
-ExecStart=<%= val %>
-    <%- end -%>
-  <%- else -%>
-ExecStart=<%= @execstart %>
+<%- @execstart_entries.each do |execstart_entry| -%>
+ExecStart=<%= execstart_entry %>
   <%- end -%>
-<% end -%>
-<% if defined?(@execstop) -%>
-  <%- if @execstop.kind_of?(Array) -%>
-    <%- @execstop.each do |val| -%>
-ExecStop=<%= val %>
-    <%- end -%>
-  <%- else -%>
-ExecStop=<%= @execstop %>
+<%- @execstop_entries.each do |execstart_entry| -%>
+ExecStart=<%= execstart_entry %>
   <%- end -%>
-<% end -%>
 <% if defined?(@execreload) -%>
 ExecReload=<%= @execreload %>
 <% end -%>
@@ -62,8 +50,12 @@ ExecStartPost=<%= @execstartpost %>
   <%- end -%>
 <% end -%>
 Restart=<%= @restart %>
+<% if defined?(@standard_output) -%>
 StandardOutput=<%= @standard_output %>
+<% end -%>
+<% if defined?(@standard_error) -%>
 StandardError=<%= @standard_error %>
+<% end -%>
 SyslogIdentifier=<%= @servicename %>
 User=<%= @user %>
 Group=<%= @group %>
@@ -108,6 +100,9 @@ RestartPreventExitStatus=<%= @restart_prevent_exit_status %>
 <% end -%>
 <% if defined?(@limit_nofile) -%>
 LimitNOFILE = <%= @limit_nofile %>
+<% end -%>
+<% if defined?(@umask) -%>
+UMask = <%= @umask %>
 <% end -%>
 <% if defined?(@limit_nproc) -%>
 LimitNPROC = <%= @limit_nproc %>
@@ -154,8 +149,12 @@ StartLimitBurst=<%= @startlimitburst %>
 KillMode=<%= @killmode %>
 <% end -%>
 
+<% if @wantedby.any? || @requiredby.any?-%>
 [Install]
+<% if @wantedby.any? -%>
 WantedBy=<%= @wantedby.join(' ') %>
+<% end -%>
 <% if @requiredby.any? -%>
 RequiredBy=<%= @requiredby.join(' ') %>
+<% end -%>
 <% end -%>

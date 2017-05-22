@@ -4,7 +4,7 @@ define systemd::service (
                           $execreload                  = undef,
                           $execstartpre                = undef,
                           $execstartpost               = undef,
-                          $restart                     = 'always',
+                          $restart                     = 'no',
                           $user                        = 'root',
                           $group                       = 'root',
                           $servicename                 = $name,
@@ -17,7 +17,7 @@ define systemd::service (
                           $env_vars                    = [],
                           $environment_files           = [],
                           $wants                       = [],
-                          $wantedby                    = [ 'multi-user.target' ],
+                          $wantedby                    = [],
                           $requiredby                  = [],
                           $after_units                 = [],
                           $before_units                = [],
@@ -42,8 +42,8 @@ define systemd::service (
                           $oom_score_adjust            = undef,
                           $startlimitinterval          = undef,
                           $startlimitburst             = undef,
-                          $standard_output             = 'syslog',
-                          $standard_error              = 'syslog',
+                          $standard_output             = undef,
+                          $standard_error              = undef,
                           $killmode                    = undef,
                         ) {
 
@@ -61,10 +61,26 @@ define systemd::service (
   {
     fail('Incompatible options: There are multiple execstart values and Type is not "oneshot"')
   }
+  elsif ($type == 'oneshot' and  is_array($execstart))
+  {
+    $execstart_entries = $execstart
+  }
+  else
+  {
+    $execstart_entries = any2array($execstart)
+  }
 
   if($type != 'oneshot' and is_array($execstop) and count($execstop) > 1)
   {
     fail('Incompatible options: There are multiple execstart values and Type is not "oneshot"')
+  }
+  elsif($type == "oneshot" and  is_array($execstop))
+  {
+    $execstop_entries = $execstop
+  }
+  else
+  {
+    $execstop_entries = any2array($execstop)
   }
 
   # Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always.
