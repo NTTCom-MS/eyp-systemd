@@ -1,0 +1,26 @@
+[Unit]
+<% if defined?(@description) -%>
+Description=<%= @description %>
+<% end -%>
+<% if defined?(@documentation) -%>
+Documentation = <%= @documentation %>
+<% end -%>
+
+<% if @wantedBy.any? || @requiredBy.any?-%>
+[Install]
+<% if @wantedBy.any? -%>
+WantedBy=<%= @wantedBy.join(' ') %>
+<% end -%>
+<% if @requiredBy.any? -%>
+RequiredBy=<%= @requiredBy.join(' ') %>
+<% end -%>
+<% end -%>
+
+[Timer]
+<%
+    %w(onActiveSec onBootSec onStartupSec onUnitActiveSec onUnitInactiveSec onCalendar accuracySec randomizedDelaySec unit persistent wakeSystem remainAfterElapse).each do | variableName |
+-%>
+    <%- if scope[variableName].to_s != 'undef' -%>
+<%= variableName.sub(/^(.)/) { |match| match.upcase } -%>=<%= scope[variableName] %>
+    <%- end -%>
+<% end -%>
