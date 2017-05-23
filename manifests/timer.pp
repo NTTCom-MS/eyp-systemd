@@ -1,20 +1,20 @@
 define systemd::timer (
-                        $on_active_sec = undef,
-                        $on_boot_sec = undef,
-                        $on_startup_sec = undef,
-                        $on_unit_active_sec = undef,
+                        $on_active_sec        = undef,
+                        $on_boot_sec          = undef,
+                        $on_startup_sec       = undef,
+                        $on_unit_active_sec   = undef,
                         $on_unit_inactive_sec = undef,
-                        $on_calendar = undef,
-                        $accuracy_sec = undef,
+                        $on_calendar          = undef,
+                        $accuracy_sec         = undef,
                         $randomized_delay_sec = undef,
-                        $unit = undef,
-                        $persistent = undef,
-                        $wake_system = undef,
-                        $remain_after_elapse = undef,
-                        $description = undef,
-                        $documentation = undef,
-                        $wantedby = [],
-                        $requiredby = [],
+                        $unit                 = undef,
+                        $persistent           = undef,
+                        $wake_system          = undef,
+                        $remain_after_elapse  = undef,
+                        $description          = undef,
+                        $documentation        = undef,
+                        $wantedby             = [],
+                        $requiredby           = [],
                       ) {
   # Timer section
   if ($persistent) {
@@ -36,8 +36,8 @@ define systemd::timer (
   }
 
   # Install section
-  validate_array($wantedBy)
-  validate_array($requiredBy)
+  validate_array($wantedby)
+  validate_array($requiredby)
 
   if ($persistent != undef and $persistent == true and $on_calendar == undef) {
     fail('$persistent being "true" only works with $on_calendar being set.')
