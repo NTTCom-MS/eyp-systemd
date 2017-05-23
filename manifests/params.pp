@@ -49,6 +49,9 @@ class systemd::params {
         default: { fail('Unsupported Suse/OpenSuse version!')  }
       }
     }
+    'Archlinux' :
+    {
+    }
     default  : { fail('Unsupported OS!') }
   }
 }

@@ -1,0 +1,16 @@
+HOSTS:
+  archlinux-x64:
+    default_apply_opts:
+      order: random
+      strict_variables:
+    platform: archlinux-16.04-amd64
+    hypervisor : docker
+    image: base/archlinux:latest
+    docker_cmd: '["/sbin/init"]'
+    docker_preserve_image: true
+    docker_image_commands:
+      - 'pacman -Syu'
+      - 'pacman -S --noconfirm puppet grep'
+CONFIG:
+  type: foss
+  log_level: debug

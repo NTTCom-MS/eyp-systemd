@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.1.30
+
+* added ArchLinux support
+* added **systemd::timer** - thanks to [func0der](https://github.com/func0der) for this [PR-44](https://github.com/NTTCom-MS/eyp-systemd/pull/44), merged with some changes in [PR-46](https://github.com/NTTCom-MS/eyp-systemd/pull/46)
+
 ## 0.1.29
 
 * added **description** to **systemd::socket**
@@ -15,7 +20,7 @@
 ## 0.1.26
 
 * added ExecStartPost options to **systemd::service**
-* allow multiple commands for **ExecStart** and **ExecStop** (besed on [PR-32](https://github.com/NTTCom-MS/eyp-systemd/pull/32))
+* allow multiple commands for **ExecStart** and **ExecStop** (based on [PR-32](https://github.com/NTTCom-MS/eyp-systemd/pull/32))
 
 ## 0.1.25
 
