@@ -6,19 +6,19 @@ Description=<%= @description %>
 Documentation = <%= @documentation %>
 <% end -%>
 
-<% if @wantedBy.any? || @requiredBy.any?-%>
+<% if @wantedby.any? || @requiredby.any?-%>
 [Install]
-<% if @wantedBy.any? -%>
-WantedBy=<%= @wantedBy.join(' ') %>
+<% if @wantedby.any? -%>
+WantedBy=<%= @wantedby.join(' ') %>
 <% end -%>
-<% if @requiredBy.any? -%>
-RequiredBy=<%= @requiredBy.join(' ') %>
+<% if @requiredby.any? -%>
+RequiredBy=<%= @requiredby.join(' ') %>
 <% end -%>
 <% end -%>
 
 [Timer]
 <%
-    %w(onActiveSec onBootSec onStartupSec onUnitActiveSec onUnitInactiveSec onCalendar accuracySec randomizedDelaySec unit persistent wakeSystem remainAfterElapse).each do | variableName |
+    %w(on_active_sec on_boot_sec on_startup_sec on_unit_active_sec on_unit_inactive_sec on_calendar accuracy_sec randomized_delay_sec unit persistent wake_system remain_after_elapse).each do | variableName |
 -%>
     <%- if scope[variableName].to_s != 'undef' -%>
 <%= variableName.sub(/^(.)/) { |match| match.upcase } -%>=<%= scope[variableName] %>

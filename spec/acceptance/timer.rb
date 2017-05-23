@@ -16,7 +16,7 @@ describe 'systemd timer type' do
       }
 
       systemd::timer { 'test':
-        OnBootSec => '1',
+        on_boot_sec => '1',
         before    => Service['test'],
       }
 
@@ -34,7 +34,7 @@ describe 'systemd timer type' do
 
     describe file("/etc/systemd/system/test.timer") do
       it { should be_file }
-      its(:content) { should match 'OnBootSec=1' }
+      its(:content) { should match 'on_boot_sec=1' }
     end
 
     it "systemctl status" do
