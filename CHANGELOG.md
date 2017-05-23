@@ -3,7 +3,7 @@
 ## 0.1.30
 
 * added ArchLinux support
-* added **systemd::timer** - thanks to [func0der](https://github.com/func0der) for this [PR-44](https://github.com/NTTCom-MS/eyp-systemd/pull/44), merged with some changes in PR-
+* added **systemd::timer** - thanks to [func0der](https://github.com/func0der) for this [PR-44](https://github.com/NTTCom-MS/eyp-systemd/pull/44), merged with some changes in [PR-46](https://github.com/NTTCom-MS/eyp-systemd/pull/46)
 
 ## 0.1.29
 
