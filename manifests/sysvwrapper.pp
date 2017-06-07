@@ -29,8 +29,8 @@ define systemd::sysvwrapper (
     execstart => "/bin/bash ${initscript}.sysvwrapper.wrapper start",
     execstop  => "/bin/bash ${initscript}.sysvwrapper.wrapper stop",
     require   => File[ [
-                      "/etc/init.d/${servicename}.sysvwrapper.wrapper",
-                      "/etc/init.d/${servicename}.sysvwrapper.status",
+                      "${initscript}.sysvwrapper.wrapper",
+                      "${initscript}.sysvwrapper.status",
                       ] ],
     forking   => true,
     restart   => 'no',
