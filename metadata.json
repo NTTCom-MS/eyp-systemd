@@ -1,6 +1,6 @@
 {
   "name": "eyp-systemd",
-  "version": "0.1.30",
+  "version": "0.1.31",
   "author": "eyp",
   "summary": "management of systemd services (/etc/systemd/system/...), basic socket management",
   "license": "Apache-2.0",

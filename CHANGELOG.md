@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.31
+
+* make **systemd::sysvwrapper** more generic allowing init scripts outside /etc/init.d
+
 ## 0.1.30
 
 * added ArchLinux support

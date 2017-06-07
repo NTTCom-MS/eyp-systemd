@@ -9,7 +9,7 @@ define systemd::sysvwrapper (
     fail('You must include the systemd base class before using any systemd defined resources')
   }
 
-  file { "/etc/init.d/${servicename}.sysvwrapper.status":
+  file { "${initscript}.sysvwrapper.status":
     ensure  => 'present',
     owner   => 'root',
     group   => 'root',
@@ -17,7 +17,7 @@ define systemd::sysvwrapper (
     content => template("${module_name}/sysv/status.erb"),
   }
 
-  file { "/etc/init.d/${servicename}.sysvwrapper.wrapper":
+  file { "${initscript}.sysvwrapper.wrapper":
     ensure  => 'present',
     owner   => 'root',
     group   => 'root',
