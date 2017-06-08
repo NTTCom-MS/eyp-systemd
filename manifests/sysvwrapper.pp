@@ -4,10 +4,7 @@ define systemd::sysvwrapper (
                               $check_time  = '10m',
                             ) {
 
-  if ! defined(Class['systemd'])
-  {
-    fail('You must include the systemd base class before using any systemd defined resources')
-  }
+  include ::systemd
 
   file { "${initscript}.sysvwrapper.status":
     ensure  => 'present',
