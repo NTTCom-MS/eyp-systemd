@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.33
+
+* added **wait_time_on_startup** to **systemd::sysvwrapper**
+
 ## 0.1.32
 
 * added include to **systemd::sysvwrapper**

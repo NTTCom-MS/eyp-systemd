@@ -1,7 +1,8 @@
 define systemd::sysvwrapper (
                               $initscript,
-                              $servicename = $name,
-                              $check_time  = '10m',
+                              $servicename          = $name,
+                              $check_time           = '10m',
+                              $wait_time_on_startup = '1s',
                             ) {
 
   include ::systemd
