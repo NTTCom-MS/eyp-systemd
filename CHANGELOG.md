@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.1.34
+
+* for puppet4, changed include for contain as suggested by [steveniemitz](https://github.com/NTTCom-MS/eyp-systemd/issues/35)
+* systemd::timer camelcase + nil values - thanks to [cedef](https://github.com/cedef) for this [PR-47](https://github.com/NTTCom-MS/eyp-systemd/pull/47)
+* added Rubocop to enhance ruby files code quality - thanks to [cedef](https://github.com/cedef) for this [PR-48](https://github.com/NTTCom-MS/eyp-systemd/pull/48)
+
 ## 0.1.33
 
 * added **wait_time_on_startup** to **systemd::sysvwrapper**
