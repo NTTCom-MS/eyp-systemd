@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.1.33
+
+* added **wait_time_on_startup** to **systemd::sysvwrapper**
+
+## 0.1.32
+
+* added include to **systemd::sysvwrapper**
+
+## 0.1.31
+
+* make **systemd::sysvwrapper** more generic allowing init scripts outside /etc/init.d
+
 ## 0.1.30
 
 * added ArchLinux support

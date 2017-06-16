@@ -1,15 +1,13 @@
 define systemd::sysvwrapper (
                               $initscript,
-                              $servicename = $name,
-                              $check_time  = '10m',
+                              $servicename          = $name,
+                              $check_time           = '10m',
+                              $wait_time_on_startup = '1s',
                             ) {
 
-  if ! defined(Class['systemd'])
-  {
-    fail('You must include the systemd base class before using any systemd defined resources')
-  }
+  include ::systemd
 
-  file { "/etc/init.d/${servicename}.sysvwrapper.status":
+  file { "${initscript}.sysvwrapper.status":
     ensure  => 'present',
     owner   => 'root',
     group   => 'root',
@@ -17,7 +15,7 @@ define systemd::sysvwrapper (
     content => template("${module_name}/sysv/status.erb"),
   }
 
-  file { "/etc/init.d/${servicename}.sysvwrapper.wrapper":
+  file { "${initscript}.sysvwrapper.wrapper":
     ensure  => 'present',
     owner   => 'root',
     group   => 'root',
@@ -29,8 +27,8 @@ define systemd::sysvwrapper (
     execstart => "/bin/bash ${initscript}.sysvwrapper.wrapper start",
     execstop  => "/bin/bash ${initscript}.sysvwrapper.wrapper stop",
     require   => File[ [
-                      "/etc/init.d/${servicename}.sysvwrapper.wrapper",
-                      "/etc/init.d/${servicename}.sysvwrapper.status",
+                      "${initscript}.sysvwrapper.wrapper",
+                      "${initscript}.sysvwrapper.status",
                       ] ],
     forking   => true,
     restart   => 'no',
