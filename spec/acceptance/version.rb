@@ -3,14 +3,13 @@ _osfamily               = fact('osfamily')
 _operatingsystem        = fact('operatingsystem')
 _operatingsystemrelease = fact('operatingsystemrelease').to_f
 
-case _osfamily
-when 'RedHat'
-  $examplevar = 'valrh'
+$examplevar = case _osfamily
+  when 'RedHat'
+    'valrh'
 
-when 'Debian'
-  $examplevar = 'valdeb'
+  when 'Debian'
+    'valdeb'
 
-else
-  $examplevar = '-_-'
-
+  else
+    '-_-'
 end

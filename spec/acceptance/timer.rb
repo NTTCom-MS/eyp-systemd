@@ -2,7 +2,6 @@ require 'spec_helper_acceptance'
 require_relative './version.rb'
 
 describe 'systemd timer type' do
-
   context 'timer setup' do
     # Using puppet_apply as a helper
     it 'should work with no errors' do
