@@ -78,7 +78,15 @@ define systemd::service (
   validate_array($requires)
   validate_array($conflicts)
 
-  include ::systemd
+  if versioncmp($::puppetversion, '4.0.0') >= 0
+  {
+    contain ::systemd
+  }
+  else
+  {
+    include ::systemd
+  }
+
 
   file { "/etc/systemd/system/${servicename}.service":
     ensure  => 'present',
