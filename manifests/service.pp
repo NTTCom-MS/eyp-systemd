@@ -44,6 +44,7 @@ define systemd::service (
                           $startlimitburst             = undef,
                           $standard_output             = 'syslog',
                           $standard_error              = 'syslog',
+                          $syslog_facility             = undef,
                           $killmode                    = undef,
                         ) {
 

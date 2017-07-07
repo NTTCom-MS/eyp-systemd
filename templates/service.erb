@@ -65,6 +65,9 @@ Restart=<%= @restart %>
 StandardOutput=<%= @standard_output %>
 StandardError=<%= @standard_error %>
 SyslogIdentifier=<%= @servicename %>
+<% if defined?(@syslog_facility) -%>
+SyslogFacility=<%= @syslog_facility %>
+<% end -%>
 User=<%= @user %>
 Group=<%= @group %>
 <% if @forking -%>
