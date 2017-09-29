@@ -95,7 +95,7 @@ define systemd::dropin (
     group   => 'root',
     mode    => '0644',
     content => template("${module_name}/dropin.erb"),
-    #notify  => Exec['systemctl reload'],
+    notify  => Exec['systemctl reload'],
   }
 
 }
