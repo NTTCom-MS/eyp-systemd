@@ -153,6 +153,11 @@ StartLimitBurst=<%= @startlimitburst %>
 <% if defined?(@killmode) -%>
 KillMode=<%= @killmode %>
 <% end -%>
+SuccessExitStatus=<%= @successexitstatus %>
+<% end -%>
+<% if defined?(@killsignal) -%>
+KillSignal=<%= @killsignal %>
+<% end -%>
 
 [Install]
 WantedBy=<%= @wantedby.join(' ') %>

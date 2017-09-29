@@ -45,6 +45,8 @@ define systemd::service (
                           $standard_output             = 'syslog',
                           $standard_error              = 'syslog',
                           $killmode                    = undef,
+                          $successexitstatus           = undef,
+                          $killsignal                  = undef,
                         ) {
 
   if ($env_vars != undef )
