@@ -69,10 +69,10 @@ define systemd::dropin (
   }
 
   file { "/etc/systemd/system/${servicename}.service.d/":
-    ensure  => 'directory',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0755',
+    ensure => 'directory',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
   }
 
   file { "/etc/systemd/system/${servicename}.service.d/override.conf":
