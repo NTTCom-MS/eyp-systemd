@@ -74,6 +74,7 @@ define systemd::dropin (
     group   => 'root',
     mode    => '0755',
   }
+
   file { "/etc/systemd/system/${servicename}.service.d/override.conf":
     ensure  => 'present',
     owner   => 'root',
