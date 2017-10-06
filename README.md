@@ -71,7 +71,7 @@ PrivateTmp=no
 WantedBy=multi-user.target
 ```
 
-#### Service overrites(dropin):
+#### Service overrides(dropin):
 ```puppet
 systemd::dropin { 'ceph-disk@':
   env_vars => ['CEPH_DISK_TIMEOUT=3000'],
