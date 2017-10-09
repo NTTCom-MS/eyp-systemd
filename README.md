@@ -23,6 +23,7 @@ systemd service support
 basic systemd support implemented:
 * service definitions (sys-v wrapper also available)
 * **logind.conf** (disables IPC deletion on user logout)
+* `/etc/systemd/system.conf` (systemd manager configuration)
 
 For systemd related questions please refer to:
 
@@ -70,6 +71,15 @@ PrivateTmp=no
 WantedBy=multi-user.target
 ```
 Please be aware this module defaults (documented in the [reference](#reference) section) differ from systemd's defaults
+
+#### Setup specific systemd manager directives
+
+```puppet
+class { 'systemd::system':
+  runtime_watchdog_sec  => '40',
+  shutdown_watchdog_sec => '2min',
+}
+```
 
 ## Usage
 
