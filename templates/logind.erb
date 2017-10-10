@@ -1,5 +1,4 @@
-#
-# puppet managed file
+###  Managed by Puppet - Changes will be lost
 #
 #  This file is part of systemd.
 #
@@ -9,24 +8,71 @@
 #  (at your option) any later version.
 #
 # See logind.conf(5) for details
+<%-
+
+var_to_systemd_directives = {
+  'handle_hibernate_key'           => 'HandleHibernateKey',
+  'handle_lid_switch'              => 'HandleLidSwitch',
+  'handle_lid_switch_docked'       => 'HandleLidSwitchDocked',
+  'handle_power_key'               => 'HandlePowerKey',
+  'handle_suspend_key'             => 'HandleSuspendKey',
+  'hibernate_key_ignore_inhibited' => 'HibernateKeyIgnoreInhibited',
+  'holdoff_timeout_sec'            => 'HoldoffTimeoutSec',
+  'idle_action'                    => 'IdleAction',
+  'idle_action_sec'                => 'IdleActionSec',
+  'inhibit_delay_max_sec'          => 'InhibitDelayMaxSec',
+  'inhibitors_max'                 => 'InhibitorsMax',
+  'kill_exclude_users'             => 'KillExcludeUsers',
+  'kill_only_users'                => 'KillOnlyUsers',
+  'kill_user_processes'            => 'KillUserProcesses',
+  'lid_switch_ignore_inhibited'    => 'LidSwitchIgnoreInhibited',
+  'n_auto_vts'                     => 'NAutoVTs',
+  'power_key_ignore_inhibited'     => 'PowerKeyIgnoreInhibited',
+  'remove_ipc'                     => 'RemoveIPC',
+  'reserve_vt'                     => 'ReserveVT',
+  'runtime_directory_size'         => 'RuntimeDirectorySize',
+  'sessions_max'                   => 'SessionsMax',
+  'suspend_key_ignore_inhibited'   => 'SuspendKeyIgnoreInhibited',
+  'user_tasks_max'                 => 'UserTasksMax'
+}
+
+-%>
 
 [Login]
-#NAutoVTs=6
-#ReserveVT=6
-#KillUserProcesses=no
-#KillOnlyUsers=
-#KillExcludeUsers=root
-#InhibitDelayMaxSec=5
-#HandlePowerKey=poweroff
-#HandleSuspendKey=suspend
-#HandleHibernateKey=hibernate
-#HandleLidSwitch=suspend
-#PowerKeyIgnoreInhibited=no
-#SuspendKeyIgnoreInhibited=no
-#HibernateKeyIgnoreInhibited=no
-#LidSwitchIgnoreInhibited=yes
-#IdleAction=ignore
-#IdleActionSec=30min
 <% if defined?(@removeipc) -%>
 RemoveIPC=<%= @removeipc %>
+<% end -%>
+<%
+  all_var_names = %w( handle_hibernate_key handle_lid_switch handle_lid_switch_docked
+                      handle_power_key handle_suspend_key
+                      hibernate_key_ignore_inhibited holdoff_timeout_sec
+                      idle_action idle_action_sec inhibit_delay_max_sec
+                      inhibitors_max kill_exclude_users kill_only_users
+                      kill_user_processes lid_switch_ignore_inhibited
+                      n_auto_vts power_key_ignore_inhibited remove_ipc
+                      reserve_vt runtime_directory_size sessions_max
+                      suspend_key_ignore_inhibited user_tasks_max)
+
+  bool_var_names = %w( hibernate_key_ignore_inhibited kill_user_processes
+                       lid_switch_ignore_inhibited power_key_ignore_inhibited
+                       remove_ipc suspend_key_ignore_inhibited )
+
+  list_var_names = %w(kill_exclude_users kill_only_users)
+
+all_var_names.each do | variableName | -%>
+<%- if scope[variableName].to_s != 'undef' and !scope[variableName].nil?
+      if list_var_names.include? variableName
+        next if scope[variableName].empty?
+        myvalue = scope[variableName].join(' ')
+
+      elsif bool_var_names.include? variableName
+        myvalue = scope.function_bool2yesno([scope[variableName]])
+
+      else
+        myvalue = scope[variableName]
+
+      end
+-%>
+<%= var_to_systemd_directives[variableName] -%>=<%= myvalue %>
+<%- end -%>
 <% end -%>
