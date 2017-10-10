@@ -53,7 +53,7 @@ class systemd::system(
     $system_call_architectures       =undef,
     $timer_slack_nsec                =undef
 ) {
-  file { "/etc/systemd/system.conf":
+  file { '/etc/systemd/system.conf':
     ensure  => 'present',
     owner   => 'root',
     group   => 'root',
