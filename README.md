@@ -73,7 +73,7 @@ WantedBy=multi-user.target
 
 #### Service overrides(dropin):
 ```puppet
-systemd::dropin { 'ceph-disk@':
+systemd::service::dropin { 'ceph-disk@':
   env_vars => ['CEPH_DISK_TIMEOUT=3000'],
 }
 ```
@@ -196,7 +196,7 @@ root      7173  0.0  0.0 107896   608 ?        S    10:34   0:00  \_ sleep 10m
 ```
 ### Systemd Service Overrides:
 ```puppet
-systemd::dropin { 'node_exporter':
+systemd::service::dropin { 'node_exporter':
   user    => 'monitoring',
   restart => 'on-failure',
 }
@@ -268,7 +268,7 @@ User=monitoring
 * **startlimitburst**: Configures how many starts per interval are allowed (default: undef)
 * **killmode**: Specifies how processes of this unit shall be killed. One of control-group, process, mixed, none. (default: undef)
 
-#### systemd::dropin
+#### systemd::service::dropin
 
 * **execstart**: command to start daemon
 * **execstop**: command to stop daemon (default: undef)
