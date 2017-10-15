@@ -1,4 +1,4 @@
-define systemd::dropin (
+define systemd::service::dropin (
                           $execstart                   = undef,
                           $execstop                    = undef,
                           $execreload                  = undef,

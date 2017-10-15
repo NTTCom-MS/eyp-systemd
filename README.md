@@ -78,7 +78,7 @@ systemd::dropin { 'ceph-disk@':
 }
 ```
 
-This is going to create the following overrrite file:
+This is going to create the following overrride file:
 
 ```bash
 # cat /etc/systemd/system/ceph-disk@.service.d/override.conf:
@@ -202,7 +202,7 @@ systemd::dropin { 'node_exporter':
 }
 ```
 
-This is going to create the following overrrite file:
+This is going to create the following overrride file:
 
 ```bash
 # cat /etc/systemd/system/node_exporter.service.d/override.conf:
