@@ -1,3 +1,4 @@
+# puppet2sitepp @
 define systemd::service (
                           $execstart,
                           $execstop                    = undef,
