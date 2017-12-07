@@ -1,6 +1,6 @@
 define systemd::service (
                           $execstart,
-                          $execstop                    = undef,
+                          $execstop                    = [],
                           $execreload                  = undef,
                           $execstartpre                = undef,
                           $execstartpost               = undef,
