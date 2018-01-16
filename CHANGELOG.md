@@ -3,6 +3,7 @@
 ## 0.1.35
 
 * execstart for **systemd::service** is no longer mandatory
+* added dropinfile support - thanks to [oOHenry](https://github.com/oOHenry) for this [PR-57](https://github.com/NTTCom-MS/eyp-systemd/pull/57)
 
 ## 0.1.34
 

@@ -83,5 +83,4 @@ define systemd::service::dropin (
     content => template("${module_name}/dropin.erb"),
     notify  => Exec['systemctl reload'],
   }
-
 }
