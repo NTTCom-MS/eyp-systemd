@@ -224,7 +224,7 @@ User=monitoring
 
 #### systemd::service
 
-* **execstart**: command to start daemon
+* **execstart**: command to start daemon (default: undef)
 * **execstop**: command to stop daemon (default: undef)
 * **execreload**: commands or scripts to be executed when the unit is reloaded (default: undef)
 * **restart**: restart daemon if crashes. Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always (default: always)
@@ -270,14 +270,13 @@ User=monitoring
 
 #### systemd::service::dropin
 
-* **execstart**: command to start daemon
+* **execstart**: command to start daemon (default: undef)
 * **execstop**: command to stop daemon (default: undef)
 * **execreload**: commands or scripts to be executed when the unit is reloaded (default: undef)
-* **restart**: restart daemon if crashes. Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always (default: always)
+* **restart**: restart daemon if crashes. Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always (default: undef)
 * **user**: username to use (default: root)
 * **group**: group to use (default: root)
 * **servicename**: service name (default: resource's name)
-* **forking**: expect fork to background (default: false)
 * **pid_file**: PIDFile specifies a stable PID for the main process of the service (default: undef)
 * **description**: A meaningful description of the unit. This text is displayed for example in the output of the systemctl status command (default: undef)
 * **after**: Defines the order in which units are started (default: undef)

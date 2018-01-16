@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.1.35
+
+* execstart for **systemd::service** is no longer mandatory
+* added dropinfile support using **systemd::service::dropin** - thanks to [oOHenry](https://github.com/oOHenry) for this [PR-57](https://github.com/NTTCom-MS/eyp-systemd/pull/57)
+
 ## 0.1.34
 
 * for puppet4, changed include for contain as suggested by [steveniemitz](https://github.com/NTTCom-MS/eyp-systemd/issues/35)
