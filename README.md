@@ -189,7 +189,7 @@ root      7173  0.0  0.0 107896   608 ?        S    10:34   0:00  \_ sleep 10m
 
 #### systemd::service
 
-* **execstart**: command to start daemon
+* **execstart**: command to start daemon (default: undef)
 * **execstop**: command to stop daemon (default: undef)
 * **execreload**: commands or scripts to be executed when the unit is reloaded (default: undef)
 * **restart**: restart daemon if crashes. Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always (default: always)
