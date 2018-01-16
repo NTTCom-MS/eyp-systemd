@@ -59,7 +59,7 @@ ExecStartPost=<%= val %>
 ExecStartPost=<%= @execstartpost %>
   <%- end -%>
 <% end -%>
-<% if @restart != "no" -%>
+<% if defined?(@restart) -%>
 Restart=<%= @restart %>
 <% end -%>
 <% if defined?(@standard_output) -%>
@@ -79,9 +79,6 @@ SyslogIdentifier=<%= @servicename %>
 <% end -%>
 <% if defined?(@group) -%>
   Group=<%= @group %>
-<% end -%>
-<% if @forking -%>
-Type=forking
 <% end -%>
 <% if defined?(@pid_file) -%>
 PIDFile=<%= @pid_file %>
