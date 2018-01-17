@@ -5,7 +5,7 @@ define systemd::service (
                           $execreload                  = undef,
                           $execstartpre                = undef,
                           $execstartpost               = undef,
-                          $restart                     = 'always',
+                          $restart                     = undef,
                           $user                        = 'root',
                           $group                       = 'root',
                           $servicename                 = $name,
@@ -47,7 +47,7 @@ define systemd::service (
                           $standard_output             = 'syslog',
                           $standard_error              = 'syslog',
                           $killmode                    = undef,
-                          $successexitstatus           = undef,
+                          $successexitstatus           = [],
                           $killsignal                  = undef,
                         ) {
 
@@ -70,6 +70,8 @@ define systemd::service (
   {
     fail('Incompatible options: There are multiple execstop values and Type is not "oneshot"')
   }
+
+  $syslogidentifier = $servicename
 
   # Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always.
   validate_re($restart, [ '^no$', '^on-success$', '^on-failure$', '^on-abnormal$', '^on-watchdog$', '^on-abort$', '^always$'], "Not a supported restart type: ${restart} - Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always")
