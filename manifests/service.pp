@@ -24,6 +24,7 @@ define systemd::service (
                           $before_units                = [],
                           $requires                    = [],
                           $conflicts                   = [],
+                          $on_failure                  = [],
                           $permissions_start_only      = false,
                           $timeoutstartsec             = undef,
                           $timeoutstopsec              = undef,
@@ -78,6 +79,7 @@ define systemd::service (
   validate_array($before_units)
   validate_array($requires)
   validate_array($conflicts)
+  validate_array($on_failure)
 
   if versioncmp($::puppetversion, '4.0.0') >= 0
   {
