@@ -1,6 +1,6 @@
 [Unit]
 <% if defined?(@description) -%>
-Description = <%= @description %>
+Description=<%= @description %>
 <% end -%>
 <% if defined?(@after) -%>
 After=<%= @after %>
@@ -19,6 +19,9 @@ Conflicts=<%= @conflicts.join(' ') %>
 <% end -%>
 <% if @requires.any? -%>
 Requires=<%= @requires.join(' ') %>
+<% end -%>
+<% if @on_failure.any? -%>
+OnFailure=<%= @on_failure.join(' ') %>
 <% end -%>
 
 [Service]
