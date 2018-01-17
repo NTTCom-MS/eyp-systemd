@@ -97,7 +97,6 @@ define systemd::service (
     include ::systemd
   }
 
-
   file { "/etc/systemd/system/${servicename}.service":
     ensure  => 'present',
     owner   => 'root',
