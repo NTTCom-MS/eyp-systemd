@@ -65,7 +65,7 @@ define systemd::service (
 
   if($type != 'oneshot' and is_array($execstop) and count($execstop) > 1)
   {
-    fail('Incompatible options: There are multiple execstart values and Type is not "oneshot"')
+    fail('Incompatible options: There are multiple execstop values and Type is not "oneshot"')
   }
 
   # Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always.
