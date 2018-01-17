@@ -22,6 +22,6 @@ define systemd::socket(
     group   => 'root',
     mode    => '0644',
     content => template("${module_name}/socket.erb"),
-    notify  => Exec['systemctl reload'],
+    notify  => Exec['systemctl daemon-reload'],
   }
 }

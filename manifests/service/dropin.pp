@@ -88,6 +88,6 @@ define systemd::service::dropin (
     group   => 'root',
     mode    => '0644',
     content => template("${module_name}/service.erb"),
-    notify  => Exec['systemctl reload'],
+    notify  => Exec['systemctl daemon-reload'],
   }
 }

@@ -7,7 +7,7 @@ class systemd($removeipc='no') inherits systemd::params {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
   }
 
-  exec { 'systemctl reload':
+  exec { 'systemctl daemon-reload':
     command     => 'systemctl daemon-reload',
     refreshonly => true,
   }

@@ -6,6 +6,7 @@
 * Added SuccessExitStatus and KillSignal to **systemd::service** - thanks to [alquez](https://github.com/alquez) for this [PR-63](https://github.com/NTTCom-MS/eyp-systemd/pull/63)
 * modified service template to be able to be used in **systemd::service::dropin**
 * [Issue 55](https://github.com/NTTCom-MS/eyp-systemd/issues/55) Restart default value conflicts with oneshot services, changed default value to **undef**
+* [Issue 54](https://github.com/NTTCom-MS/eyp-systemd/issues/54) Renamed exec *systemctl reload* to *systemctl daemon-reload* because *systemctl reload* is a valid command and it may be confusing
 
 ## 0.1.35
 
