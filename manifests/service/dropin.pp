@@ -16,10 +16,12 @@ define systemd::service::dropin (
                           $env_vars                    = [],
                           $environment_files           = [],
                           $wants                       = [],
+                          $requiredby                  = [],
                           $after_units                 = [],
                           $before_units                = [],
                           $requires                    = [],
                           $conflicts                   = [],
+                          $on_failure                  = [],
                           $permissions_start_only      = undef,
                           $timeoutstartsec             = undef,
                           $timeoutstopsec              = undef,
@@ -42,6 +44,9 @@ define systemd::service::dropin (
                           $standard_output             = undef,
                           $standard_error              = undef,
                           $killmode                    = undef,
+                          $successexitstatus           = [],
+                          $killsignal                  = undef,
+                          $syslogidentifier            = undef,
                         ) {
 
   if ($env_vars != undef )
@@ -82,7 +87,7 @@ define systemd::service::dropin (
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template("${module_name}/dropin.erb"),
+    content => template("${module_name}/service.erb"),
     notify  => Exec['systemctl reload'],
   }
 }
