@@ -12,6 +12,12 @@ class systemd($removeipc='no') inherits systemd::params {
     refreshonly => true,
   }
 
+  #TODO: compatibility, to be removed in 0.2
+  exec { 'systemctl reload':
+    command     => 'systemctl daemon-reload',
+    refreshonly => true,
+  }
+
   # /etc/systemd/logind.conf
   file { '/etc/systemd/logind.conf':
     ensure  => 'present',
