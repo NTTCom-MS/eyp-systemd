@@ -13,6 +13,7 @@ class systemd($removeipc='no') inherits systemd::params {
   }
 
   #TODO: compatibility, to be removed in 0.2
+  # related: https://github.com/NTTCom-MS/eyp-systemd/issues/35
   exec { 'systemctl reload':
     command     => 'systemctl daemon-reload',
     refreshonly => true,
