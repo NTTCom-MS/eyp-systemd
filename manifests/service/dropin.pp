@@ -52,7 +52,7 @@ define systemd::service::dropin (
   if($restart!=undef)
   {
     # Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always.
-    validate_re($restart, [ '^no$', '^on-success$', '^on-failure$', '^on-abnormal$', '^on-watchdog$', '^on-abort$', '^always$'], "Not a supported restart type: ${restart} - Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always")  
+    validate_re($restart, [ '^no$', '^on-success$', '^on-failure$', '^on-abnormal$', '^on-watchdog$', '^on-abort$', '^always$'], "Not a supported restart type: ${restart} - Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always")
   }
 
   validate_array($wants)
