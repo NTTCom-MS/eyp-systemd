@@ -5,6 +5,7 @@
 * added ability to **systemd::service** to use OnFailure  - thanks to [TuningYourCode](https://github.com/TuningYourCode) for this [PR-65](https://github.com/NTTCom-MS/eyp-systemd/pull/65)
 * Added SuccessExitStatus and KillSignal to **systemd::service** - thanks to [alquez](https://github.com/alquez) for this [PR-63](https://github.com/NTTCom-MS/eyp-systemd/pull/63)
 * modified service template to be able to be used in **systemd::service::dropin**
+* [Issue 55](https://github.com/NTTCom-MS/eyp-systemd/issues/55) Restart default value conflicts with oneshot services, changed default value to **undef**
 
 ## 0.1.35
 
