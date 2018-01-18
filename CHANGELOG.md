@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.37
+
+* Modified **systemd::service::dropin** to allow multiple drop in files per service as suggested in [Issue 49](https://github.com/NTTCom-MS/eyp-systemd/issues/49) by [cedef](https://github.com/cedef)
+
 ## 0.1.36
 
 * added ability to **systemd::service** to use OnFailure  - thanks to [TuningYourCode](https://github.com/TuningYourCode) for this [PR-65](https://github.com/NTTCom-MS/eyp-systemd/pull/65)

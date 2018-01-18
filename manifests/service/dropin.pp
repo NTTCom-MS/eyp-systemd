@@ -1,4 +1,7 @@
 define systemd::service::dropin (
+                                  $dropin_order                = '99',
+                                  $dropin_name                 = 'override',
+                                  $servicename                 = $name,
                                   $execstart                   = undef,
                                   $execstop                    = undef,
                                   $execreload                  = undef,
@@ -7,7 +10,6 @@ define systemd::service::dropin (
                                   $restart                     = undef,
                                   $user                        = undef,
                                   $group                       = undef,
-                                  $servicename                 = $name,
                                   $pid_file                    = undef,
                                   $description                 = undef,
                                   $after                       = undef,
@@ -47,6 +49,7 @@ define systemd::service::dropin (
                                   $successexitstatus           = [],
                                   $killsignal                  = undef,
                                   $syslogidentifier            = undef,
+                                  $purge_dropin_dir            = true,
                                 ) {
 
   if ($env_vars != undef )
@@ -75,19 +78,25 @@ define systemd::service::dropin (
     include ::systemd
   }
 
-  file { "/etc/systemd/system/${servicename}.service.d/":
-    ensure => 'directory',
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0755',
-  }
-
-  file { "/etc/systemd/system/${servicename}.service.d/override.conf":
+  file { "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf":
     ensure  => 'present',
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
     content => template("${module_name}/service.erb"),
     notify  => Exec['systemctl daemon-reload'],
+  }
+
+  if(!defined(File["/etc/systemd/system/${servicename}.service.d/"]))
+  {
+    file { "/etc/systemd/system/${servicename}.service.d/":
+      ensure  => 'directory',
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755',
+      purge   => $purge_dropin_dir,
+      recurse => $purge_dropin_dir,
+      notify  => Exec['systemctl daemon-reload'],
+    }
   }
 }
