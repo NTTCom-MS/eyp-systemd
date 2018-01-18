@@ -3,7 +3,6 @@
 ## 0.1.37
 
 * Modified **systemd::service::dropin** to allow multiple drop in files per service as suggested in [Issue 49](https://github.com/NTTCom-MS/eyp-systemd/issues/49) by [cedef](https://github.com/cedef)
-* Drop-in directory created by default in **systemd::service**
 
 ## 0.1.36
 

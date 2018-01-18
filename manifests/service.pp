@@ -49,7 +49,6 @@ define systemd::service (
                           $killmode                    = undef,
                           $successexitstatus           = [],
                           $killsignal                  = undef,
-                          $purge_dropin_dir            = true,
                         ) {
 
   if ($env_vars != undef )
@@ -106,15 +105,4 @@ define systemd::service (
     content => template("${module_name}/service.erb"),
     notify  => Exec['systemctl daemon-reload'],
   }
-
-  file { "/etc/systemd/system/${servicename}.service.d/":
-    ensure  => 'directory',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0755',
-    purge   => $purge_dropin_dir,
-    recurse => $purge_dropin_dir,
-    notify  => Exec['systemctl daemon-reload'],
-  }
-
 }

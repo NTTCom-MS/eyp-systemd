@@ -49,6 +49,7 @@ define systemd::service::dropin (
                                   $successexitstatus           = [],
                                   $killsignal                  = undef,
                                   $syslogidentifier            = undef,
+                                  $purge_dropin_dir            = true,
                                 ) {
 
   if ($env_vars != undef )
@@ -84,6 +85,18 @@ define systemd::service::dropin (
     mode    => '0644',
     content => template("${module_name}/service.erb"),
     notify  => Exec['systemctl daemon-reload'],
-    require => Systemd::Service[$servicename],
+  }
+
+  if(!defined(File["/etc/systemd/system/${servicename}.service.d/"]))
+  {
+    file { "/etc/systemd/system/${servicename}.service.d/":
+      ensure  => 'directory',
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755',
+      purge   => $purge_dropin_dir,
+      recurse => $purge_dropin_dir,
+      notify  => Exec['systemctl daemon-reload'],
+    }
   }
 }
