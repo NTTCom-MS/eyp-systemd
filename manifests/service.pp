@@ -1,5 +1,6 @@
 # puppet2sitepp @systemdservices
 define systemd::service (
+                          $servicename                 = $name,
                           $execstart                   = undef,
                           $execstop                    = undef,
                           $execreload                  = undef,
@@ -8,7 +9,6 @@ define systemd::service (
                           $restart                     = undef,
                           $user                        = 'root',
                           $group                       = 'root',
-                          $servicename                 = $name,
                           $forking                     = false,
                           $pid_file                    = undef,
                           $description                 = undef,
@@ -49,6 +49,7 @@ define systemd::service (
                           $killmode                    = undef,
                           $successexitstatus           = [],
                           $killsignal                  = undef,
+                          $purge_dropin_dir            = true,
                         ) {
 
   if ($env_vars != undef )
@@ -103,6 +104,16 @@ define systemd::service (
     group   => 'root',
     mode    => '0644',
     content => template("${module_name}/service.erb"),
+    notify  => Exec['systemctl daemon-reload'],
+  }
+
+  file { "/etc/systemd/system/${servicename}.service.d/":
+    ensure  => 'directory',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+    purge   => $purge_dropin_dir,
+    recurse => $purge_dropin_dir,
     notify  => Exec['systemctl daemon-reload'],
   }
 
