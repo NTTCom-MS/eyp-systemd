@@ -51,7 +51,6 @@ define systemd::service::dropin (
                                   $syslogidentifier            = undef,
                                   $purge_dropin_dir            = true,
                                 ) {
-
   if ($env_vars != undef )
   {
     validate_array($env_vars)

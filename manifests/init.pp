@@ -19,7 +19,6 @@ class systemd($removeipc='no') inherits systemd::params {
     refreshonly => true,
   }
 
-  # /etc/systemd/logind.conf
   file { '/etc/systemd/logind.conf':
     ensure  => 'present',
     owner   => 'root',
@@ -27,5 +26,4 @@ class systemd($removeipc='no') inherits systemd::params {
     mode    => '0644',
     content => template("${module_name}/logind.erb"),
   }
-
 }
