@@ -18,26 +18,25 @@ define systemd::timer (
                       ) {
   # Timer section
   if ($persistent) {
-    validate_bool($persistent)
+    validate_legacy(Boolean, 'validate_bool', $persistent)
   }
   if ($wake_system) {
-    validate_bool($wake_system)
+    validate_legacy(Boolean, 'validate_bool', $wake_system)
   }
   if ($remain_after_elapse) {
-    validate_bool($remain_after_elapse)
+    validate_legacy(Boolean, 'validate_bool', $remain_after_elapse)
   }
 
   # Unit section
   if ($documentation) {
-    validate_re(
-      $documentation,
-      [ '^https?://', '^file:', '^info:', '^man:'],
-      "Not a supported documentation uri: ${documentation} - It has to be one of 'http://', 'https://', 'file:', 'info:' or 'man:'")
+    validate_legacy('Optional[String]', 'validate_re', $documentation,
+      [ '^https?://', '^file:', '^info:', '^man:']
+    )
   }
 
   # Install section
-  validate_array($wantedby)
-  validate_array($requiredby)
+  validate_legacy(Array, 'validate_array', $wantedby)
+  validate_legacy(Array, 'validate_array', $requiredby)
 
   if ($persistent != undef and $persistent == true and $on_calendar == undef) {
     fail('$persistent being "true" only works with $on_calendar being set.')

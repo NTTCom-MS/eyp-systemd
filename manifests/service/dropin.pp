@@ -53,20 +53,22 @@ define systemd::service::dropin (
                                 ) {
   if ($env_vars != undef )
   {
-    validate_array($env_vars)
+    validate_legacy(Array, 'validate_array', $env_vars)
   }
 
   if($restart!=undef)
   {
     # Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always.
-    validate_re($restart, [ '^no$', '^on-success$', '^on-failure$', '^on-abnormal$', '^on-watchdog$', '^on-abort$', '^always$'], "Not a supported restart type: ${restart} - Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always")
+    validate_legacy('Optional[String]', 'validate_re', $restart,
+      [ '^no$', '^on-success$', '^on-failure$', '^on-abnormal$', '^on-watchdog$', '^on-abort$', '^always$']
+    )
   }
 
-  validate_array($wants)
-  validate_array($after_units)
-  validate_array($before_units)
-  validate_array($requires)
-  validate_array($conflicts)
+  validate_legacy(Array, 'validate_array', $wants)
+  validate_legacy(Array, 'validate_array', $after_units)
+  validate_legacy(Array, 'validate_array', $before_units)
+  validate_legacy(Array, 'validate_array', $requires)
+  validate_legacy(Array, 'validate_array', $conflicts)
 
   if versioncmp($::puppetversion, '4.0.0') >= 0
   {

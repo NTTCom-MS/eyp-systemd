@@ -8,7 +8,7 @@
   "project_page": "https://github.com/NTTCom-MS/eyp-systemd",
   "issues_url": "https://github.com/NTTCom-MS/eyp-systemd/issues",
   "dependencies": [
-    {"name":"puppetlabs/stdlib","version_requirement":">= 1.0.0 < 9.9.9"},
+    {"name":"puppetlabs/stdlib", "version_requirement":">= 4.13.0 < 9.9.9"},
     {"name":"eyp/eyplib","version_requirement":">= 0.1.0 < 0.2.0"}
   ],
   "operatingsystem_support": [
@@ -49,7 +49,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 3.0.0"
+      "version_requirement": ">= 4.0.0"
     }
   ]
 }

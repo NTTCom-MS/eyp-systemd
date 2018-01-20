@@ -53,7 +53,7 @@ define systemd::service (
 
   if ($env_vars != undef )
   {
-    validate_array($env_vars)
+    validate_legacy(Array, 'validate_array', $env_vars)
   }
 
   if($type!=undef and $forking==true)
@@ -61,12 +61,12 @@ define systemd::service (
     fail('Incompatible options: type / forking')
   }
 
-  if($type != 'oneshot' and is_array($execstart) and count($execstart) > 1)
+  if($type != 'oneshot' and $execstart =~ Array and count($execstart) > 1)
   {
     fail('Incompatible options: There are multiple execstart values and Type is not "oneshot"')
   }
 
-  if($type != 'oneshot' and is_array($execstop) and count($execstop) > 1)
+  if($type != 'oneshot' and $execstop =~ Array and count($execstop) > 1)
   {
     fail('Incompatible options: There are multiple execstop values and Type is not "oneshot"')
   }
@@ -76,17 +76,16 @@ define systemd::service (
   if($restart!=undef)
   {
     # Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always.
-    validate_re($restart, [ '^no$', '^on-success$', '^on-failure$', '^on-abnormal$', '^on-watchdog$', '^on-abort$', '^always$'], "Not a supported restart type: ${restart} - Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always")
+    validate_legacy('Optional[String]', 'validate_re', $redis::service_ensure, [ '^no$', '^on-success$', '^on-failure$', '^on-abnormal$', '^on-watchdog$', '^on-abort$', '^always$'])
   }
 
-  validate_array($wants)
-  validate_array($wantedby)
-  validate_array($requiredby)
-  validate_array($after_units)
-  validate_array($before_units)
-  validate_array($requires)
-  validate_array($conflicts)
-  validate_array($on_failure)
+  validate_legacy(Array, 'validate_array', $wants)
+  validate_legacy(Array, 'validate_array', $wantedby)
+  validate_legacy(Array, 'validate_array', $requiredby)
+  validate_legacy(Array, 'validate_array', $after_units)
+  validate_legacy(Array, 'validate_array', $before_units)
+  validate_legacy(Array, 'validate_array', $requires)
+  validate_legacy(Array, 'validate_array', $conflicts)
 
   if versioncmp($::puppetversion, '4.0.0') >= 0
   {
