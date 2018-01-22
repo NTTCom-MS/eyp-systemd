@@ -8,3 +8,6 @@ log
 spec/fixtures/
 Gemfile.lock
 .bundle
+/.yardwarns
+/.yardoc
+/doc

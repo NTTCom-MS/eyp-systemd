@@ -1,6 +1,6 @@
 [Unit]
 <% if defined?(@description) -%>
-Description = <%= @description %>
+Description=<%= @description %>
 <% end -%>
 <% if defined?(@after) -%>
 After=<%= @after %>
@@ -19,6 +19,9 @@ Conflicts=<%= @conflicts.join(' ') %>
 <% end -%>
 <% if @requires.any? -%>
 Requires=<%= @requires.join(' ') %>
+<% end -%>
+<% if @on_failure.any? -%>
+OnFailure=<%= @on_failure.join(' ') %>
 <% end -%>
 
 [Service]
@@ -61,15 +64,27 @@ ExecStartPost=<%= val %>
 ExecStartPost=<%= @execstartpost %>
   <%- end -%>
 <% end -%>
+<% if defined?(@restart) -%>
 Restart=<%= @restart %>
+<% end -%>
+<% if defined?(@standard_output) -%>
 StandardOutput=<%= @standard_output %>
+<% end -%>
+<% if defined?(@standard_error) -%>
 StandardError=<%= @standard_error %>
-SyslogIdentifier=<%= @servicename %>
+<% end -%>
+<% if defined?(@syslogidentifier) -%>
+SyslogIdentifier=<%= @syslogidentifier %>
+<% end -%>
 <% if defined?(@syslog_facility) -%>
 SyslogFacility=<%= @syslog_facility %>
 <% end -%>
+<% if defined?(@user) -%>
 User=<%= @user %>
+<% end -%>
+<% if defined?(@group) -%>
 Group=<%= @group %>
+<% end -%>
 <% if @forking -%>
 Type=forking
 <% end -%>
@@ -92,7 +107,9 @@ Environment=<%= env %>
 EnvironmentFile=<%= env_file %>
   <%- end -%>
 <% end -%>
+<% if defined?(@permissions_start_only) -%>
 PermissionsStartOnly=<%= @permissions_start_only %>
+<% end -%>
 <% if defined?(@timeoutstartsec) -%>
 TimeoutStartSec=<%= @timeoutstartsec %>
 <% end -%>
@@ -137,7 +154,9 @@ RuntimeDirectoryMode=<%= @runtime_directory_mode %>
 <% if defined?(@restart_sec) -%>
 RestartSec=<%= @restart_sec %>
 <% end -%>
+<% if defined?(@private_tmp) -%>
 PrivateTmp=<%= scope.function_bool2yesno([@private_tmp]) %>
+<% end -%>
 <% if defined?(@working_directory) -%>
 WorkingDirectory=<%= @working_directory %>
 <% end -%>
@@ -162,9 +181,17 @@ StartLimitBurst=<%= @startlimitburst %>
 <% if defined?(@killmode) -%>
 KillMode=<%= @killmode %>
 <% end -%>
+<% if @successexitstatus.any? -%>
+SuccessExitStatus=<%= @successexitstatus.join(' ') %>
+<% end -%>
+<% if defined?(@killsignal) -%>
+KillSignal=<%= @killsignal %>
+<% end -%>
 
 [Install]
+<% if defined?(@wantedby) -%>
 WantedBy=<%= @wantedby.join(' ') %>
+<% end -%>
 <% if @requiredby.any? -%>
 RequiredBy=<%= @requiredby.join(' ') %>
 <% end -%>
