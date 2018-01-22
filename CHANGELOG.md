@@ -3,6 +3,7 @@
 ## 0.1.38
 
 * Add syslog facility, memlock and core limits to service template - thanks to [davidnewhall](https://github.com/davidnewhall) for this [PR-53](https://github.com/NTTCom-MS/eyp-systemd/pull/53)
+* Manage /etc/systemd/system.conf file - thanks to [cedef](https://github.com/cedef) for this [PR-58](https://github.com/NTTCom-MS/eyp-systemd/pull/58)
 
 ## 0.1.37
 
