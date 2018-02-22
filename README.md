@@ -205,6 +205,7 @@ root     27399  0.0  0.0 113120  1396 ?        S    Jan09   0:00 /bin/bash /etc/
 root      7173  0.0  0.0 107896   608 ?        S    10:34   0:00  \_ sleep 10m
 ```
 ### Systemd Service Overrides:
+
 ```puppet
 systemd::service::dropin { 'node_exporter':
   user    => 'monitoring',
@@ -220,7 +221,6 @@ This is going to create the following overrride file:
 Restart=on-failure
 User=monitoring
 ```
-
 
 ## Reference
 
@@ -280,6 +280,8 @@ User=monitoring
 
 #### systemd::service::dropin
 
+* **dropin_order**: dropin priority - part of the filename, only useful for multiple dropin files (default: 99)
+* **dropin_name**: dropin name (default: override)
 * **execstart**: command to start daemon (default: undef)
 * **execstop**: command to stop daemon (default: undef)
 * **execreload**: commands or scripts to be executed when the unit is reloaded (default: undef)
