@@ -18,12 +18,4 @@ class systemd($removeipc='no') inherits systemd::params {
     command     => 'systemctl daemon-reload',
     refreshonly => true,
   }
-
-  file { '/etc/systemd/logind.conf':
-    ensure  => 'present',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    content => template("${module_name}/logind.erb"),
-  }
 }
