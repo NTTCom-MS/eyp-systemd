@@ -22,9 +22,7 @@ class systemd::logind(
                         $sessions_max                    = 8192,
                         $suspend_key_ignore_inhibited    = false,
                         $user_tasks_max                  = '33%',
-                      ) {
-
-  include ::systemd
+                      ) inherits systemd {
 
   validate_bool($hibernate_key_ignore_inhibited, $kill_user_processes,
                 $lid_switch_ignore_inhibited, $power_key_ignore_inhibited,
