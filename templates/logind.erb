@@ -1,4 +1,4 @@
-###  Managed by Puppet - Changes will be lost
+###  puppet managed file
 #
 #  This file is part of systemd.
 #
@@ -39,9 +39,6 @@ var_to_systemd_directives = {
 -%>
 
 [Login]
-<% if defined?(@removeipc) -%>
-RemoveIPC=<%= @removeipc %>
-<% end -%>
 <%
   all_var_names = %w( handle_hibernate_key handle_lid_switch handle_lid_switch_docked
                       handle_power_key handle_suspend_key

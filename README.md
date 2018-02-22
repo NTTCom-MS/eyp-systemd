@@ -21,8 +21,8 @@ systemd service support
 ## Module Description
 
 basic systemd support implemented:
-* service definitions (sys-v wrapper also available)
-* **logind.conf** (disables IPC deletion on user logout)
+* service,socket and timer definitions (sys-v wrapper also available)
+* **logind.conf** management (default behaviour is to **disable RemoveIPC** by default)
 * `/etc/systemd/system.conf` (systemd manager configuration)
 
 For systemd related questions please refer to:
@@ -35,12 +35,15 @@ For systemd related questions please refer to:
 ### What systemd affects
 
 - Creates service definitions: **/etc/systemd/system/${servicename}.service**
+- Creates socket definitions: **/etc/systemd/system/${servicename}.socket**
+- Creates timer definitions: **/etc/systemd/system/${servicename}.timer**
+- Creates drop-in definitions: **/etc/systemd/system/${servicename}/${dropin_order}-${dropin_name}.service**
+- Creates systemd/sys-v compatibility scripts
 - Manages **/etc/systemd/logind.conf**
 
 ### Setup Requirements
 
 This module requires pluginsync enabled
-
 
 ### Basic example:
 ---
@@ -228,7 +231,35 @@ User=monitoring
 
 #### systemd
 
-* **removeipc**: IPC deletion on user logout (default: no)
+base class for systemd reload management
+
+#### systemd::logind
+
+/etc/systemd/logind.conf management:
+
+* **handle_hibernate_key**:            (default: 'hibernate')
+* **handle_lid_switch**:               (default: suspend')
+* **handle_lid_switch_docked**:        (default: ignore')
+* **handle_power_key**:                (default: poweroff')
+* **handle_suspend_key**:              (default: suspend')
+* **hibernate_key_ignore_inhibited**:  (default: false)
+* **holdoff_timeout_sec**:             (default: 30)
+* **idle_action**:                     (default: ignore')
+* **idle_action_sec**:                 (default: 30min')
+* **inhibit_delay_max_sec**:           (default: 5)
+* **inhibitors_max**:                  (default: 8192)
+* **kill_exclude_users**:              (default: ['root'])
+* **kill_only_users**:                 (default: [])
+* **kill_user_processes**:             (default: true)
+* **lid_switch_ignore_inhibited**:     (default: true)
+* **n_auto_vts**:                      (default: 6)
+* **power_key_ignore_inhibited**:      (default: false)
+* **remove_ipc**:                      (default: false)
+* **reserve_vt**:                      (default: 6)
+* **runtime_directory_size**:          (default: 10%')
+* **sessions_max**:                    (default: 8192)
+* **suspend_key_ignore_inhibited**:    (default: false)
+* **user_tasks_max**:                  (default: 33%')
 
 ### defines
 
