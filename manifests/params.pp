@@ -30,7 +30,7 @@ class systemd::params {
         {
           case $::operatingsystemrelease
           {
-            /^8.*$/:
+            /^[89].*$/:
             {
             }
             default: { fail("Unsupported Debian version! - ${::operatingsystemrelease}")  }

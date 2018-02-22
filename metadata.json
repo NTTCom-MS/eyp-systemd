@@ -1,11 +1,11 @@
 {
   "name": "eyp-systemd",
-  "version": "0.1.34",
+  "version": "0.1.38",
   "author": "eyp",
   "summary": "management of systemd services (/etc/systemd/system/...), basic socket management",
   "license": "Apache-2.0",
   "source": "https://github.com/NTTCom-MS/eyp-systemd",
-  "project_page": null,
+  "project_page": "https://github.com/NTTCom-MS/eyp-systemd",
   "issues_url": "https://github.com/NTTCom-MS/eyp-systemd/issues",
   "dependencies": [
     {"name":"puppetlabs/stdlib","version_requirement":">= 1.0.0 < 9.9.9"},
@@ -38,7 +38,8 @@
     },
     {
       "operatingsystem": "Debian",
-      "operatingsystemrelease": [ "8" ]
+      "operatingsystemrelease": [ "8", "9" ]
+
     },
     {
       "operatingsystem": "SLES",

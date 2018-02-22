@@ -49,6 +49,6 @@ define systemd::timer (
     group   => 'root',
     mode    => '0644',
     content => template("${module_name}/timer.erb"),
-    notify  => Exec['systemctl reload'],
+    notify  => Exec['systemctl daemon-reload'],
   }
 }
