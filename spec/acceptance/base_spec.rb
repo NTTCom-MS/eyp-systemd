@@ -31,6 +31,11 @@ describe 'systemd class' do
       its(:content) { should match 'ExecStart=/bin/sleep 60' }
     end
 
+    describe file("/etc/systemd/logind.conf") do
+      it { should be_file }
+      its(:content) { should match 'RemoveIPC=no' }
+    end
+
     it "systemctl status" do
       expect(shell("systemctl status test").exit_code).to be_zero
     end

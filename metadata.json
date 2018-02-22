@@ -1,15 +1,15 @@
 {
   "name": "eyp-systemd",
-  "version": "0.1.38",
+  "version": "0.1.39",
   "author": "eyp",
-  "summary": "management of systemd services (/etc/systemd/system/...), basic socket management",
+  "summary": "management of systemd services, services dropins, sockets and timers",
   "license": "Apache-2.0",
   "source": "https://github.com/NTTCom-MS/eyp-systemd",
   "project_page": "https://github.com/NTTCom-MS/eyp-systemd",
   "issues_url": "https://github.com/NTTCom-MS/eyp-systemd/issues",
   "dependencies": [
     {"name":"puppetlabs/stdlib","version_requirement":">= 1.0.0 < 9.9.9"},
-    {"name":"eyp/eyplib","version_requirement":">= 0.1.0 < 0.2.0"}
+    {"name":"eyp/eyplib","version_requirement":">= 0.1.12 < 0.2.0"}
   ],
   "operatingsystem_support": [
     {
