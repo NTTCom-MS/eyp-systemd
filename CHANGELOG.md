@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.39
+
+* New class for **
+
 ## 0.1.38
 
 * Add syslog facility, memlock and core limits to service template - thanks to [davidnewhall](https://github.com/davidnewhall) for this [PR-53](https://github.com/NTTCom-MS/eyp-systemd/pull/53)
