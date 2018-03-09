@@ -52,6 +52,9 @@ define systemd::service (
                           $killmode                    = undef,
                           $successexitstatus           = [],
                           $killsignal                  = undef,
+                          $alias                       = [],
+                          $also                        = [],
+                          $default_instance            = undef,
                         ) {
 
   if ($env_vars != undef )

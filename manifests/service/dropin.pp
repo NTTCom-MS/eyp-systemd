@@ -53,6 +53,9 @@ define systemd::service::dropin (
                                   $killsignal                  = undef,
                                   $syslogidentifier            = undef,
                                   $purge_dropin_dir            = true,
+                                  $alias                       = [],
+                                  $also                        = [],
+                                  $default_instance            = undef,
                                 ) {
   if ($env_vars != undef )
   {

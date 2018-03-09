@@ -195,3 +195,12 @@ WantedBy=<%= @wantedby.join(' ') %>
 <% if @requiredby.any? -%>
 RequiredBy=<%= @requiredby.join(' ') %>
 <% end -%>
+<% if @alias.any? -%>
+Alias=<%= @alias.join(' ') %>
+<% end -%>
+<% if defined?(@default_instance) -%>
+DefaultInstance=<%= @default_instance %>
+<% end -%>
+<% if @also.any? -%>
+Also=<%= @also.join(' ') %>
+<% end -%>

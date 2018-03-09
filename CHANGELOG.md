@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.40
+
+* added **Alias**, **Also** and **DefaultInstance** for **systemd::service** and **systemd::service::dropin**
+
 ## 0.1.39
 
 * logind.conf is now managed via **systemd::logind** with a lot of new options - thanks to [cedef](https://github.com/cedef) for this [PR-59](https://github.com/NTTCom-MS/eyp-systemd/pull/59), it have been marged with some changes using [PR-81](https://github.com/NTTCom-MS/eyp-systemd/pull/81)
