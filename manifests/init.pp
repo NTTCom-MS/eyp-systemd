@@ -3,6 +3,7 @@
 #
 class systemd(
   $manage_journald = false,
+  $manage_logind = true,
   $removeipc = 'no',
 ) inherits systemd::params {
 
@@ -22,7 +23,9 @@ class systemd(
     refreshonly => true,
   }
 
-  include ::systemd::logind
+  if ($manage_logind) {
+    include ::systemd::logind
+  }
 
   if ($manage_journald) {
     include ::systemd::journald
