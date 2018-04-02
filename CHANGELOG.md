@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.41
+
+* renamed **alias** to **service_alias** in **systemd::service** and **systemd::service::dropin**
+
 ## 0.1.40
 
 * added **Alias**, **Also** and **DefaultInstance** for **systemd::service** and **systemd::service::dropin**

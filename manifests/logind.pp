@@ -64,6 +64,6 @@ class systemd::logind(
     group   => 'root',
     mode    => '0644',
     content => template("${module_name}/logind.erb"),
-    notify  => Exec['systemctl reload'],
+    notify  => Exec['systemctl daemon-reload'],
   }
 }
