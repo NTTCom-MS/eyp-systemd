@@ -14,7 +14,14 @@ define systemd::socket(
                         $description = undef,
                         $wantedby    = [ 'multi-user.target' ],
                       ) {
-  include ::systemd
+  if versioncmp($::puppetversion, '4.0.0') >= 0
+  {
+    contain ::systemd
+  }
+  else
+  {
+    include ::systemd
+  }
 
   file { "/etc/systemd/system/${socket_name}.socket":
     ensure  => 'present',

@@ -1,6 +1,6 @@
 {
   "name": "eyp-systemd",
-  "version": "0.1.40",
+  "version": "0.1.41",
   "author": "eyp",
   "summary": "management of systemd services, services dropins, sockets and timers",
   "license": "Apache-2.0",
@@ -49,7 +49,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 3.0.0"
+      "version_requirement": ">= 3.8.0"
     }
   ]
 }

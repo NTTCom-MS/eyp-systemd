@@ -53,26 +53,16 @@ define systemd::service::dropin (
                                   $killsignal                  = undef,
                                   $syslogidentifier            = undef,
                                   $purge_dropin_dir            = true,
-                                  $alias                       = [],
+                                  $service_alias               = [],
                                   $also                        = [],
                                   $default_instance            = undef,
                                 ) {
-  if ($env_vars != undef )
-  {
-    validate_array($env_vars)
-  }
 
   if($restart!=undef)
   {
     # Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always.
     validate_re($restart, [ '^no$', '^on-success$', '^on-failure$', '^on-abnormal$', '^on-watchdog$', '^on-abort$', '^always$'], "Not a supported restart type: ${restart} - Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always")
   }
-
-  validate_array($wants)
-  validate_array($after_units)
-  validate_array($before_units)
-  validate_array($requires)
-  validate_array($conflicts)
 
   if versioncmp($::puppetversion, '4.0.0') >= 0
   {
