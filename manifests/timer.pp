@@ -26,7 +26,7 @@ define systemd::timer (
   {
     validate_bool($wake_system)
   }
-  
+
   if ($remain_after_elapse)
   {
     validate_bool($remain_after_elapse)
