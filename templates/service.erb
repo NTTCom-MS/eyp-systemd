@@ -195,8 +195,8 @@ WantedBy=<%= @wantedby.join(' ') %>
 <% if @requiredby.any? -%>
 RequiredBy=<%= @requiredby.join(' ') %>
 <% end -%>
-<% if @alias.any? -%>
-Alias=<%= @alias.join(' ') %>
+<% if @service_alias.any? -%>
+Alias=<%= @service_alias.join(' ') %>
 <% end -%>
 <% if defined?(@default_instance) -%>
 DefaultInstance=<%= @default_instance %>
