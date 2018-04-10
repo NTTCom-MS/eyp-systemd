@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.41
+
+* changed default setting **kill_user_processes** to false, it was breaking compatibility on some systems
+
 ## 0.1.40
 
 * added **Alias**, **Also** and **DefaultInstance** for **systemd::service** and **systemd::service::dropin**
