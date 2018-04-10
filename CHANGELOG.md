@@ -2,6 +2,7 @@
 
 ## 0.1.41
 
+* changed default setting **kill_user_processes** to false, it was breaking compatibility on some systems
 * renamed **alias** to **service_alias** in **systemd::service** and **systemd::service::dropin**
 
 ## 0.1.40

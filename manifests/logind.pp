@@ -12,7 +12,7 @@ class systemd::logind(
                         $inhibitors_max                  = 8192,
                         $kill_exclude_users              = ['root'],
                         $kill_only_users                 = [],
-                        $kill_user_processes             = true,
+                        $kill_user_processes             = false,
                         $lid_switch_ignore_inhibited     = true,
                         $n_auto_vts                      = 6,
                         $power_key_ignore_inhibited      = false,
