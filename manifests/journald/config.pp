@@ -29,7 +29,7 @@ class systemd::journald::config inherits systemd::journald {
     }
 
     exec { 'stop systemd-journald service for keys manipulation':
-      command => 'bash -c \'systemctl stop systemd-journald; echo\'',
+      command => 'bash -c \'systemctl stop systemd-journald; pkill systemd-journald; echo\'',
       unless  => 'journalctl --verify 2>&1 | grep PASS',
       require => File['/var/log/journal'],
     }
