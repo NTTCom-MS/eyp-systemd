@@ -31,7 +31,7 @@ class systemd::journald::config inherits systemd::journald {
     }
 
     exec { 'setup FSS keys':
-      command => inline_template('bash -c \'systemctl stop systemd-journald; journalctl --interval =<% = @seal_interval %> --setup-keys\''),
+      command => inline_template('bash -c \'journalctl --interval =<% = @seal_interval %> --setup-keys > /var/log/journal/.secret\''),
       unless  => 'journalctl --verify 2>&1 | grep PASS',
       require => Exec['stop systemd-journald service for keys manipulation'],
     }

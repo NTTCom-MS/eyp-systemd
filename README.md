@@ -283,6 +283,7 @@ systemd-journald is a system service that collects and stores logging data
 * **runtime_max_files_size**: (default: undef)
 * **runtime_max_use**:       (default: undef)
 * **seal**: If enabled (the default), and a sealing key is available (as created by journalctl(1)'s --setup-keys command), Forward Secure Sealing (FSS) for all persistent journal files is enabled (default: true)
+* **seal_interval**: Time interval for changing the FSS sealing key (default: 30s)
 * **split_mode**:            (default: uid)
 * **storage**: Controls where to store journal data. One of "volatile", "persistent", "auto" and "none" (default: auto)
 * **sync_interval_sec**:     (default: 5m)
