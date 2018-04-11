@@ -28,17 +28,17 @@ class systemd::journald::config inherits systemd::journald {
       require => File['/etc/systemd/journald.conf'],
     }
 
-    exec { 'stop systemd-journald service for keys manipulation':
-      command => 'bash -c \'systemctl stop systemd-journald; pkill systemd-journald; echo\'',
-      unless  => 'journalctl --verify 2>&1 | grep PASS',
-      require => File['/var/log/journal'],
-    }
-
-    exec { 'setup FSS keys':
-      command => inline_template('journalctl --interval=<%= @seal_interval %> --setup-keys > /var/log/journal/.secret'),
-      unless  => 'journalctl --verify 2>&1 | grep PASS',
-      require => Exec['stop systemd-journald service for keys manipulation'],
-    }
+    # exec { 'stop systemd-journald service for keys manipulation':
+    #   command => 'bash -c \'systemctl stop systemd-journald; pkill systemd-journald; echo\'',
+    #   unless  => 'journalctl --verify 2>&1 | grep PASS',
+    #   require => File['/var/log/journal'],
+    # }
+    #
+    # exec { 'setup FSS keys':
+    #   command => inline_template('journalctl --interval=<%= @seal_interval %> --setup-keys > /var/log/journal/.secret'),
+    #   unless  => 'journalctl --verify 2>&1 | grep PASS',
+    #   require => Exec['stop systemd-journald service for keys manipulation'],
+    # }
   }
 
 
