@@ -261,6 +261,36 @@ base class for systemd reload management
 * **suspend_key_ignore_inhibited**:    (default: false)
 * **user_tasks_max**:                  (default: 33%')
 
+#### systemd::journald
+
+systemd-journald is a system service that collects and stores logging data
+
+* **compress**: If enabled (the default), data objects that shall be stored in the journal and are larger than the default threshold of 512 bytes are compressed before they are written to the file system. It can also be set to a number of bytes to specify the compression threshold directly. Suffixes like K, M, and G can be used to specify larger units. (default: true)
+* **forward_to_console**:    (default: false)
+* **forward_to_kmsg**:       (default: false)
+* **forward_to_syslog**:     (default: true)
+* **forward_to_wall**:       (default: true)
+* **max_file_sec**:          (default: 1month)
+* **max_level_console**:     (default: info)
+* **max_level_kmsg**:        (default: notice)
+* **max_level_store**:       (default: debug)
+* **max_level_syslog**:      (default: debug)
+* **max_level_wall**:        (default: emerg)
+* **max_retention_sec**:     (default: undef)
+* **rate_limit_burst**:      (default: 1000)
+* **rate_limit_interval**:   (default: 30s)
+* **runtime_keep_free**:     (default: undef)
+* **runtime_max_files_size**: (default: undef)
+* **runtime_max_use**:       (default: undef)
+* **seal**: If enabled (the default), and a sealing key is available (as created by journalctl(1)'s --setup-keys command), Forward Secure Sealing (FSS) for all persistent journal files is enabled (default: true)
+* **split_mode**:            (default: uid)
+* **storage**: Controls where to store journal data. One of "volatile", "persistent", "auto" and "none" (default: auto)
+* **sync_interval_sec**:     (default: 5m)
+* **system_keep_free**:      (default: undef)
+* **system_max_file_size**:  (default: undef)
+* **system_max_use**:        (default: undef)
+* **tty_path**:              (default: /dev/console)
+
 ### defines
 
 #### systemd::service
@@ -373,7 +403,7 @@ have some test to check both presence and absence of any feature
 
 ### Contributing
 
-1. Fork it
+1. Fork it using the development fork: [jordiprats/eyp-systemd](https://github.com/jordiprats/eyp-systemd)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

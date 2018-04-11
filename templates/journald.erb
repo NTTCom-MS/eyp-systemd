@@ -11,47 +11,48 @@
 <%-
 
 var_to_systemd_directives = {
-  'compress' => 'Compress',
-  'forward_to_console' => 'ForwardToConsole',
-  'forward_to_kmsg' => 'ForwardToKMsg',
-  'forward_to_syslog' => 'ForwardToSyslog',
-  'forward_to_wall' => 'ForwardToWall',
-  'max_file_sec' => 'MaxFileSec',
-  'max_level_console' => 'MaxLevelConsole',
-  'max_level_kmsg' => 'MaxLevelKMsg',
-  'max_level_store' => 'MaxLevelStore',
-  'max_level_syslog' => 'MaxLevelSyslog',
-  'max_level_wall' => 'MaxLevelWall',
-  'max_retention_sec' => 'MaxRetentionSec',
-  'rate_limit_burst' => 'RateLimitBurst',
-  'rate_limit_interval' => 'RateLimitInterval',
-  'run_time_keep_free' => 'RuntimeKeepFree',
+  'compress'               => 'Compress',
+  'forward_to_console'     => 'ForwardToConsole',
+  'forward_to_kmsg'        => 'ForwardToKMsg',
+  'forward_to_syslog'      => 'ForwardToSyslog',
+  'forward_to_wall'        => 'ForwardToWall',
+  'max_file_sec'           => 'MaxFileSec',
+  'max_level_console'      => 'MaxLevelConsole',
+  'max_level_kmsg'         => 'MaxLevelKMsg',
+  'max_level_store'        => 'MaxLevelStore',
+  'max_level_syslog'       => 'MaxLevelSyslog',
+  'max_level_wall'         => 'MaxLevelWall',
+  'max_retention_sec'      => 'MaxRetentionSec',
+  'rate_limit_burst'       => 'RateLimitBurst',
+  'rate_limit_interval'    => 'RateLimitInterval',
+  'run_time_keep_free'     => 'RuntimeKeepFree',
   'run_time_max_file_size' => 'RuntimeMaxFileSize',
-  'run_time_max_use' => 'RuntimeMaxUse',
-  'seal' => 'Seal',
-  'split_mode' => 'SplitMode',
-  'storage' => 'Storage',
-  'sync_interval_sec' => 'SyncIntervalSec',
-  'system_keep_free' => 'SystemKeepFree',
-  'system_max_file_size' => 'SystemMaxFileSize',
-  'system_max_use' => 'SystemMaxUse',
-  'tty_path' => 'TTYPath',
+  'run_time_max_use'       => 'RuntimeMaxUse',
+  'seal'                   => 'Seal',
+  'split_mode'             => 'SplitMode',
+  'storage'                => 'Storage',
+  'sync_interval_sec'      => 'SyncIntervalSec',
+  'system_keep_free'       => 'SystemKeepFree',
+  'system_max_file_size'   => 'SystemMaxFileSize',
+  'system_max_use'         => 'SystemMaxUse',
+  'tty_path'               => 'TTYPath',
 }
 
 -%>
 
 [Journal]
 <%
-  all_var_names = %w(compress forward_to_console forward_to_kmsg
-    forward_to_syslog forward_to_wall max_file_sec max_level_console
-    max_level_kmsg max_level_store max_level_syslog max_level_wall
-    max_retention_sec rate_limit_burst rate_limit_interval
-    run_time_keep_free run_time_max_file_size run_time_max_use seal
-    split_mode storage sync_interval_sec system_keep_free
-    system_max_file_size system_max_use tty_path)
+  all_var_names = %w( compress forward_to_console forward_to_kmsg
+                      forward_to_syslog forward_to_wall max_file_sec
+                      max_level_console max_level_kmsg max_level_store
+                      max_level_syslog max_level_wall max_retention_sec
+                      rate_limit_burst rate_limit_interval run_time_keep_free
+                      run_time_max_file_size run_time_max_use seal
+                      split_mode storage sync_interval_sec system_keep_free
+                      system_max_file_size system_max_use tty_path)
 
   bool_var_names = %w(compress forward_to_console forward_to_kmsg
-    forward_to_syslog forward_to_wall seal)
+                      forward_to_syslog forward_to_wall seal)
 
 all_var_names.each do | variableName | -%>
 <%- if scope[variableName].to_s != 'undef' and !scope[variableName].nil?

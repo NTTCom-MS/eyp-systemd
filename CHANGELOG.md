@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.42
+
+* Add journald under puppet management - thanks to [fraenki](https://github.com/fraenki) for this [PR-84](https://github.com/NTTCom-MS/eyp-systemd/pull/84), it have been marged with some changes using [PR-81](https://github.com/NTTCom-MS/eyp-systemd/pull/81)
+
 ## 0.1.41
 
 * changed default setting **kill_user_processes** to false, it was breaking compatibility on some systems

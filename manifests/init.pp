@@ -1,11 +1,10 @@
 #
 # https://wiki.archlinux.org/index.php/systemd#Service_types
 #
-class systemd(
-  $manage_journald = false,
-  $manage_logind = true,
-  $removeipc = 'no',
-) inherits systemd::params {
+class systemd (
+                $manage_logind   = true,
+                $removeipc       = 'no',
+              ) inherits systemd::params {
 
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
@@ -23,11 +22,6 @@ class systemd(
     refreshonly => true,
   }
 
-  if ($manage_logind) {
-    include ::systemd::logind
-  }
+  include ::systemd::logind
 
-  if ($manage_journald) {
-    include ::systemd::journald
-  }
 }
