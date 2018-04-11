@@ -2,7 +2,7 @@
 
 ## 0.1.42
 
-* Add journald under puppet management - thanks to [fraenki](https://github.com/fraenki) for this [PR-84](https://github.com/NTTCom-MS/eyp-systemd/pull/84), it have been marged with some changes using [PR-81](https://github.com/NTTCom-MS/eyp-systemd/pull/81)
+* Add journald under puppet management - thanks to [fraenki](https://github.com/fraenki) for this [PR-84](https://github.com/NTTCom-MS/eyp-systemd/pull/84), it have been marged with some changes using [PR-87](https://github.com/NTTCom-MS/eyp-systemd/pull/87)
 
 ## 0.1.41
 
