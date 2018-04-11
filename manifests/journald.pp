@@ -21,7 +21,6 @@ class systemd::journald (
                           $runtime_max_files_size = undef,
                           $runtime_max_use        = undef,
                           $seal                   = true,
-                          $seal_interval          = '30s',
                           $split_mode             = 'uid',
                           $storage                = 'auto',
                           $sync_interval_sec      = '5m',

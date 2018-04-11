@@ -14,7 +14,7 @@ class systemd::journald::config inherits systemd::journald {
 
   if($systemd::journald::seal)
   {
-    # FSS
+    # TODO: FSS interval
     # chmod 2755 /var/log/journal/
     # [root@centos7 ~]# ls -ld /var/log/journal/
     # drwxr-sr-x+ 3 root systemd-journal 46 Apr 11 11:34 /var/log/journal/
@@ -27,19 +27,5 @@ class systemd::journald::config inherits systemd::journald {
       mode    => '2755',
       require => File['/etc/systemd/journald.conf'],
     }
-
-    # exec { 'stop systemd-journald service for keys manipulation':
-    #   command => 'bash -c \'systemctl stop systemd-journald; pkill systemd-journald; echo\'',
-    #   unless  => 'journalctl --verify 2>&1 | grep PASS',
-    #   require => File['/var/log/journal'],
-    # }
-    #
-    # exec { 'setup FSS keys':
-    #   command => inline_template('journalctl --interval=<%= @seal_interval %> --setup-keys > /var/log/journal/.secret'),
-    #   unless  => 'journalctl --verify 2>&1 | grep PASS',
-    #   require => Exec['stop systemd-journald service for keys manipulation'],
-    # }
   }
-
-
 }
