@@ -8,7 +8,7 @@ class systemd::journald::config inherits systemd::journald {
     content => template("${module_name}/journald.erb"),
   }
 
-  if($seal)
+  if($systemd::journald::seal)
   {
     # FSS
     # chmod 2755 /var/log/journal/
