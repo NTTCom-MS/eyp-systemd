@@ -26,6 +26,9 @@ OnFailure=<%= @on_failure.join(' ') %>
 
 [Service]
 <% if defined?(@execstart) -%>
+  <%- if defined?(@dropin) -%>
+ExecStart=
+  <%- end -%>
   <%- if @execstart.kind_of?(Array) -%>
     <%- @execstart.each do |val| -%>
 ExecStart=<%= val %>
