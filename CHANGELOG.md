@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.43
+
+* added Ubuntu 18.04 support
+
 ## 0.1.42
 
 * Add journald under puppet management - thanks to [fraenki](https://github.com/fraenki) for this [PR-84](https://github.com/NTTCom-MS/eyp-systemd/pull/84), it have been marged with some changes using [PR-87](https://github.com/NTTCom-MS/eyp-systemd/pull/87)
