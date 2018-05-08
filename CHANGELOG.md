@@ -3,6 +3,7 @@
 ## 0.1.43
 
 * added Ubuntu 18.04 support
+* added revolved support via **class systemd::resolved**
 
 ## 0.1.42
 
