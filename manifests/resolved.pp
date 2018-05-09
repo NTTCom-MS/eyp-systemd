@@ -5,6 +5,9 @@ class systemd::resolved (
                           $service_enable        = true,
                           $dns                   = [],
                           $fallback_dns          = [],
+                          $dns_stub_listener     = true,
+                          $dnssec                = false,
+                          $cache                 = true,
                         ) inherits systemd::params {
 
 

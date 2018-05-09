@@ -20,6 +20,6 @@ FallbackDNS=<%= @fallback_dns.join(' ') %>
 #Domains=
 #LLMNR=no
 #MulticastDNS=no
-#DNSSEC=no
-#Cache=yes
-#DNSStubListener=yes
+DNSSEC=<%= scope.function_bool2yesno([@dnssec]) %>
+Cache=<%= scope.function_bool2yesno([@cache]) %>
+DNSStubListener=<%= scope.function_bool2yesno([@dns_stub_listener]) %>
