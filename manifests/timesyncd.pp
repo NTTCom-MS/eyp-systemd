@@ -10,7 +10,6 @@ class systemd::timesyncd(
                           $poll_interval_max_sec = '2048',
                         ) inherits systemd::params {
 
-
   class { '::systemd::timesyncd::config': } ~>
   class { '::systemd::timesyncd::service': } ->
   Class['::systemd::timesyncd']
