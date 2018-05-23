@@ -2,7 +2,7 @@
   "name": "eyp-systemd",
   "version": "0.1.44",
   "author": "eyp",
-  "summary": "management of systemd services, services dropins, sockets and timers",
+  "summary": "management of systemd services, services dropins, sockets, timers, timesyncd, journald, logind and resolved",
   "license": "Apache-2.0",
   "source": "https://github.com/NTTCom-MS/eyp-systemd",
   "project_page": "https://github.com/NTTCom-MS/eyp-systemd",
