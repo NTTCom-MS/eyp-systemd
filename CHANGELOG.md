@@ -1,9 +1,13 @@
 # CHANGELOG
 
+## 0.1.44
+
+* added timesyncd support via class **systemd::timesyncd**
+
 ## 0.1.43
 
 * added Ubuntu 18.04 support
-* added revolved support via **class systemd::resolved**
+* added revolved support via class **systemd::resolved**
 
 ## 0.1.42
 
