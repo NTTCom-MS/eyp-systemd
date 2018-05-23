@@ -234,6 +234,30 @@ User=monitoring
 
 base class for systemd reload management
 
+#### systemd::timesyncd
+
+* **manage_service**:        (default: true)
+* **manage_docker_service**: (default: true)
+* **service_ensure**:        (default: running)
+* **service_enable**:        (default: true)
+* **servers**:               (default: [])
+* **fallback_servers**:      (default: [])
+* **root_distance_max_sec**: (default: 5)
+* **poll_interval_min_sec**: (default: 32)
+* **poll_interval_max_sec**: (default: 2048)
+
+#### systemd::resolved
+
+* **manage_service**:        (default: true)
+* **manage_docker_service**: (default: true)
+* **service_ensure**:        (default: running)
+* **service_enable**:        (default: true)
+* **dns**:                   (default: [])
+* **fallback_dns**:          (default: [])
+* **dns_stub_listener**:     (default: true)
+* **dnssec**:                (default: false)
+* **cache**:                 (default: true)
+
 #### systemd::logind
 
 /etc/systemd/logind.conf management:
