@@ -2,7 +2,7 @@
 
 ## 0.1.45
 
-* added CPUQuota support - thanks to [oleg-glushak](https://github.com/oleg-glushak) for this [PR-95](https://github.com/NTTCom-MS/eyp-systemd/pull/95), it have been marged with some changes using [PR-87](https://github.com/NTTCom-MS/eyp-systemd/pull/87)
+* added CPUQuota support - thanks to [oleg-glushak](https://github.com/oleg-glushak) for this [PR-95](https://github.com/NTTCom-MS/eyp-systemd/pull/95), it have been marged with some changes using [PR-96](https://github.com/NTTCom-MS/eyp-systemd/pull/96)
 
 ## 0.1.44
 
