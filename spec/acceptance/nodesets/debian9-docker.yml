@@ -1,0 +1,14 @@
+HOSTS:
+  debian-9:
+    default_apply_opts:
+      order: random
+      strict_variables:
+    platform: debian-9-amd64
+    hypervisor : docker
+    image: debian:9
+    docker_preserve_image: true
+    docker_image_commands:
+      - 'apt-get install libssl-dev gcc make tar wget openjdk-7-jdk -y'
+CONFIG:
+  type: foss
+  log_level: debug

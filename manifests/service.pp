@@ -1,13 +1,14 @@
+# puppet2sitepp @systemdservices
 define systemd::service (
-                          $execstart,
+                          $servicename                 = $name,
+                          $execstart                   = undef,
                           $execstop                    = undef,
                           $execreload                  = undef,
                           $execstartpre                = undef,
                           $execstartpost               = undef,
-                          $restart                     = 'always',
+                          $restart                     = undef,
                           $user                        = 'root',
                           $group                       = 'root',
-                          $servicename                 = $name,
                           $forking                     = false,
                           $pid_file                    = undef,
                           $description                 = undef,
@@ -23,14 +24,17 @@ define systemd::service (
                           $before_units                = [],
                           $requires                    = [],
                           $conflicts                   = [],
+                          $on_failure                  = [],
                           $permissions_start_only      = false,
                           $timeoutstartsec             = undef,
                           $timeoutstopsec              = undef,
                           $timeoutsec                  = undef,
                           $restart_prevent_exit_status = undef,
+                          $limit_memlock               = undef,
                           $limit_nofile                = undef,
                           $limit_nproc                 = undef,
                           $limit_nice                  = undef,
+                          $limit_core                  = undef,
                           $runtime_directory           = undef,
                           $runtime_directory_mode      = undef,
                           $restart_sec                 = undef,
@@ -44,14 +48,15 @@ define systemd::service (
                           $startlimitburst             = undef,
                           $standard_output             = 'syslog',
                           $standard_error              = 'syslog',
+                          $syslog_facility             = undef,
                           $killmode                    = undef,
                           $cpuquota                    = undef,
+                          $successexitstatus           = [],
+                          $killsignal                  = undef,
+                          $service_alias               = [],
+                          $also                        = [],
+                          $default_instance            = undef,
                         ) {
-
-  if ($env_vars != undef )
-  {
-    validate_array($env_vars)
-  }
 
   if($type!=undef and $forking==true)
   {
@@ -65,19 +70,16 @@ define systemd::service (
 
   if($type != 'oneshot' and is_array($execstop) and count($execstop) > 1)
   {
-    fail('Incompatible options: There are multiple execstart values and Type is not "oneshot"')
+    fail('Incompatible options: There are multiple execstop values and Type is not "oneshot"')
   }
 
-  # Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always.
-  validate_re($restart, [ '^no$', '^on-success$', '^on-failure$', '^on-abnormal$', '^on-watchdog$', '^on-abort$', '^always$'], "Not a supported restart type: ${restart} - Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always")
+  $syslogidentifier = $servicename
 
-  validate_array($wants)
-  validate_array($wantedby)
-  validate_array($requiredby)
-  validate_array($after_units)
-  validate_array($before_units)
-  validate_array($requires)
-  validate_array($conflicts)
+  if($restart!=undef)
+  {
+    # Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always.
+    validate_re($restart, [ '^no$', '^on-success$', '^on-failure$', '^on-abnormal$', '^on-watchdog$', '^on-abort$', '^always$'], "Not a supported restart type: ${restart} - Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always")
+  }
 
   if versioncmp($::puppetversion, '4.0.0') >= 0
   {
@@ -88,14 +90,12 @@ define systemd::service (
     include ::systemd
   }
 
-
   file { "/etc/systemd/system/${servicename}.service":
     ensure  => 'present',
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
     content => template("${module_name}/service.erb"),
-    notify  => Exec['systemctl reload'],
+    notify  => Exec['systemctl daemon-reload'],
   }
-
 }

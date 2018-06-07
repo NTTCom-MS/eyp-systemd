@@ -1,4 +1,4 @@
-# systemd ![status ready](https://img.shields.io/badge/status-ready-brightgreen.svg) ![doc completed](https://img.shields.io/badge/doc-completed-brightgreen.svg)
+# systemd 🎗️
 
 #### Table of Contents
 
@@ -21,8 +21,9 @@ systemd service support
 ## Module Description
 
 basic systemd support implemented:
-* service definitions (sys-v wrapper also available)
-* **logind.conf** (disables IPC deletion on user logout)
+* service,socket and timer definitions (sys-v wrapper also available)
+* **logind.conf** management (default behaviour is to **disable RemoveIPC** by default)
+* `/etc/systemd/system.conf` (systemd manager configuration)
 
 For systemd related questions please refer to:
 
@@ -34,15 +35,20 @@ For systemd related questions please refer to:
 ### What systemd affects
 
 - Creates service definitions: **/etc/systemd/system/${servicename}.service**
+- Creates socket definitions: **/etc/systemd/system/${servicename}.socket**
+- Creates timer definitions: **/etc/systemd/system/${servicename}.timer**
+- Creates drop-in definitions: **/etc/systemd/system/${servicename}/${dropin_order}-${dropin_name}.service**
+- Creates systemd/sys-v compatibility scripts
 - Manages **/etc/systemd/logind.conf**
+- Manages **/etc/systemd/journald.conf**
 
 ### Setup Requirements
 
 This module requires pluginsync enabled
 
-### Beginning with systemd
-
-basic example:
+### Basic example:
+---
+#### Systemd Service
 
 ```puppet
 systemd::service { 'kibana':
@@ -69,10 +75,36 @@ PrivateTmp=no
 [Install]
 WantedBy=multi-user.target
 ```
+
+#### Service overrides(dropin):
+```puppet
+systemd::service::dropin { 'ceph-disk@':
+  env_vars => ['CEPH_DISK_TIMEOUT=3000'],
+}
+```
+
+This is going to create the following overrride file:
+
+```bash
+# cat /etc/systemd/system/ceph-disk@.service.d/override.conf:
+[Service]
+Environment=CEPH_DISK_TIMEOUT=3000
+```
+
 Please be aware this module defaults (documented in the [reference](#reference) section) differ from systemd's defaults
 
-## Usage
+#### Setup specific systemd manager directives
 
+```puppet
+class { 'systemd::system':
+  runtime_watchdog_sec  => '40',
+  shutdown_watchdog_sec => '2min',
+}
+```
+
+## Usage
+---
+### Systemd Service:
 add service dependency:
 
 ```puppet
@@ -120,7 +152,7 @@ This creates the following on the system:
 
 systed service definition:
 
-```
+```bash
 # cat /etc/systemd/system/ma.service
 [Unit]
 
@@ -141,7 +173,7 @@ WantedBy=multi-user.target
 ```
 
 control script:
-```
+```bash
 # cat /etc/init.d/ma.sysvwrapper.wrapper
 #!/bin/bash
 
@@ -176,6 +208,23 @@ ps auxf
 root     27399  0.0  0.0 113120  1396 ?        S    Jan09   0:00 /bin/bash /etc/init.d/ma.sysvwrapper.status
 root      7173  0.0  0.0 107896   608 ?        S    10:34   0:00  \_ sleep 10m
 ```
+### Systemd Service Overrides:
+
+```puppet
+systemd::service::dropin { 'node_exporter':
+  user    => 'monitoring',
+  restart => 'on-failure',
+}
+```
+
+This is going to create the following overrride file:
+
+```bash
+# cat /etc/systemd/system/node_exporter.service.d/override.conf:
+[Service]
+Restart=on-failure
+User=monitoring
+```
 
 ## Reference
 
@@ -183,16 +232,98 @@ root      7173  0.0  0.0 107896   608 ?        S    10:34   0:00  \_ sleep 10m
 
 #### systemd
 
-* **removeipc**: IPC deletion on user logout (default: no)
+base class for systemd reload management
+
+#### systemd::timesyncd
+
+* **manage_service**:        (default: true)
+* **manage_docker_service**: (default: true)
+* **service_ensure**:        (default: running)
+* **service_enable**:        (default: true)
+* **servers**:               (default: [])
+* **fallback_servers**:      (default: [])
+* **root_distance_max_sec**: (default: 5)
+* **poll_interval_min_sec**: (default: 32)
+* **poll_interval_max_sec**: (default: 2048)
+
+#### systemd::resolved
+
+* **manage_service**:        (default: true)
+* **manage_docker_service**: (default: true)
+* **service_ensure**:        (default: running)
+* **service_enable**:        (default: true)
+* **dns**:                   (default: [])
+* **fallback_dns**:          (default: [])
+* **dns_stub_listener**:     (default: true)
+* **dnssec**:                (default: false)
+* **cache**:                 (default: true)
+
+#### systemd::logind
+
+/etc/systemd/logind.conf management:
+
+* **handle_hibernate_key**:            (default: 'hibernate')
+* **handle_lid_switch**:               (default: suspend')
+* **handle_lid_switch_docked**:        (default: ignore')
+* **handle_power_key**:                (default: poweroff')
+* **handle_suspend_key**:              (default: suspend')
+* **hibernate_key_ignore_inhibited**:  (default: false)
+* **holdoff_timeout_sec**:             (default: 30)
+* **idle_action**:                     (default: ignore')
+* **idle_action_sec**:                 (default: 30min')
+* **inhibit_delay_max_sec**:           (default: 5)
+* **inhibitors_max**:                  (default: 8192)
+* **kill_exclude_users**:              (default: ['root'])
+* **kill_only_users**:                 (default: [])
+* **kill_user_processes**:             (default: true)
+* **lid_switch_ignore_inhibited**:     (default: true)
+* **n_auto_vts**:                      (default: 6)
+* **power_key_ignore_inhibited**:      (default: false)
+* **remove_ipc**:                      (default: false)
+* **reserve_vt**:                      (default: 6)
+* **runtime_directory_size**:          (default: 10%')
+* **sessions_max**:                    (default: 8192)
+* **suspend_key_ignore_inhibited**:    (default: false)
+* **user_tasks_max**:                  (default: 33%')
+
+#### systemd::journald
+
+systemd-journald is a system service that collects and stores logging data
+
+* **compress**: If enabled (the default), data objects that shall be stored in the journal and are larger than the default threshold of 512 bytes are compressed before they are written to the file system. It can also be set to a number of bytes to specify the compression threshold directly. Suffixes like K, M, and G can be used to specify larger units. (default: true)
+* **forward_to_console**:    (default: false)
+* **forward_to_kmsg**:       (default: false)
+* **forward_to_syslog**:     (default: true)
+* **forward_to_wall**:       (default: true)
+* **max_file_sec**:          (default: 1month)
+* **max_level_console**:     (default: info)
+* **max_level_kmsg**:        (default: notice)
+* **max_level_store**:       (default: debug)
+* **max_level_syslog**:      (default: debug)
+* **max_level_wall**:        (default: emerg)
+* **max_retention_sec**:     (default: undef)
+* **rate_limit_burst**:      (default: 1000)
+* **rate_limit_interval**:   (default: 30s)
+* **runtime_keep_free**:     (default: undef)
+* **runtime_max_files_size**: (default: undef)
+* **runtime_max_use**:       (default: undef)
+* **seal**: If enabled (the default), and a sealing key is available (as created by journalctl(1)'s --setup-keys command), Forward Secure Sealing (FSS) for all persistent journal files is enabled (default: true)
+* **split_mode**:            (default: uid)
+* **storage**: Controls where to store journal data. One of "volatile", "persistent", "auto" and "none" (default: auto)
+* **sync_interval_sec**:     (default: 5m)
+* **system_keep_free**:      (default: undef)
+* **system_max_file_size**:  (default: undef)
+* **system_max_use**:        (default: undef)
+* **tty_path**:              (default: /dev/console)
 
 ### defines
 
 #### systemd::service
 
-* **execstart**: command to start daemon
+* **execstart**: command to start daemon (default: undef)
 * **execstop**: command to stop daemon (default: undef)
 * **execreload**: commands or scripts to be executed when the unit is reloaded (default: undef)
-* **restart**: restart daemon if crashes. Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always (default: always)
+* **restart**: restart daemon if crashes. Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always (default: undef)
 * **user**: username to use (default: root)
 * **group**: group to use (default: root)
 * **servicename**: service name (default: resource's name)
@@ -233,6 +364,11 @@ root      7173  0.0  0.0 107896   608 ?        S    10:34   0:00  \_ sleep 10m
 * **startlimitburst**: Configures how many starts per interval are allowed (default: undef)
 * **killmode**: Specifies how processes of this unit shall be killed. One of control-group, process, mixed, none. (default: undef)
 
+#### systemd::service::dropin
+
+Has the same options as **systemd::service** plus the following options for the dropin itself management:
+* **dropin_order**: dropin priority - part of the filename, only useful for multiple dropin files (default: 99)
+* **dropin_name**: dropin name (default: override)
 
 #### systemd::sysvwrapper
 
@@ -253,7 +389,7 @@ have some test to check both presence and absence of any feature
 
 ### Contributing
 
-1. Fork it
+1. Fork it using the development fork: [jordiprats/eyp-systemd](https://github.com/jordiprats/eyp-systemd)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

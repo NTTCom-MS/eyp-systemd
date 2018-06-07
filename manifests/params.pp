@@ -20,7 +20,7 @@ class systemd::params {
         {
           case $::operatingsystemrelease
           {
-            /^16.*$/:
+            /^1[68].*$/:
             {
             }
             default: { fail("Unsupported Ubuntu version! - ${::operatingsystemrelease}")  }
@@ -30,7 +30,7 @@ class systemd::params {
         {
           case $::operatingsystemrelease
           {
-            /^8.*$/:
+            /^[89].*$/:
             {
             }
             default: { fail("Unsupported Debian version! - ${::operatingsystemrelease}")  }

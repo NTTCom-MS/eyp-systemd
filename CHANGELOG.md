@@ -1,9 +1,58 @@
 # CHANGELOG
 
+## 0.1.44
+
+* added timesyncd support via class **systemd::timesyncd**
+
+## 0.1.43
+
+* added Ubuntu 18.04 support
+* added revolved support via class **systemd::resolved**
+
+## 0.1.42
+
+* Add journald under puppet management - thanks to [fraenki](https://github.com/fraenki) for this [PR-84](https://github.com/NTTCom-MS/eyp-systemd/pull/84), it have been marged with some changes using [PR-87](https://github.com/NTTCom-MS/eyp-systemd/pull/87)
+
+## 0.1.41
+
+* changed default setting **kill_user_processes** to false, it was breaking compatibility on some systems
+* renamed **alias** to **service_alias** in **systemd::service** and **systemd::service::dropin**
+
+## 0.1.40
+
+* added **Alias**, **Also** and **DefaultInstance** for **systemd::service** and **systemd::service::dropin**
+
+## 0.1.39
+
+* logind.conf is now managed via **systemd::logind** with a lot of new options - thanks to [cedef](https://github.com/cedef) for this [PR-59](https://github.com/NTTCom-MS/eyp-systemd/pull/59), it have been marged with some changes using [PR-81](https://github.com/NTTCom-MS/eyp-systemd/pull/81)
+
+## 0.1.38
+
+* Add syslog facility, memlock and core limits to service template - thanks to [davidnewhall](https://github.com/davidnewhall) for this [PR-53](https://github.com/NTTCom-MS/eyp-systemd/pull/53)
+* Manage /etc/systemd/system.conf file - thanks to [cedef](https://github.com/cedef) for this [PR-58](https://github.com/NTTCom-MS/eyp-systemd/pull/58)
+
+## 0.1.37
+
+* Modified **systemd::service::dropin** to allow multiple drop in files per service as suggested in [Issue 49](https://github.com/NTTCom-MS/eyp-systemd/issues/49) by [cedef](https://github.com/cedef)
+
+## 0.1.36
+
+* added ability to **systemd::service** to use OnFailure - thanks to [TuningYourCode](https://github.com/TuningYourCode) for this [PR-65](https://github.com/NTTCom-MS/eyp-systemd/pull/65)
+* Added SuccessExitStatus and KillSignal to **systemd::service** - thanks to [alquez](https://github.com/alquez) for this [PR-63](https://github.com/NTTCom-MS/eyp-systemd/pull/63)
+* added support for Debian 9 - thanks to [cedef](https://github.com/cedef) for this [PR-60](https://github.com/NTTCom-MS/eyp-systemd/pull/60)
+* modified service template to be able to be used in **systemd::service::dropin**
+* [Issue 55](https://github.com/NTTCom-MS/eyp-systemd/issues/55) Restart default value conflicts with oneshot services, changed default value to **undef**
+* [Issue 54](https://github.com/NTTCom-MS/eyp-systemd/issues/54) Added exec *systemctl daemon-reload* because *systemctl reload* is a valid command and it may be confusing. *systemctl reload* will be removed in the **0.2.0** release
+
+## 0.1.35
+
+* execstart for **systemd::service** is no longer mandatory
+* added dropinfile support using **systemd::service::dropin** - thanks to [oOHenry](https://github.com/oOHenry) for this [PR-57](https://github.com/NTTCom-MS/eyp-systemd/pull/57)
+
 ## 0.1.34
 
 * for puppet4, changed include for contain as suggested by [steveniemitz](https://github.com/NTTCom-MS/eyp-systemd/issues/35)
-* systemd::timer camelcase + nil values - thanks to [cedef](https://github.com/cedef) for this [PR-47](https://github.com/NTTCom-MS/eyp-systemd/pull/47)
+* **systemd::timer** camelcase + nil values - thanks to [cedef](https://github.com/cedef) for this [PR-47](https://github.com/NTTCom-MS/eyp-systemd/pull/47)
 * added Rubocop to enhance ruby files code quality - thanks to [cedef](https://github.com/cedef) for this [PR-48](https://github.com/NTTCom-MS/eyp-systemd/pull/48)
 
 ## 0.1.33
