@@ -74,6 +74,8 @@ define systemd::service::dropin (
     include ::systemd
   }
 
+  $dropin = true
+
   file { "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf":
     ensure  => 'present',
     owner   => 'root',
