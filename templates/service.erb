@@ -181,6 +181,9 @@ StartLimitBurst=<%= @startlimitburst %>
 <% if defined?(@killmode) -%>
 KillMode=<%= @killmode %>
 <% end -%>
+<% if defined?(@cpuquota) -%>
+CPUQuota=<%= @cpuquota %>
+<% end -%>
 <% if @successexitstatus.any? -%>
 SuccessExitStatus=<%= @successexitstatus.join(' ') %>
 <% end -%>

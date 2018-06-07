@@ -50,6 +50,7 @@ define systemd::service (
                           $standard_error              = 'syslog',
                           $syslog_facility             = undef,
                           $killmode                    = undef,
+                          $cpuquota                    = undef,
                           $successexitstatus           = [],
                           $killsignal                  = undef,
                           $service_alias               = [],
