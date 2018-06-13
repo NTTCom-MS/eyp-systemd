@@ -41,6 +41,8 @@ For systemd related questions please refer to:
 - Creates systemd/sys-v compatibility scripts
 - Manages **/etc/systemd/logind.conf**
 - Manages **/etc/systemd/journald.conf**
+- Manages **/etc/systemd/timesyncd.conf**
+- Manages **/etc/systemd/resolved.conf**
 
 ### Setup Requirements
 
