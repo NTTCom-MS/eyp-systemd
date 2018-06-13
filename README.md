@@ -48,7 +48,7 @@ For systemd related questions please refer to:
 
 This module requires pluginsync enabled
 
-### Basic example:
+### Basic examples
 ---
 #### Systemd Service
 
@@ -229,7 +229,7 @@ User=monitoring
 ```
 
 ## Reference
-
+---
 ### classes
 
 #### systemd
