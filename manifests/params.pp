@@ -4,12 +4,31 @@ class systemd::params {
   {
     'redhat' :
     {
-      case $::operatingsystemrelease
+      case $::operatingsystem
       {
-        /^7.*$/:
+        'Fedora':
         {
+          case $::operatingsystemrelease
+          {
+            /^1[5-9].*$/:
+            {
+            }
+            /^2[0-8].*$/:
+            {
+            }
+            default: { fail('Unsupported RHEL/CentOS version!')  }
+          }
         }
-        default: { fail('Unsupported RHEL/CentOS version!')  }
+        default:
+        {
+          case $::operatingsystemrelease
+          {
+            /^7.*$/:
+            {
+            }
+            default: { fail('Unsupported RHEL/CentOS version!')  }
+          }
+        }
       }
     }
     'Debian':
@@ -43,7 +62,7 @@ class systemd::params {
     {
       case $::operatingsystemrelease
       {
-        /^12.*$/:
+        /^1[23].*|42$/:
         {
         }
         default: { fail('Unsupported Suse/OpenSuse version!')  }

@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.1.47
+
+* added OpenSuSE support
+* added Fedora support
+
 ## 0.1.46
 
 * Fix ExecStart in dropin - thanks to [bagasse](https://github.com/bagasse) for this [PR-89](https://github.com/NTTCom-MS/eyp-systemd/pull/89)
