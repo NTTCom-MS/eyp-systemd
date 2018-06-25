@@ -1,28 +1,28 @@
 class systemd::logind(
   Enum[
     'ignore', 'poweroff', 'reboot',
-    '^halt$', '^kexec$', '^suspend$',
-    '^hibernate$', '^hybrid-sleep$', '^lock$'
+    'halt', 'kexec', 'suspend',
+    'hibernate', 'hybrid-sleep', 'lock'
   ] $handle_hibernate_key = 'hibernate',
   Enum[
     'ignore', 'poweroff', 'reboot',
-    '^halt$', '^kexec$', '^suspend$',
-    '^hibernate$', '^hybrid-sleep$', '^lock$'
+    'halt', 'kexec', 'suspend',
+    'hibernate', 'hybrid-sleep', 'lock'
   ] $handle_lid_switch = 'suspend',
   Enum[
     'ignore', 'poweroff', 'reboot',
-    '^halt$', '^kexec$', '^suspend$',
-    '^hibernate$', '^hybrid-sleep$', '^lock$'
+    'halt', 'kexec', 'suspend',
+    'hibernate', 'hybrid-sleep', 'lock'
   ] $handle_lid_switch_docked = 'ignore',
   Enum[
     'ignore', 'poweroff', 'reboot',
-    '^halt$', '^kexec$', '^suspend$',
-    '^hibernate$', '^hybrid-sleep$', '^lock$'
+    'halt', 'kexec', 'suspend',
+    'hibernate', 'hybrid-sleep', 'lock'
   ] $handle_power_key = 'poweroff',
   Enum[
     'ignore', 'poweroff', 'reboot',
-    '^halt$', '^kexec$', '^suspend$',
-    '^hibernate$', '^hybrid-sleep$', '^lock$'
+    'halt', 'kexec', 'suspend',
+    'hibernate', 'hybrid-sleep', 'lock'
   ] $handle_suspend_key = 'suspend',
   Boolean $hibernate_key_ignore_inhibited = false,
   Integer $holdoff_timeout_sec = 30,
