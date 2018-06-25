@@ -1,6 +1,7 @@
 define systemd::service::dropin (
   Integer $dropin_order = '99',
-  $dropin_name = 'override',
+  String $dropin_name = 'override',
+  Boolean $purge_dropin_dir = true,
   $servicename = $name,
   Optional $execstart,
   Optional $execstop,

@@ -1,4 +1,10 @@
 define systemd::timer (
+  String $unit,
+  Boolean $persistent = false,
+  Boolean $wake_system = false,
+  Boolean $remain_after_elapse = true,
+  Optional[String] $description,
+  Optional[String] $documentation,
   Optional[String] $on_active_sec,
   Optional[String] $on_boot_sec,
   Optional[String] $on_startup_sec,
@@ -7,14 +13,8 @@ define systemd::timer (
   Optional[String] $on_calendar,
   Optional[String] $accuracy_sec,
   Optional[Integer] $randomized_delay_sec = undef,
-  String $unit,
-  Boolean $persistent = false,
-  Boolean $wake_system = false,
-  Boolean $remain_after_elapse = true,
-  Optional[String] $description,
-  Optional[String] $documentation,
-  Array $wantedby = [],
-  Array $requiredby = [],
+  Optional[Array] $wantedby,
+  Optional[Array] $requiredby,
 ) {
   if ($persistent == true and $on_calendar == undef)
   {
