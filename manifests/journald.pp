@@ -24,19 +24,19 @@ class systemd::journald (
   Enum[
     'emerg', 'alert', 'crit', 'err', 'warning', 'notice', 'info', 'debug'
   ] $max_level_wall = 'emerg',
-  Optional[String] $max_retention_sec,
+  Optional[String] $max_retention_sec = undef,
   Integer $rate_limit_burst = 1000,
   $rate_limit_interval = '30s',
-  Optional[String] $runtime_keep_free,
-  Optional[String] $runtime_max_files_size,
-  Optional[String] $runtime_max_use,
+  Optional[String] $runtime_keep_free = undef,
+  Optional[String] $runtime_max_files_size = undef,
+  Optional[String] $runtime_max_use = undef,
   Boolean $seal = true,
   $split_mode = 'uid',
   $storage  = 'auto',
   $sync_interval_sec = '5m',
-  Optional[String] $system_keep_free,
-  Optional[String] $system_max_file_size,
-  Optional[String] $system_max_use,
+  Optional[String] $system_keep_free = undef,
+  Optional[String] $system_max_file_size = undef,
+  Optional[String] $system_max_use = undef,
   $tty_path = '/dev/console'
 ) {
 
