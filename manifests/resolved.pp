@@ -1,17 +1,18 @@
 class systemd::resolved (
-                          $manage_service        = true,
-                          $manage_docker_service = true,
-                          $service_ensure        = 'running',
-                          $service_enable        = true,
-                          $dns                   = [],
-                          $fallback_dns          = [],
-                          $dns_stub_listener     = true,
-                          $dnssec                = false,
-                          $cache                 = true,
-                        ) inherits systemd::params {
+  Boolean $manage_service = true,
+  Boolean $manage_docker_service = true,
+  Enum['running', 'stopped'] $service_ensure = 'running',
+  Boolean $service_enable = true,
+  Array $dns = [],
+  Array $fallback_dns = [],
+  Boolean $dns_stub_listener = true,
+  Boolean $dnssec = false,
+  Boolean $cache = true,
+) {
 
+  contain '::systemd::resolved::config'
+  contain '::systemd::resolved::service'
 
-  class { '::systemd::resolved::config': } ~>
-  class { '::systemd::resolved::service': } ->
-  Class['::systemd::resolved']
+  Class['::systemd::resolved::config']
+  ~> Class['::systemd::resolved::service']
 }

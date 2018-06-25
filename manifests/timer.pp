@@ -1,47 +1,22 @@
 define systemd::timer (
-                        $on_active_sec        = undef,
-                        $on_boot_sec          = undef,
-                        $on_startup_sec       = undef,
-                        $on_unit_active_sec   = undef,
-                        $on_unit_inactive_sec = undef,
-                        $on_calendar          = undef,
-                        $accuracy_sec         = undef,
-                        $randomized_delay_sec = undef,
-                        $unit                 = undef,
-                        $persistent           = undef,
-                        $wake_system          = undef,
-                        $remain_after_elapse  = undef,
-                        $description          = undef,
-                        $documentation        = undef,
-                        $wantedby             = [],
-                        $requiredby           = [],
-                      ) {
-  # Timer section
-  if ($persistent)
-  {
-    validate_bool($persistent)
-  }
-
-  if ($wake_system)
-  {
-    validate_bool($wake_system)
-  }
-
-  if ($remain_after_elapse)
-  {
-    validate_bool($remain_after_elapse)
-  }
-
-  # Unit section
-  if ($documentation)
-  {
-    validate_re(
-      $documentation,
-      [ '^https?://', '^file:', '^info:', '^man:'],
-      "Not a supported documentation uri: ${documentation} - It has to be one of 'http://', 'https://', 'file:', 'info:' or 'man:'")
-  }
-
-  if ($persistent != undef and $persistent == true and $on_calendar == undef)
+  Optional[String] $on_active_sec,
+  Optional[String] $on_boot_sec,
+  Optional[String] $on_startup_sec,
+  Optional[String] $on_unit_active_sec,
+  Optional[String] $on_unit_inactive_sec,
+  Optional[String] $on_calendar,
+  Optional[String] $accuracy_sec,
+  Optional[Integer] $randomized_delay_sec = undef,
+  String $unit,
+  Boolean $persistent = false,
+  Boolean $wake_system = false,
+  Boolean $remain_after_elapse = true,
+  Optional[String] $description,
+  Optional[String] $documentation,
+  Array $wantedby = [],
+  Array $requiredby = [],
+) {
+  if ($persistent == true and $on_calendar == undef)
   {
     fail('$persistent being "true" only works with $on_calendar being set.')
   }

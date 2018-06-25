@@ -1,27 +1,12 @@
-# [Socket]
-# ListenStream=80
-# ListenStream=0.0.0.0:80
-# After=network.target
-# Requires=network.target
-#
-# [Install]
-# WantedBy=sockets.target
 define systemd::socket(
-                        $listen_stream,
-                        $socket_name = $name,
-                        $after_units = [],
-                        $requires    = [],
-                        $description = undef,
-                        $wantedby    = [ 'multi-user.target' ],
-                      ) {
-  if versioncmp($::puppetversion, '4.0.0') >= 0
-  {
-    contain ::systemd
-  }
-  else
-  {
-    include ::systemd
-  }
+  $listen_stream,
+  $socket_name = $name,
+  Array $after_units = [],
+  Array $requires = [],
+  String $description = '',
+  Array $wantedby = [ 'multi-user.target' ],
+) {
+  contain ::systemd
 
   file { "/etc/systemd/system/${socket_name}.socket":
     ensure  => 'present',

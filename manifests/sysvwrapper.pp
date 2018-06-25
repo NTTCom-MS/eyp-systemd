@@ -1,18 +1,11 @@
 define systemd::sysvwrapper (
-                              $initscript,
-                              $servicename          = $name,
-                              $check_time           = '10m',
-                              $wait_time_on_startup = '1s',
-                            ) {
+  $initscript,
+  String $servicename = $name,
+  String $check_time = '10m',
+  String $wait_time_on_startup = '1s',
+) {
 
-  if versioncmp($::puppetversion, '4.0.0') >= 0
-  {
-    contain ::systemd
-  }
-  else
-  {
-    include ::systemd
-  }
+  contain ::systemd
 
   file { "${initscript}.sysvwrapper.status":
     ensure  => 'present',
@@ -33,13 +26,12 @@ define systemd::sysvwrapper (
   systemd::service { $servicename:
     execstart => "/bin/bash ${initscript}.sysvwrapper.wrapper start",
     execstop  => "/bin/bash ${initscript}.sysvwrapper.wrapper stop",
-    require   => File[ [
-                      "${initscript}.sysvwrapper.wrapper",
-                      "${initscript}.sysvwrapper.status",
-                      ] ],
+    require   => File[
+      "${initscript}.sysvwrapper.wrapper",
+      "${initscript}.sysvwrapper.status",
+    ],
     forking   => true,
     restart   => 'no',
     pid_file  => "/var/run/${servicename}.sysvwrapper.pid",
   }
-
 }

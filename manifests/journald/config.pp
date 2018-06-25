@@ -1,9 +1,5 @@
 class systemd::journald::config inherits systemd::journald {
 
-  Exec {
-    path => '/bin:/sbin:/usr/bin:/usr/sbin',
-  }
-
   file { '/etc/systemd/journald.conf':
     ensure  => 'present',
     owner   => 'root',

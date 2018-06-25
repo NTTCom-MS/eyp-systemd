@@ -1,62 +1,71 @@
-# puppet2sitepp @systemdservices
 define systemd::service (
-                          $servicename                 = $name,
-                          $execstart                   = undef,
-                          $execstop                    = undef,
-                          $execreload                  = undef,
-                          $execstartpre                = undef,
-                          $execstartpost               = undef,
-                          $restart                     = undef,
-                          $user                        = 'root',
-                          $group                       = 'root',
-                          $forking                     = false,
-                          $pid_file                    = undef,
-                          $description                 = undef,
-                          $after                       = undef,
-                          $remain_after_exit           = undef,
-                          $type                        = undef,
-                          $env_vars                    = [],
-                          $environment_files           = [],
-                          $wants                       = [],
-                          $wantedby                    = [ 'multi-user.target' ],
-                          $requiredby                  = [],
-                          $after_units                 = [],
-                          $before_units                = [],
-                          $requires                    = [],
-                          $conflicts                   = [],
-                          $on_failure                  = [],
-                          $permissions_start_only      = false,
-                          $timeoutstartsec             = undef,
-                          $timeoutstopsec              = undef,
-                          $timeoutsec                  = undef,
-                          $restart_prevent_exit_status = undef,
-                          $limit_memlock               = undef,
-                          $limit_nofile                = undef,
-                          $limit_nproc                 = undef,
-                          $limit_nice                  = undef,
-                          $limit_core                  = undef,
-                          $runtime_directory           = undef,
-                          $runtime_directory_mode      = undef,
-                          $restart_sec                 = undef,
-                          $private_tmp                 = false,
-                          $working_directory           = undef,
-                          $root_directory              = undef,
-                          $umask                       = undef,
-                          $nice                        = undef,
-                          $oom_score_adjust            = undef,
-                          $startlimitinterval          = undef,
-                          $startlimitburst             = undef,
-                          $standard_output             = 'syslog',
-                          $standard_error              = 'syslog',
-                          $syslog_facility             = undef,
-                          $killmode                    = undef,
-                          $cpuquota                    = undef,
-                          $successexitstatus           = [],
-                          $killsignal                  = undef,
-                          $service_alias               = [],
-                          $also                        = [],
-                          $default_instance            = undef,
-                        ) {
+  $servicename = $name,
+  Optional $execstart,
+  Optional $execstop,
+  Optional $execreload,
+  Optional $execstartpre,
+  Optional $execstartpost,
+  Enum[
+    'no', 'on-success', 'on-failure', 'on-abnormal', 'on-watchdog', 'on-abort', 'always'
+  ] $restart = no,
+  String $user = 'root',
+  String $group = 'root',
+  Boolean $forking = false,
+  Optional[String] $pid_file,
+  Optional[String] $description,
+  Optional[String] $after,
+  Optional[Boolean] $remain_after_exit,
+  Optional[Enum[
+    'simple', 'forking', 'oneshot', 'dbus', 'notify', 'idle'
+  ]] $type,
+  Optional[Array] $env_vars,
+  Optional[Array] $environment_files,
+  Optional[Array] $wants,
+  Optional[Array] $wantedby = [ 'multi-user.target' ],
+  Optional[Array] $requiredby,
+  Optional[Array] $after_units,
+  Optional[Array] $before_units,
+  Optional[Array] $requires,
+  Optional[Array] $conflicts,
+  Optional[Array] $on_failure,
+  Boolean $permissions_start_only = false,
+  Optional[String] $timeoutstartsec,
+  Optional[String] $timeoutstopsec,
+  Optional[String] $timeoutsec,
+  Optional[String] $restart_prevent_exit_status,
+  Optional[String] $limit_memlock,
+  Optional[String] $limit_nofile,
+  Optional[String] $limit_nproc,
+  Optional[String] $limit_nice,
+  Optional[String] $limit_core,
+  Optional[String] $runtime_directory,
+  Optional[String] $runtime_directory_mode,
+  Optional[Integer] $restart_sec,
+  Optional[Boolean] $private_tmp,
+  Optional[String] $working_directory,
+  Optional[String] $root_directory,
+  Optional[String] $umask,
+  Optional[Integer] $nice,
+  Optional[Integer] $oom_score_adjust,
+  Optional[Integer] $startlimitinterval,
+  Optional[Integer] $startlimitburst,
+  Optional[String] $standard_output,
+  Optional[String] $standard_error,
+  Optional[Enum[
+    'kern', 'user', 'mail', 'daemon', 'auth', 'syslog', 'lpr', 'news',
+    'uucp', 'cron', 'authpriv', 'ftp', 'local0', 'local1', 'local2',
+    'local3', 'local4', 'local5', 'local6', 'local7'
+  ]] $syslog_facility,
+  Optional[Enum['control-group', 'process', 'mixed', 'none']] $killmode,
+  Optional[String] $cpuquota,
+  Optional[Array] $successexitstatus,
+  Optional[String] $killsignal,
+  Optional[Array] $service_alias,
+  Optional[Array] $also,
+  Optional[String] $default_instance,
+) {
+
+  contain ::systemd
 
   if($type!=undef and $forking==true)
   {
@@ -74,21 +83,6 @@ define systemd::service (
   }
 
   $syslogidentifier = $servicename
-
-  if($restart!=undef)
-  {
-    # Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always.
-    validate_re($restart, [ '^no$', '^on-success$', '^on-failure$', '^on-abnormal$', '^on-watchdog$', '^on-abort$', '^always$'], "Not a supported restart type: ${restart} - Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always")
-  }
-
-  if versioncmp($::puppetversion, '4.0.0') >= 0
-  {
-    contain ::systemd
-  }
-  else
-  {
-    include ::systemd
-  }
 
   file { "/etc/systemd/system/${servicename}.service":
     ensure  => 'present',

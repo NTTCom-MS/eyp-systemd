@@ -1,27 +1,39 @@
-#
-# https://wiki.archlinux.org/index.php/systemd#Service_types
-#
 class systemd (
-                $manage_logind   = true,
-                $removeipc       = 'no',
-              ) inherits systemd::params {
+  Boolean $manage_journald = false,
+  Boolean $manage_logind = false,
+  Boolean $manage_resolved = false,
+  Boolean $manage_system = false,
+  Boolean $manage_timesyncd = false,
+) {
 
-  Exec {
-    path => '/bin:/sbin:/usr/bin:/usr/sbin',
+  if($facts['service_provider'] != 'systemd') {
+    fail('OS not using SystemD')
+  } else {
+
+    exec { 'systemctl daemon-reload':
+      command     => 'systemctl daemon-reload',
+      path        => '/bin:/sbin:/usr/bin:/usr/sbin',
+      refreshonly => true,
+    }
+
+    if($manage_journald) {
+      include ::systemd::journald
+    }
+
+    if($manage_logind) {
+      include ::systemd::logind
+    }
+
+    if($manage_resolved) {
+      include ::systemd::resolved
+    }
+
+    if($manage_system) {
+      include ::systemd::system
+    }
+
+    if($manage_timesyncd) {
+      include ::systemd::timesyncd
+    }
   }
-
-  exec { 'systemctl daemon-reload':
-    command     => 'systemctl daemon-reload',
-    refreshonly => true,
-  }
-
-  #TODO: compatibility, to be removed in 0.2
-  # related: https://github.com/NTTCom-MS/eyp-systemd/issues/35
-  exec { 'systemctl reload':
-    command     => 'systemctl daemon-reload',
-    refreshonly => true,
-  }
-
-  include ::systemd::logind
-
 }

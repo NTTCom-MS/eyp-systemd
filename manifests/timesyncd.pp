@@ -1,16 +1,18 @@
 class systemd::timesyncd(
-                          $manage_service        = true,
-                          $manage_docker_service = true,
-                          $service_ensure        = 'running',
-                          $service_enable        = true,
-                          $servers               = [],
-                          $fallback_servers      = [],
-                          $root_distance_max_sec = '5',
-                          $poll_interval_min_sec = '32',
-                          $poll_interval_max_sec = '2048',
-                        ) inherits systemd::params {
+  Boolean $manage_service = true,
+  Boolean $manage_docker_service = true,
+  Enum['running', 'stopped']$service_ensure = 'running',
+  Boolean $service_enable = true,
+  Array $servers = [],
+  Array $fallback_servers = [],
+  Integer $root_distance_max_sec = '5',
+  Integer $poll_interval_min_sec = '32',
+  Integer $poll_interval_max_sec = '2048',
+) {
 
-  class { '::systemd::timesyncd::config': } ~>
-  class { '::systemd::timesyncd::service': } ->
-  Class['::systemd::timesyncd']
+  contain '::systemd::timesyncd::config'
+  contain '::systemd::timesyncd::service'
+
+  Class['::systemd::timesyncd::config']
+  ~> Class['::systemd::timesyncd::service']
 }
