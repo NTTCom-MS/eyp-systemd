@@ -29,9 +29,11 @@ define systemd::service::dropin (
                                   $timeoutstopsec              = undef,
                                   $timeoutsec                  = undef,
                                   $restart_prevent_exit_status = undef,
+                                  $limit_memlock               = undef,
                                   $limit_nofile                = undef,
                                   $limit_nproc                 = undef,
                                   $limit_nice                  = undef,
+                                  $limit_core                  = undef,
                                   $runtime_directory           = undef,
                                   $runtime_directory_mode      = undef,
                                   $restart_sec                 = undef,
@@ -45,28 +47,23 @@ define systemd::service::dropin (
                                   $startlimitburst             = undef,
                                   $standard_output             = undef,
                                   $standard_error              = undef,
+                                  $syslog_facility             = undef,
                                   $killmode                    = undef,
+                                  $cpuquota                    = undef,
                                   $successexitstatus           = [],
                                   $killsignal                  = undef,
                                   $syslogidentifier            = undef,
                                   $purge_dropin_dir            = true,
+                                  $service_alias               = [],
+                                  $also                        = [],
+                                  $default_instance            = undef,
                                 ) {
-  if ($env_vars != undef )
-  {
-    validate_array($env_vars)
-  }
 
   if($restart!=undef)
   {
     # Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always.
     validate_re($restart, [ '^no$', '^on-success$', '^on-failure$', '^on-abnormal$', '^on-watchdog$', '^on-abort$', '^always$'], "Not a supported restart type: ${restart} - Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always")
   }
-
-  validate_array($wants)
-  validate_array($after_units)
-  validate_array($before_units)
-  validate_array($requires)
-  validate_array($conflicts)
 
   if versioncmp($::puppetversion, '4.0.0') >= 0
   {
@@ -76,6 +73,8 @@ define systemd::service::dropin (
   {
     include ::systemd
   }
+
+  $dropin = true
 
   file { "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf":
     ensure  => 'present',

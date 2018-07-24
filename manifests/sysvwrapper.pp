@@ -5,7 +5,14 @@ define systemd::sysvwrapper (
                               $wait_time_on_startup = '1s',
                             ) {
 
-  include ::systemd
+  if versioncmp($::puppetversion, '4.0.0') >= 0
+  {
+    contain ::systemd
+  }
+  else
+  {
+    include ::systemd
+  }
 
   file { "${initscript}.sysvwrapper.status":
     ensure  => 'present',

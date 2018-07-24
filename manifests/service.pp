@@ -50,14 +50,13 @@ define systemd::service (
                           $standard_error              = 'syslog',
                           $syslog_facility             = undef,
                           $killmode                    = undef,
+                          $cpuquota                    = undef,
                           $successexitstatus           = [],
                           $killsignal                  = undef,
+                          $service_alias               = [],
+                          $also                        = [],
+                          $default_instance            = undef,
                         ) {
-
-  if ($env_vars != undef )
-  {
-    validate_array($env_vars)
-  }
 
   if($type!=undef and $forking==true)
   {
@@ -81,15 +80,6 @@ define systemd::service (
     # Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always.
     validate_re($restart, [ '^no$', '^on-success$', '^on-failure$', '^on-abnormal$', '^on-watchdog$', '^on-abort$', '^always$'], "Not a supported restart type: ${restart} - Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always")
   }
-
-  validate_array($wants)
-  validate_array($wantedby)
-  validate_array($requiredby)
-  validate_array($after_units)
-  validate_array($before_units)
-  validate_array($requires)
-  validate_array($conflicts)
-  validate_array($on_failure)
 
   if versioncmp($::puppetversion, '4.0.0') >= 0
   {

@@ -1,12 +1,56 @@
 # CHANGELOG
 
+## 0.1.47
+
+* added OpenSuSE support
+* added Fedora support
+
+## 0.1.46
+
+* Fix ExecStart in dropin - thanks to [bagasse](https://github.com/bagasse) for this [PR-89](https://github.com/NTTCom-MS/eyp-systemd/pull/89)
+
+## 0.1.45
+
+* added CPUQuota support - thanks to [oleg-glushak](https://github.com/oleg-glushak) for this [PR-95](https://github.com/NTTCom-MS/eyp-systemd/pull/95), it have been marged with some changes using [PR-96](https://github.com/NTTCom-MS/eyp-systemd/pull/96)
+
+## 0.1.44
+
+* added timesyncd support via class **systemd::timesyncd**
+
+## 0.1.43
+
+* added Ubuntu 18.04 support
+* added revolved support via class **systemd::resolved**
+
+## 0.1.42
+
+* Add journald under puppet management - thanks to [fraenki](https://github.com/fraenki) for this [PR-84](https://github.com/NTTCom-MS/eyp-systemd/pull/84), it have been marged with some changes using [PR-87](https://github.com/NTTCom-MS/eyp-systemd/pull/87)
+
+## 0.1.41
+
+* changed default setting **kill_user_processes** to false, it was breaking compatibility on some systems
+* renamed **alias** to **service_alias** in **systemd::service** and **systemd::service::dropin**
+
+## 0.1.40
+
+* added **Alias**, **Also** and **DefaultInstance** for **systemd::service** and **systemd::service::dropin**
+
+## 0.1.39
+
+* logind.conf is now managed via **systemd::logind** with a lot of new options - thanks to [cedef](https://github.com/cedef) for this [PR-59](https://github.com/NTTCom-MS/eyp-systemd/pull/59), it have been marged with some changes using [PR-81](https://github.com/NTTCom-MS/eyp-systemd/pull/81)
+
+## 0.1.38
+
+* Add syslog facility, memlock and core limits to service template - thanks to [davidnewhall](https://github.com/davidnewhall) for this [PR-53](https://github.com/NTTCom-MS/eyp-systemd/pull/53)
+* Manage /etc/systemd/system.conf file - thanks to [cedef](https://github.com/cedef) for this [PR-58](https://github.com/NTTCom-MS/eyp-systemd/pull/58)
+
 ## 0.1.37
 
 * Modified **systemd::service::dropin** to allow multiple drop in files per service as suggested in [Issue 49](https://github.com/NTTCom-MS/eyp-systemd/issues/49) by [cedef](https://github.com/cedef)
 
 ## 0.1.36
 
-* added ability to **systemd::service** to use OnFailure  - thanks to [TuningYourCode](https://github.com/TuningYourCode) for this [PR-65](https://github.com/NTTCom-MS/eyp-systemd/pull/65)
+* added ability to **systemd::service** to use OnFailure - thanks to [TuningYourCode](https://github.com/TuningYourCode) for this [PR-65](https://github.com/NTTCom-MS/eyp-systemd/pull/65)
 * Added SuccessExitStatus and KillSignal to **systemd::service** - thanks to [alquez](https://github.com/alquez) for this [PR-63](https://github.com/NTTCom-MS/eyp-systemd/pull/63)
 * added support for Debian 9 - thanks to [cedef](https://github.com/cedef) for this [PR-60](https://github.com/NTTCom-MS/eyp-systemd/pull/60)
 * modified service template to be able to be used in **systemd::service::dropin**

@@ -1,0 +1,94 @@
+###  puppet managed file
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+#
+# Entries in this file show the compile time defaults.
+# You can change settings by editing this file.
+# Defaults can be restored by simply deleting this file.
+#
+# See systemd-system.conf(5) for details.
+<%-
+var_to_systemd_directives = {
+    'cpu_affinity'                     => 'CPUAffinity',
+    'capability_bounding_set'          => 'CapabilityBoundingSet',
+    'crash_change_vt'                  => 'CrashChangeVT',
+    'crash_reboot'                     => 'CrashReboot',
+    'crash_shell'                      => 'CrashShell',
+    'ctrl_alt_del_burst_action'        => 'CtrlAltDelBurstAction',
+    'default_block_io_accounting'      => 'DefaultBlockIOAccounting',
+    'default_cpu_accounting'           => 'DefaultCPUAccounting',
+    'default_environment'              => 'DefaultEnvironment',
+    'default_limit_as'                 => 'DefaultLimitAS',
+    'default_limit_core'               => 'DefaultLimitCORE',
+    'default_limit_cpu'                => 'DefaultLimitCPU',
+    'default_limit_data'               => 'DefaultLimitDATA',
+    'default_limit_fsize'              => 'DefaultLimitFSIZE',
+    'default_limit_locks'              => 'DefaultLimitLOCKS',
+    'default_limit_memlock'            => 'DefaultLimitMEMLOCK',
+    'default_limit_msgqueue'           => 'DefaultLimitMSGQUEUE',
+    'default_limit_nice'               => 'DefaultLimitNICE',
+    'default_limit_nofile'             => 'DefaultLimitNOFILE',
+    'default_limit_nproc'              => 'DefaultLimitNPROC',
+    'default_limit_rss'                => 'DefaultLimitRSS',
+    'default_limit_rtprio'             => 'DefaultLimitRTPRIO',
+    'default_limit_rttime'             => 'DefaultLimitRTTIME',
+    'default_limit_sigpending'         => 'DefaultLimitSIGPENDING',
+    'default_limit_stack'              => 'DefaultLimitSTACK',
+    'default_memory_accounting'        => 'DefaultMemoryAccounting',
+    'default_restart_sec'              => 'DefaultRestartSec',
+    'default_standard_error'           => 'DefaultStandardError',
+    'default_standard_output'          => 'DefaultStandardOutput',
+    'default_start_limit_burst'        => 'DefaultStartLimitBurst',
+    'default_start_limit_interval_sec' => 'DefaultStartLimitIntervalSec',
+    'default_tasks_accounting'         => 'DefaultTasksAccounting',
+    'default_tasks_max'                => 'DefaultTasksMax',
+    'default_timeout_start_sec'        => 'DefaultTimeoutStartSec',
+    'default_timeout_stop_sec'         => 'DefaultTimeoutStopSec',
+    'default_timer_accuracy_sec'       => 'DefaultTimerAccuracySec',
+    'dump_core'                        => 'DumpCore',
+    'hibernate_mode'                   => 'HibernateMode',
+    'hibernate_state'                  => 'HibernateState',
+    'hybrid_sleep_mode'                => 'HybridSleepMode',
+    'hybrid_sleep_state'               => 'HybridSleepState',
+    'join_controllers'                 => 'JoinControllers',
+    'log_color'                        => 'LogColor',
+    'log_level'                        => 'LogLevel',
+    'log_location'                     => 'LogLocation',
+    'log_target'                       => 'LogTarget',
+    'runtime_watchdog_sec'             => 'RuntimeWatchdogSec',
+    'show_status'                      => 'ShowStatus',
+    'shutdown_watchdog_sec'            => 'ShutdownWatchdogSec',
+    'suspend_mode'                     => 'SuspendMode',
+    'suspend_state'                    => 'SuspendState',
+    'system_call_architectures'        => 'SystemCallArchitectures',
+    'timer_slack_nsec'                 => 'TimerSlackNSec'
+}
+-%>
+
+[Manager]
+<%
+    %w( cpu_affinity capability_bounding_set crash_change_vt crash_reboot
+	crash_shell ctrl_alt_del_burst_action default_block_io_accounting
+	default_cpu_accounting default_environment default_limit_as default_limit_core
+	default_limit_cpu default_limit_data default_limit_fsize default_limit_locks
+	default_limit_memlock default_limit_msgqueue default_limit_nice
+	default_limit_nofile default_limit_nproc default_limit_rss default_limit_rtprio
+	default_limit_rttime default_limit_sigpending default_limit_stack
+	default_memory_accounting default_restart_sec default_standard_error
+	default_standard_output default_start_limit_burst
+	default_start_limit_interval_sec= default_tasks_accounting default_tasks_max
+	default_timeout_start_sec default_timeout_stop_sec default_timer_accuracy_sec
+	dump_core hibernate_mode hibernate_state hybrid_sleep_mode hybrid_sleep_state
+	join_controllers log_color log_level log_location log_target
+	runtime_watchdog_sec show_status shutdown_watchdog_sec suspend_mode
+	suspend_state system_call_architectures timer_slack_nsec).each do | variableName |
+-%>
+<%- if scope[variableName].to_s != 'undef' and !scope[variableName].nil? -%>
+<%= var_to_systemd_directives[variableName] -%>=<%= scope[variableName] %>
+<%- end -%>
+<% end -%>

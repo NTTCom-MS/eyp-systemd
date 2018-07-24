@@ -26,6 +26,9 @@ OnFailure=<%= @on_failure.join(' ') %>
 
 [Service]
 <% if defined?(@execstart) -%>
+  <%- if defined?(@dropin) -%>
+ExecStart=
+  <%- end -%>
   <%- if @execstart.kind_of?(Array) -%>
     <%- @execstart.each do |val| -%>
 ExecStart=<%= val %>
@@ -181,6 +184,9 @@ StartLimitBurst=<%= @startlimitburst %>
 <% if defined?(@killmode) -%>
 KillMode=<%= @killmode %>
 <% end -%>
+<% if defined?(@cpuquota) -%>
+CPUQuota=<%= @cpuquota %>
+<% end -%>
 <% if @successexitstatus.any? -%>
 SuccessExitStatus=<%= @successexitstatus.join(' ') %>
 <% end -%>
@@ -194,4 +200,13 @@ WantedBy=<%= @wantedby.join(' ') %>
 <% end -%>
 <% if @requiredby.any? -%>
 RequiredBy=<%= @requiredby.join(' ') %>
+<% end -%>
+<% if @service_alias.any? -%>
+Alias=<%= @service_alias.join(' ') %>
+<% end -%>
+<% if defined?(@default_instance) -%>
+DefaultInstance=<%= @default_instance %>
+<% end -%>
+<% if @also.any? -%>
+Also=<%= @also.join(' ') %>
 <% end -%>
