@@ -3,6 +3,7 @@
 ## 0.1.48
 
 * Allow logind.conf to be unmanaged - thanks to [davidnewhall](https://github.com/davidnewhall) for this [PR-106](https://github.com/NTTCom-MS/eyp-systemd/pull/106)
+* Fix #104 dependency circle with puppet 4 - thanks to [TuningYourCode](https://github.com/TuningYourCode) for this [PR-105](https://github.com/NTTCom-MS/eyp-systemd/pull/105)
 
 ## 0.1.47
 
