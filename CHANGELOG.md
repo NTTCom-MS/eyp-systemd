@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.48
+
+* Allow logind.conf to be unmanaged - thanks to [davidnewhall](https://github.com/davidnewhall) for this [PR-106](https://github.com/NTTCom-MS/eyp-systemd/pull/106)
+
 ## 0.1.47
 
 * added OpenSuSE support
