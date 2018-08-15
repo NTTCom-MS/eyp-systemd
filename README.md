@@ -1,4 +1,4 @@
-# systemd 🎗️
+# systemd
 
 #### Table of Contents
 
@@ -16,16 +16,16 @@
 
 ## Overview
 
-systemd service support
+management of systemd services, services dropins, sockets, timers, timesyncd, journald, logind and resolved daemons
 
 ## Module Description
 
-basic systemd support implemented:
-* service,socket and timer definitions (sys-v wrapper also available)
-* **logind.conf** management (default behaviour is to **disable RemoveIPC** by default)
-* `/etc/systemd/system.conf` (systemd manager configuration)
+This module manages:
+* Creation of services, services dropins, sockets and timers definitions (An optional sys-v wrapper is also available)
+* **logind.conf** under puppet management by default, must be explicitly disabled if needed
+* Other supported configuration files can be managed by puppet by including the appropriate class
 
-For systemd related questions please refer to:
+For systemd related questions please refer to [systemd man pages](https://www.freedesktop.org/software/systemd/man/index.html)
 
 * [Service](https://www.freedesktop.org/software/systemd/man/systemd.service.html)
 * [Unit](https://www.freedesktop.org/software/systemd/man/systemd.exec.html)
@@ -46,19 +46,19 @@ For systemd related questions please refer to:
 
 ### Setup Requirements
 
-This module requires pluginsync enabled
+This module requires pluginsync enabled for puppet <=4.0
 
 ### Basic examples
 ---
 #### Systemd Service
 
 ```puppet
-systemd::service { 'kibana':
-  execstart => "${basedir}/${productname}/bin/kibana",
+systemd::service { 'simpledemo':
+  execstart => "/usr/bin/simpledemo",
 }
 ```
 
-This is going to create the following service:
+As a reference, this is going to create the following service:
 
 ```
 [Unit]
@@ -85,7 +85,7 @@ systemd::service::dropin { 'ceph-disk@':
 }
 ```
 
-This is going to create the following overrride file:
+This definition creates the following service dropin:
 
 ```bash
 # cat /etc/systemd/system/ceph-disk@.service.d/override.conf:
@@ -93,7 +93,7 @@ This is going to create the following overrride file:
 Environment=CEPH_DISK_TIMEOUT=3000
 ```
 
-Please be aware this module defaults (documented in the [reference](#reference) section) differ from systemd's defaults
+Please be aware this module defaults (documented in the [reference](#reference) section) can differ from systemd's defaults in some aspects
 
 #### Setup specific systemd manager directives
 
@@ -107,7 +107,8 @@ class { 'systemd::system':
 ## Usage
 ---
 ### Systemd Service:
-add service dependency:
+
+Dependencies between systemd services using systemd directives like **after** in the following example:
 
 ```puppet
 systemd::service { 'oracleasm':
@@ -121,7 +122,7 @@ systemd::service { 'oracleasm':
 }
 ```
 
-env_vars usage example:
+Add environments variables using **env_vars**:
 
 ```puppet
 systemd::service { 'tomcat7':
@@ -138,9 +139,7 @@ systemd::service { 'tomcat7':
 }
 ```
 
-system-v compatibility mode:
-
-Use case: **eyp-mcaffee** uses the following to enable the ma service on CentOS 7
+System-V compatibility mode. The following code is used in **eyp-mcaffee** to enable the ma service on CentOS 7
 
 ```puppet
 systemd::sysvwrapper { 'ma':
@@ -150,9 +149,9 @@ systemd::sysvwrapper { 'ma':
 }
 ```
 
-This creates the following on the system:
+This creates the following files on the system:
 
-systed service definition:
+systemd service definition:
 
 ```bash
 # cat /etc/systemd/system/ma.service
@@ -174,7 +173,7 @@ PIDFile=/var/run/ma.sysvwrapper.pid
 WantedBy=multi-user.target
 ```
 
-control script:
+A control script:
 ```bash
 # cat /etc/init.d/ma.sysvwrapper.wrapper
 #!/bin/bash
@@ -202,7 +201,7 @@ case $1 in
 esac
 ```
 
-process checking ma status (to be able to report status to systemd):
+Once the service is started, this script checks, in this example ma's status, reporting it back to systemd:
 
 ```
 ps auxf
@@ -219,7 +218,7 @@ systemd::service::dropin { 'node_exporter':
 }
 ```
 
-This is going to create the following overrride file:
+This is going to create the following override file:
 
 ```bash
 # cat /etc/systemd/system/node_exporter.service.d/override.conf:
