@@ -233,7 +233,7 @@ User=monitoring
 
 #### systemd
 
-base class for systemd reload management
+* **manage_logind**: management of logind (default: true)
 
 #### systemd::timesyncd
 
