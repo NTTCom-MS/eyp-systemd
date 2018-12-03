@@ -51,6 +51,7 @@ define systemd::service (
                           $syslog_facility             = undef,
                           $killmode                    = undef,
                           $cpuquota                    = undef,
+                          $tasksmax                    = undef,
                           $successexitstatus           = [],
                           $killsignal                  = undef,
                           $service_alias               = [],

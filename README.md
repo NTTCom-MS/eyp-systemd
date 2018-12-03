@@ -365,6 +365,7 @@ systemd-journald is a system service that collects and stores logging data
 * **startlimitburst**: Configures how many starts per interval are allowed (default: undef)
 * **killmode**: Specifies how processes of this unit shall be killed. One of control-group, process, mixed, none. (default: undef)
 * **cpuquota**: Assign the specified CPU time quota to the processes executed. Takes a percentage value, suffixed with "%". The percentage specifies how much CPU time the unit shall get at maximum, relative to the total CPU time available on one CPU (default: undef)
+* **tasksmax**: Specify the maximum number of tasks that may be created in the unit. (default: undef)
 
 #### systemd::service::dropin
 
