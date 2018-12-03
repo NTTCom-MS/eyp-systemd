@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.1.49
+
+* Quick reference for **systemd::timer** - thanks to [towo](https://github.com/towo) for this [PR-119](https://github.com/NTTCom-MS/eyp-systemd/pull/119)
+* Add **TasksMax** parameter for service units - thanks to [v4ld3r5](https://github.com/v4ld3r5) for this [PR-117](https://github.com/NTTCom-MS/eyp-systemd/pull/117)
+
 ## 0.1.48
 
 * Allow **logind.conf** to be unmanaged - thanks to [davidnewhall](https://github.com/davidnewhall) for this [PR-106](https://github.com/NTTCom-MS/eyp-systemd/pull/106)
