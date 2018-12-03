@@ -380,6 +380,23 @@ system-v compatibility
 * **servicename**: service name (default: resource's name)
 * **check_time**: check interval -time between **initscript** status checks- (default: 10m)
 
+#### systemd::timer
+
+For a detailed explanation of all the timer settings, remember to read `systemd.timer(5)` for the full documentation.
+
+* **on_active_sec**, **on_boot_sec**, **on_startup_sec**, **on_unit_active_sec**, **on_unit_inactive_sec**: Define monotonic timers relative to to different starting points. (default: undef)
+* **on_calendar**: Defines realtime timers with calander event expressions (cf `systemd.time(7)`). (default: undef)
+* **accuracy_sec**: Specify the accuracy of the timer; events are coalesced at a host-specific time between timer setting and this value. (default: undef / 1min)
+* **randomized_delay_sec**: Delay the timer by a randomly selected amount of seconds between 0 and the specified value. (default: undef / 0)
+* **unit**: Unit this timer refers to. (default: undef / service with same name as timer)
+* **persistent**: If `'true'`, stores the state of the timer so that if the timer is re-enabled after a stop, it will run immediately if it would have run during the stop time. (default: undef / `'false'`)
+* **wake_system**: If `'true'`, timer will resume the system from suspend if supported. (default: undef / `'false'`)
+* **remain_after_elapse**: If `'true'`, state of a timer can still be queried after it elapsed. (default: undef / `'true'`)
+* **description**: Description to use for the timer unit. (default: undef)
+* **documentation**: Reference to the documentation for this unit (as per `systemd.unit(5)`). (default: undef)
+* **wantedby**: List of units that *want* this unit in systemd terminolagy. (default: `[]`)
+* **wantedby**: List of units that *require* this unit in systemd terminolagy. (default: `[]`)
+
 ## Limitations
 
 Should work anywhere, tested on CentOS 7 and Ubuntu 16
