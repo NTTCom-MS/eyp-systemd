@@ -187,6 +187,9 @@ KillMode=<%= @killmode %>
 <% if defined?(@cpuquota) -%>
 CPUQuota=<%= @cpuquota %>
 <% end -%>
+<% if defined?(@tasksmax) -%>
+TasksMax=<%= @tasksmax %>
+<% end -%>
 <% if @successexitstatus.any? -%>
 SuccessExitStatus=<%= @successexitstatus.join(' ') %>
 <% end -%>
