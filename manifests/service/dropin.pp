@@ -50,6 +50,7 @@ define systemd::service::dropin (
                                   $syslog_facility             = undef,
                                   $killmode                    = undef,
                                   $cpuquota                    = undef,
+                                  $tasksmax                    = undef,
                                   $successexitstatus           = [],
                                   $killsignal                  = undef,
                                   $syslogidentifier            = undef,
