@@ -58,6 +58,7 @@ define systemd::service::dropin (
                                   $service_alias               = [],
                                   $also                        = [],
                                   $default_instance            = undef,
+                                  $partof                      = undef,
                                 ) {
 
   if($restart!=undef)
