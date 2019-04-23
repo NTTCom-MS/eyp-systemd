@@ -50,7 +50,13 @@ ExecStop=<%= @execstop %>
   <%- end -%>
 <% end -%>
 <% if defined?(@execreload) -%>
+  <%- if @execreload.kind_of?(Array) -%>
+    <%- @execreload.each do |val| -%>
+ExecReload=<%= @val %>
+    <%- end -%>
+  <%- else -%>
 ExecReload=<%= @execreload %>
+  <%- end -%>
 <% end -%>
 <% if defined?(@execstartpre) -%>
   <%- if @execstartpre.kind_of?(Array) -%>
