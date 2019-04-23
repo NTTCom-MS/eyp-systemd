@@ -323,7 +323,7 @@ systemd-journald is a system service that collects and stores logging data
 
 * **execstart**: command to start daemon (default: undef)
 * **execstop**: command to stop daemon (default: undef)
-* **execreload**: commands or scripts to be executed when the unit is reloaded (default: undef)
+* **execreload**: commands or scripts to be executed when the unit is reloaded, it can be either a string or an array to be specified multiple times (default: undef)
 * **restart**: restart daemon if crashes. Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always (default: undef)
 * **user**: username to use (default: root)
 * **group**: group to use (default: root)
