@@ -366,6 +366,7 @@ systemd-journald is a system service that collects and stores logging data
 * **killmode**: Specifies how processes of this unit shall be killed. One of control-group, process, mixed, none. (default: undef)
 * **cpuquota**: Assign the specified CPU time quota to the processes executed. Takes a percentage value, suffixed with "%". The percentage specifies how much CPU time the unit shall get at maximum, relative to the total CPU time available on one CPU (default: undef)
 * **tasksmax**: Specify the maximum number of tasks that may be created in the unit. (default: undef)
+* **partof**: Specify if service has dependency. Similar to Requires= When systemd stops or restarts the units listed here, the action is propagated to this unit.
 
 #### systemd::service::dropin
 
