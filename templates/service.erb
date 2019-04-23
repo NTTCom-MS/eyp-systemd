@@ -23,6 +23,9 @@ Requires=<%= @requires.join(' ') %>
 <% if @on_failure.any? -%>
 OnFailure=<%= @on_failure.join(' ') %>
 <% end -%>
+<% if defined?(@partof) -%>
+PartOf=<%= @partof %>
+<% end -%>
 
 [Service]
 <% if defined?(@execstart) -%>

@@ -57,6 +57,7 @@ define systemd::service (
                           $service_alias               = [],
                           $also                        = [],
                           $default_instance            = undef,
+                          $partof                      = undef,
                         ) {
 
   if($type!=undef and $forking==true)
