@@ -196,6 +196,9 @@ SuccessExitStatus=<%= @successexitstatus.join(' ') %>
 <% if defined?(@killsignal) -%>
 KillSignal=<%= @killsignal %>
 <% end -%>
+<% if defined?(@partof) -%>
+PartOf=<%= @partof %>
+<% end -%>
 
 [Install]
 <% if defined?(@wantedby) -%>
