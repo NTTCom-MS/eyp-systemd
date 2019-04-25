@@ -24,38 +24,38 @@ class systemd::logind(
                         $user_tasks_max                  = '33%',
                       ) inherits systemd {
 
-  validate_bool($hibernate_key_ignore_inhibited, $kill_user_processes,
-                $lid_switch_ignore_inhibited, $power_key_ignore_inhibited,
-                $remove_ipc, $suspend_key_ignore_inhibited)
-
-  validate_array($kill_exclude_users, $kill_only_users)
-
-  validate_integer([$inhibitors_max, $n_auto_vts, $reserve_vt])
-
-  validate_re($handle_hibernate_key, ['^ignore$', '^poweroff$', '^reboot$',
-                                      '^halt$', '^kexec$', '^suspend$', '^hibernate$',
-                                      '^hybrid-sleep$', '^lock$'])
-
-  validate_re($handle_hibernate_key, ['^ignore$', '^poweroff$', '^reboot$',
-                                      '^halt$', '^kexec$', '^suspend$', '^hibernate$',
-                                      '^hybrid-sleep$', '^lock$'])
-
-  validate_re($handle_lid_switch, ['^ignore$', '^poweroff$', '^reboot$',
-                                    '^halt$', '^kexec$', '^suspend$',
-                                    '^hibernate$', '^hybrid-sleep$', '^lock$'])
-
-  validate_re($handle_lid_switch_docked, ['^ignore$', '^poweroff$',
-                                          '^reboot$', '^halt$', '^kexec$',
-                                          '^suspend$', '^hibernate$',
-                                          '^hybrid-sleep$', '^lock$'])
-
-  validate_re($handle_power_key, ['^ignore$', '^poweroff$', '^reboot$',
-                                  '^halt$', '^kexec$', '^suspend$',
-                                  '^hibernate$', '^hybrid-sleep$', '^lock$'])
-
-  validate_re($handle_suspend_key, ['^ignore$', '^poweroff$', '^reboot$',
-                                    '^halt$', '^kexec$', '^suspend$',
-                                    '^hibernate$', '^hybrid-sleep$', '^lock$'])
+  # validate_bool($hibernate_key_ignore_inhibited, $kill_user_processes,
+  #               $lid_switch_ignore_inhibited, $power_key_ignore_inhibited,
+  #               $remove_ipc, $suspend_key_ignore_inhibited)
+  #
+  # validate_array($kill_exclude_users, $kill_only_users)
+  #
+  # validate_integer([$inhibitors_max, $n_auto_vts, $reserve_vt])
+  #
+  # validate_re($handle_hibernate_key, ['^ignore$', '^poweroff$', '^reboot$',
+  #                                     '^halt$', '^kexec$', '^suspend$', '^hibernate$',
+  #                                     '^hybrid-sleep$', '^lock$'])
+  #
+  # validate_re($handle_hibernate_key, ['^ignore$', '^poweroff$', '^reboot$',
+  #                                     '^halt$', '^kexec$', '^suspend$', '^hibernate$',
+  #                                     '^hybrid-sleep$', '^lock$'])
+  #
+  # validate_re($handle_lid_switch, ['^ignore$', '^poweroff$', '^reboot$',
+  #                                   '^halt$', '^kexec$', '^suspend$',
+  #                                   '^hibernate$', '^hybrid-sleep$', '^lock$'])
+  #
+  # validate_re($handle_lid_switch_docked, ['^ignore$', '^poweroff$',
+  #                                         '^reboot$', '^halt$', '^kexec$',
+  #                                         '^suspend$', '^hibernate$',
+  #                                         '^hybrid-sleep$', '^lock$'])
+  #
+  # validate_re($handle_power_key, ['^ignore$', '^poweroff$', '^reboot$',
+  #                                 '^halt$', '^kexec$', '^suspend$',
+  #                                 '^hibernate$', '^hybrid-sleep$', '^lock$'])
+  #
+  # validate_re($handle_suspend_key, ['^ignore$', '^poweroff$', '^reboot$',
+  #                                   '^halt$', '^kexec$', '^suspend$',
+  #                                   '^hibernate$', '^hybrid-sleep$', '^lock$'])
 
 
   file { '/etc/systemd/logind.conf':

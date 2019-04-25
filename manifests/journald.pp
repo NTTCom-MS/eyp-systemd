@@ -30,25 +30,25 @@ class systemd::journald (
                           $tty_path               = '/dev/console'
                         ) inherits systemd::params {
 
-  validate_bool($forward_to_console, $forward_to_kmsg,
-                $forward_to_syslog, $forward_to_wall, $seal)
-
-  validate_integer($rate_limit_burst)
-
-  validate_re($max_level_console, ['^emerg$', '^alert$', '^crit$', '^err$',
-    '^warning$', '^notice$', '^info$', '^debug$'])
-
-  validate_re($max_level_kmsg, ['^emerg$', '^alert$', '^crit$', '^err$',
-    '^warning$', '^notice$', '^info$', '^debug$'])
-
-  validate_re($max_level_store, ['^emerg$', '^alert$', '^crit$', '^err$',
-    '^warning$', '^notice$', '^info$', '^debug$'])
-
-  validate_re($max_level_syslog, ['^emerg$', '^alert$', '^crit$', '^err$',
-    '^warning$', '^notice$', '^info$', '^debug$'])
-
-  validate_re($max_level_wall, ['^emerg$', '^alert$', '^crit$', '^err$',
-    '^warning$', '^notice$', '^info$', '^debug$'])
+  # validate_bool($forward_to_console, $forward_to_kmsg,
+  #               $forward_to_syslog, $forward_to_wall, $seal)
+  #
+  # validate_integer($rate_limit_burst)
+  #
+  # validate_re($max_level_console, ['^emerg$', '^alert$', '^crit$', '^err$',
+  #   '^warning$', '^notice$', '^info$', '^debug$'])
+  #
+  # validate_re($max_level_kmsg, ['^emerg$', '^alert$', '^crit$', '^err$',
+  #   '^warning$', '^notice$', '^info$', '^debug$'])
+  #
+  # validate_re($max_level_store, ['^emerg$', '^alert$', '^crit$', '^err$',
+  #   '^warning$', '^notice$', '^info$', '^debug$'])
+  #
+  # validate_re($max_level_syslog, ['^emerg$', '^alert$', '^crit$', '^err$',
+  #   '^warning$', '^notice$', '^info$', '^debug$'])
+  #
+  # validate_re($max_level_wall, ['^emerg$', '^alert$', '^crit$', '^err$',
+  #   '^warning$', '^notice$', '^info$', '^debug$'])
 
   class { '::systemd::journald::config': } ~>
   class { '::systemd::journald::service': } ->
