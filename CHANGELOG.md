@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.51
+
+* Removed **validate_** functions
+
 ## 0.1.50
 
 * Add array support for **ExecReload** - thanks to [bagasse](https://github.com/bagasse) for this [PR-121](https://github.com/NTTCom-MS/eyp-systemd/pull/121)
