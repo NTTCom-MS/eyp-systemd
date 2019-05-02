@@ -29,3 +29,6 @@ PartOf=<%= @partof %>
 <% if defined?(@documentation) -%>
 Documentation = <%= @documentation %>
 <% end -%>
+<% if defined?(@allow_isolate) -%>
+AllowIsolate=<%= scope.function_bool2yesno([@allow_isolate]) %>
+<% end -%>
