@@ -1,7 +1,7 @@
 define systemd::target (
                         $targetname   = $name,
                         $description  = undef,
-                        $allowisolate = 'no',
+                        $allow_isolate = 'no',
 
   ) {
 
