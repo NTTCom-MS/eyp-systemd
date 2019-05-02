@@ -24,11 +24,11 @@ define systemd::socket(
   }
 
   concat { "/etc/systemd/system/${socket_name}.socket":
-    ensure  => 'present',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    notify  => Exec['systemctl daemon-reload'],
+    ensure => 'present',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    notify => Exec['systemctl daemon-reload'],
   }
 
   concat::fragment { "${socket_name} unit":

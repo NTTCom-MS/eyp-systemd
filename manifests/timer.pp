@@ -48,11 +48,11 @@ define systemd::timer (
   }
 
   concat { "/etc/systemd/system/${timer_name}.timer":
-    ensure  => 'present',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    notify  => Exec['systemctl daemon-reload'],
+    ensure => 'present',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    notify => Exec['systemctl daemon-reload'],
   }
 
   concat::fragment { "${timer_name} unit":

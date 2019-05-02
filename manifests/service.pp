@@ -85,11 +85,11 @@ define systemd::service (
   include ::systemd
 
   concat { "/etc/systemd/system/${servicename}.service":
-    ensure  => 'present',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    notify  => Exec['systemctl daemon-reload'],
+    ensure => 'present',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    notify => Exec['systemctl daemon-reload'],
   }
 
   concat::fragment { "${servicename} unit":

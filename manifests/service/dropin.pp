@@ -79,11 +79,11 @@ define systemd::service::dropin (
   $dropin = true
 
   concat { "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf":
-    ensure  => 'present',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    notify  => Exec['systemctl daemon-reload'],
+    ensure => 'present',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    notify => Exec['systemctl daemon-reload'],
   }
 
   concat::fragment { "${dropin_name} unit":
