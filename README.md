@@ -22,7 +22,6 @@ management of systemd services, services dropins, sockets, timers, timesyncd, jo
 
 This module manages:
 * Creation of services, services dropins, sockets and timers definitions (An optional sys-v wrapper is also available)
-* **logind.conf** under puppet management by default, must be explicitly disabled if needed
 * Other supported configuration files can be managed by puppet by including the appropriate class
 
 For systemd related questions please refer to [systemd man pages](https://www.freedesktop.org/software/systemd/man/index.html)
@@ -233,7 +232,8 @@ User=monitoring
 
 #### systemd
 
-* **manage_logind**: management of logind (default: true)
+* **DEPRECATED** will be removed on the next version:
+  - **manage_logind**: management of logind (default: false)
 
 #### systemd::timesyncd
 

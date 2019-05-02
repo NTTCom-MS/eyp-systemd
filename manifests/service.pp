@@ -46,9 +46,10 @@ define systemd::service (
                           $oom_score_adjust            = undef,
                           $startlimitinterval          = undef,
                           $startlimitburst             = undef,
-                          $standard_output             = 'syslog',
-                          $standard_error              = 'syslog',
+                          $standard_output             = undef,
+                          $standard_error              = undef,
                           $syslog_facility             = undef,
+                          $syslog_identifier           = undef,
                           $killmode                    = undef,
                           $cpuquota                    = undef,
                           $tasksmax                    = undef,
@@ -74,8 +75,6 @@ define systemd::service (
   {
     fail('Incompatible options: There are multiple execstop values and Type is not "oneshot"')
   }
-
-  $syslogidentifier = $servicename
 
   # if($restart!=undef)
   # {

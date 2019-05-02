@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.2.0
+
+* **INCOMPATIBLE CHANGES**: safer defaults for:
+  - **systemd::timesyncd**: no
+  - **manage_logind** set to false by default
+  - syslog related settings not set by default on **system::service**
+
 ## 0.1.51
 
 * Removed **validate_** functions

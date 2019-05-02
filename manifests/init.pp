@@ -2,8 +2,7 @@
 # https://wiki.archlinux.org/index.php/systemd#Service_types
 #
 class systemd (
-                $manage_logind   = true,
-                $removeipc       = 'no',
+                $manage_logind = false,
               ) inherits systemd::params {
 
   Exec {
