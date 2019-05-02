@@ -12,10 +12,8 @@ define systemd::timer (
                         $persistent           = undef,
                         $wake_system          = undef,
                         $remain_after_elapse  = undef,
-                        # unit section
                         $description          = undef,
                         $documentation        = undef,
-                        # install section
                         $wantedby             = [],
                         $requiredby           = [],
                       ) {
