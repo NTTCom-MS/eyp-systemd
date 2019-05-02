@@ -14,8 +14,8 @@ define systemd::target(
   }
 
   concat::fragment {"${target_name} unit":
-    target => "/etc/systemd/system/${target_name}.target",
-    order  => '00',
+    target  => "/etc/systemd/system/${target_name}.target",
+    order   => '00',
     content => template("${module_name}/section/unit.erb"),
   }
 }
