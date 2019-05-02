@@ -1,8 +1,8 @@
-define systemd::target ( 
-                        $targetname   = $name, 
+define systemd::target (
+                        $targetname   = $name,
                         $description  = undef,
                         $allowisolate = 'no',
-                                  
+
   ) {
 
 
@@ -14,13 +14,18 @@ define systemd::target (
     {
       include ::systemd
     }
-    
-  file { "/etc/systemd/system/${targetname}.target":
+
+  concat { "/etc/systemd/system/${targetname}.target":
     ensure  => 'present',
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template("${module_name}/target.erb"),
     notify  => Exec['systemctl daemon-reload'],
+  }
+
+  concat::fragment {"${targetname} unit":
+    target => "/etc/systemd/system/${targetname}.target",
+    order  => '00',
+    content => template("${module_name}/section/unit.erb"),
   }
 }
