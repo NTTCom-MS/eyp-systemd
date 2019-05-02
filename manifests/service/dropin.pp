@@ -78,13 +78,30 @@ define systemd::service::dropin (
 
   $dropin = true
 
-  file { "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf":
+  concat { "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf":
     ensure  => 'present',
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template("${module_name}/service.erb"),
     notify  => Exec['systemctl daemon-reload'],
+  }
+
+  concat::fragment { "${dropin_name} unit":
+    target  => "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf",
+    order   => '00',
+    content => template("${module_name}/section/unit.erb"),
+  }
+
+  concat::fragment { "${dropin_name} install":
+    target  => "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf",
+    order   => '01',
+    content => template("${module_name}/section/install.erb"),
+  }
+
+  concat::fragment { "${dropin_name} service":
+    target  => "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf",
+    order   => '02',
+    content => template("${module_name}/section/service.erb"),
   }
 
   if(!defined(File["/etc/systemd/system/${servicename}.service.d/"]))

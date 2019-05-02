@@ -34,19 +34,19 @@ define systemd::socket(
   }
 
   concat::fragment { "${socket_name} unit":
-    target  => "/etc/systemd/system/${socket_name}.timer",
+    target  => "/etc/systemd/system/${socket_name}.socket",
     order   => '00',
     content => template("${module_name}/section/unit.erb"),
   }
 
   concat::fragment { "${socket_name} install":
-    target  => "/etc/systemd/system/${socket_name}.timer",
+    target  => "/etc/systemd/system/${socket_name}.socket",
     order   => '01',
     content => template("${module_name}/section/install.erb"),
   }
 
   concat::fragment { "${socket_name} socket":
-    target  => "/etc/systemd/system/${socket_name}.timer",
+    target  => "/etc/systemd/system/${socket_name}.socket",
     order   => '02',
     content => template("${module_name}/section/socket.erb"),
   }

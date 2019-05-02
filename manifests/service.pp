@@ -84,12 +84,29 @@ define systemd::service (
 
   include ::systemd
 
-  file { "/etc/systemd/system/${servicename}.service":
+  concat { "/etc/systemd/system/${servicename}.service":
     ensure  => 'present',
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template("${module_name}/service.erb"),
     notify  => Exec['systemctl daemon-reload'],
+  }
+
+  concat::fragment { "${servicename} unit":
+    target  => "/etc/systemd/system/${servicename}.service",
+    order   => '00',
+    content => template("${module_name}/section/unit.erb"),
+  }
+
+  concat::fragment { "${servicename} install":
+    target  => "/etc/systemd/system/${servicename}.service",
+    order   => '01',
+    content => template("${module_name}/section/install.erb"),
+  }
+
+  concat::fragment { "${servicename} service":
+    target  => "/etc/systemd/system/${servicename}.service",
+    order   => '02',
+    content => template("${module_name}/section/service.erb"),
   }
 }
