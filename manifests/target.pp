@@ -1,30 +1,20 @@
-define systemd::target (
-                        $targetname   = $name,
-                        $description  = undef,
-                        $allow_isolate = 'no',
+define systemd::target(
+                        $target_name   = $name,
+                        $description   = undef,
+                        $allow_isolate = false,
+                      ) {
+  include ::systemd
 
-  ) {
-
-
-  if versioncmp($::puppetversion, '4.0.0') >= 0
-    {
-      contain ::systemd
-    }
-    else
-    {
-      include ::systemd
-    }
-
-  concat { "/etc/systemd/system/${targetname}.target":
-    ensure  => 'present',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    notify  => Exec['systemctl daemon-reload'],
+  concat { "/etc/systemd/system/${target_name}.target":
+    ensure => 'present',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    notify => Exec['systemctl daemon-reload'],
   }
 
-  concat::fragment {"${targetname} unit":
-    target => "/etc/systemd/system/${targetname}.target",
+  concat::fragment {"${target_name} unit":
+    target => "/etc/systemd/system/${target_name}.target",
     order  => '00',
     content => template("${module_name}/section/unit.erb"),
   }

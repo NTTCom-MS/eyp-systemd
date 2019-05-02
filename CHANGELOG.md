@@ -2,7 +2,8 @@
 
 ## 0.2.0
 
-* added **puppetlabs/concat** as a dependency
+* Added **puppetlabs/concat** as a dependency
+* Added **systemd::target** support - thanks to [ArVincentr](https://github.com/ArVincentr) for this [PR-126](https://github.com/NTTCom-MS/eyp-systemd/pull/126) partially fixing [issue 123](https://github.com/NTTCom-MS/eyp-systemd/issues/123)
 * **INCOMPATIBLE CHANGES**: safer defaults for:
   - **systemd::timesyncd**: root_distance_max_sec, poll_interval_min_sec and poll_interval_max_sec changed to undef by default
   - **logind** is no longer managed by default

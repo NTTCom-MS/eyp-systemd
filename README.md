@@ -400,9 +400,9 @@ For a detailed explanation of all the timer settings, remember to read `systemd.
 
 #### systemd::target
 
-* **description** A meaningful description of the unit. This text is displayed for example in the output of the systemctl status command (default: undef)
-* **targetname** Used to create the target file under /etc/systemd/system/ needs to be the same name as instantiated services referenced by partof (default: undef)
-**allowisolate** this unit may be used with the systemctl isolate command. Otherwise, this will be refused  (default:undef)
+* **description**: A meaningful description of the unit. This text is displayed for example in the output of the systemctl status command (default: undef)
+* **targetname**: Used to create the target file under /etc/systemd/system/ needs to be the same name as instantiated services referenced by partof (default: undef)
+* **allow_isolate**: this unit may be used with the systemctl isolate command. Otherwise, this will be refused  (default:undef)
 
 ## Limitations
 
