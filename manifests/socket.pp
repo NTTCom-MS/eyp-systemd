@@ -11,7 +11,9 @@ define systemd::socket(
                         $socket_name = $name,
                         $after_units = [],
                         $requires    = [],
+                        # unit
                         $description = undef,
+                        # install
                         $wantedby    = [ 'multi-user.target' ],
                       ) {
   if versioncmp($::puppetversion, '4.0.0') >= 0
