@@ -2,9 +2,10 @@
 
 ## 0.2.0
 
+* added **puppetlabs/concat** as a dependency
 * **INCOMPATIBLE CHANGES**: safer defaults for:
-  - **systemd::timesyncd**: no
-  - **manage_logind** set to false by default
+  - **systemd::timesyncd**: root_distance_max_sec, poll_interval_min_sec and poll_interval_max_sec changed to undef by default
+  - **logind** is no longer managed by default
   - syslog related settings not set by default on **system::service**
 
 ## 0.1.51

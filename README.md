@@ -232,8 +232,7 @@ User=monitoring
 
 #### systemd
 
-* **DEPRECATED** will be removed on the next version:
-  - **manage_logind**: management of logind (default: false)
+Base class for refreshing systemd on demand
 
 #### systemd::timesyncd
 
