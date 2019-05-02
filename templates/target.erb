@@ -1,0 +1,7 @@
+[Unit]
+<% if defined?(@description) -%>
+Description=<%= @description %>
+<% end -%>
+<% if defined?(@allowisolate) -%>
+AllowIsolate=<%= @allowisolate %>
+<% end -%>

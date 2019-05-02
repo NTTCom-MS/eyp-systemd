@@ -398,6 +398,12 @@ For a detailed explanation of all the timer settings, remember to read `systemd.
 * **wantedby**: List of units that *want* this unit in systemd terminolagy. (default: `[]`)
 * **wantedby**: List of units that *require* this unit in systemd terminolagy. (default: `[]`)
 
+#### systemd::target
+
+* **description** A meaningful description of the unit. This text is displayed for example in the output of the systemctl status command (default: undef)
+* **targetname** Used to create the target file under /etc/systemd/system/ needs to be the same name as instantiated services referenced by partof (default: undef)
+**allowisolate** this unit may be used with the systemctl isolate command. Otherwise, this will be refused  (default:undef)
+
 ## Limitations
 
 Should work anywhere, tested on CentOS 7 and Ubuntu 16
