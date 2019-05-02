@@ -16,11 +16,11 @@ define systemd::target (
     }
 
   concat { "/etc/systemd/system/${targetname}.target":
-    ensure  => 'present',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    notify  => Exec['systemctl daemon-reload'],
+    ensure => 'present',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    notify => Exec['systemctl daemon-reload'],
   }
 
   concat::fragment {"${targetname} unit":
