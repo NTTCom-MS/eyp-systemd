@@ -12,6 +12,7 @@
 5. [Reference](#reference)
 5. [Limitations](#limitations)
 6. [Development](#development)
+    * [TODO](#todo)
     * [Contributing](#contributing)
 
 ## Overview
@@ -412,6 +413,10 @@ Should work anywhere, tested on CentOS 7 and Ubuntu 16
 
 We are pushing to have acceptance testing in place, so any new feature should
 have some test to check both presence and absence of any feature
+
+### TODO
+
+* add deeper testing to functionality
 
 ### Contributing
 
