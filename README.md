@@ -12,6 +12,7 @@
 5. [Reference](#reference)
 5. [Limitations](#limitations)
 6. [Development](#development)
+    * [TODO](#todo)
     * [Contributing](#contributing)
 
 ## Overview
@@ -22,7 +23,6 @@ management of systemd services, services dropins, sockets, timers, timesyncd, jo
 
 This module manages:
 * Creation of services, services dropins, sockets and timers definitions (An optional sys-v wrapper is also available)
-* **logind.conf** under puppet management by default, must be explicitly disabled if needed
 * Other supported configuration files can be managed by puppet by including the appropriate class
 
 For systemd related questions please refer to [systemd man pages](https://www.freedesktop.org/software/systemd/man/index.html)
@@ -233,7 +233,7 @@ User=monitoring
 
 #### systemd
 
-* **manage_logind**: management of logind (default: true)
+Base class for refreshing systemd on demand
 
 #### systemd::timesyncd
 
@@ -399,6 +399,12 @@ For a detailed explanation of all the timer settings, remember to read `systemd.
 * **wantedby**: List of units that *want* this unit in systemd terminolagy. (default: `[]`)
 * **wantedby**: List of units that *require* this unit in systemd terminolagy. (default: `[]`)
 
+#### systemd::target
+
+* **description**: A meaningful description of the unit. This text is displayed for example in the output of the systemctl status command (default: undef)
+* **targetname**: Used to create the target file under /etc/systemd/system/ needs to be the same name as instantiated services referenced by partof (default: undef)
+* **allow_isolate**: this unit may be used with the systemctl isolate command. Otherwise, this will be refused  (default:undef)
+
 ## Limitations
 
 Should work anywhere, tested on CentOS 7 and Ubuntu 16
@@ -407,6 +413,10 @@ Should work anywhere, tested on CentOS 7 and Ubuntu 16
 
 We are pushing to have acceptance testing in place, so any new feature should
 have some test to check both presence and absence of any feature
+
+### TODO
+
+* add deeper testing to functionality
 
 ### Contributing
 

@@ -1,8 +1,3 @@
-[Unit]
-<% if defined?(@description) -%>
-Description = <%= @description %>
-<% end -%>
-
 [Socket]
 <% @listen_stream.each do |val| -%>
 ListenStream=<%= val %>
@@ -13,6 +8,3 @@ After=<%= @after_units.join(' ') %>
 <% if @requires.any? -%>
 Requires=<%= @requires.join(' ') %>
 <% end -%>
-
-[Install]
-WantedBy=<%= @wantedby.join(' ') %>

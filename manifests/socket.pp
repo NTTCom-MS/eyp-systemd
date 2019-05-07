@@ -11,7 +11,9 @@ define systemd::socket(
                         $socket_name = $name,
                         $after_units = [],
                         $requires    = [],
+                        # unit
                         $description = undef,
+                        # install
                         $wantedby    = [ 'multi-user.target' ],
                       ) {
   if versioncmp($::puppetversion, '4.0.0') >= 0
@@ -23,12 +25,29 @@ define systemd::socket(
     include ::systemd
   }
 
-  file { "/etc/systemd/system/${socket_name}.socket":
-    ensure  => 'present',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    content => template("${module_name}/socket.erb"),
-    notify  => Exec['systemctl daemon-reload'],
+  concat { "/etc/systemd/system/${socket_name}.socket":
+    ensure => 'present',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    notify => Exec['systemctl daemon-reload'],
+  }
+
+  concat::fragment { "${socket_name} unit":
+    target  => "/etc/systemd/system/${socket_name}.socket",
+    order   => '00',
+    content => template("${module_name}/section/unit.erb"),
+  }
+
+  concat::fragment { "${socket_name} install":
+    target  => "/etc/systemd/system/${socket_name}.socket",
+    order   => '01',
+    content => template("${module_name}/section/install.erb"),
+  }
+
+  concat::fragment { "${socket_name} socket":
+    target  => "/etc/systemd/system/${socket_name}.socket",
+    order   => '02',
+    content => template("${module_name}/section/socket.erb"),
   }
 }

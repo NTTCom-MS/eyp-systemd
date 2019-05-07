@@ -47,13 +47,13 @@ define systemd::service::dropin (
                                   $startlimitburst             = undef,
                                   $standard_output             = undef,
                                   $standard_error              = undef,
-                                  $syslog_facility             = undef,
                                   $killmode                    = undef,
                                   $cpuquota                    = undef,
                                   $tasksmax                    = undef,
                                   $successexitstatus           = [],
                                   $killsignal                  = undef,
-                                  $syslogidentifier            = undef,
+                                  $syslog_facility             = undef,
+                                  $syslog_identifier           = undef,
                                   $purge_dropin_dir            = true,
                                   $service_alias               = [],
                                   $also                        = [],
@@ -78,13 +78,30 @@ define systemd::service::dropin (
 
   $dropin = true
 
-  file { "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf":
-    ensure  => 'present',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    content => template("${module_name}/service.erb"),
-    notify  => Exec['systemctl daemon-reload'],
+  concat { "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf":
+    ensure => 'present',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    notify => Exec['systemctl daemon-reload'],
+  }
+
+  concat::fragment { "${dropin_name} unit":
+    target  => "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf",
+    order   => '00',
+    content => template("${module_name}/section/unit.erb"),
+  }
+
+  concat::fragment { "${dropin_name} install":
+    target  => "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf",
+    order   => '01',
+    content => template("${module_name}/section/install.erb"),
+  }
+
+  concat::fragment { "${dropin_name} service":
+    target  => "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf",
+    order   => '02',
+    content => template("${module_name}/section/service.erb"),
   }
 
   if(!defined(File["/etc/systemd/system/${servicename}.service.d/"]))

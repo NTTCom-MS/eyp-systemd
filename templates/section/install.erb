@@ -1,0 +1,16 @@
+[Install]
+<% if defined?(@wantedby) -%>
+WantedBy=<%= @wantedby.join(' ') %>
+<% end -%>
+<% if @requiredby.any? -%>
+RequiredBy=<%= @requiredby.join(' ') %>
+<% end -%>
+<% if @service_alias.any? -%>
+Alias=<%= @service_alias.join(' ') %>
+<% end -%>
+<% if defined?(@default_instance) -%>
+DefaultInstance=<%= @default_instance %>
+<% end -%>
+<% if @also.any? -%>
+Also=<%= @also.join(' ') %>
+<% end -%>

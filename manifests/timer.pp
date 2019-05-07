@@ -1,4 +1,5 @@
 define systemd::timer (
+                        $timer_name           = $name,
                         $on_active_sec        = undef,
                         $on_boot_sec          = undef,
                         $on_startup_sec       = undef,
@@ -11,8 +12,10 @@ define systemd::timer (
                         $persistent           = undef,
                         $wake_system          = undef,
                         $remain_after_elapse  = undef,
+                        # unit
                         $description          = undef,
                         $documentation        = undef,
+                        # install
                         $wantedby             = [],
                         $requiredby           = [],
                       ) {
@@ -46,12 +49,29 @@ define systemd::timer (
     fail('$persistent being "true" only works with $on_calendar being set.')
   }
 
-  file { "/etc/systemd/system/${title}.timer":
-    ensure  => 'present',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    content => template("${module_name}/timer.erb"),
-    notify  => Exec['systemctl daemon-reload'],
+  concat { "/etc/systemd/system/${timer_name}.timer":
+    ensure => 'present',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    notify => Exec['systemctl daemon-reload'],
+  }
+
+  concat::fragment { "${timer_name} unit":
+    target  => "/etc/systemd/system/${timer_name}.timer",
+    order   => '00',
+    content => template("${module_name}/section/unit.erb"),
+  }
+
+  concat::fragment { "${timer_name} install":
+    target  => "/etc/systemd/system/${timer_name}.timer",
+    order   => '01',
+    content => template("${module_name}/section/install.erb"),
+  }
+
+  concat::fragment { "${timer_name} timer":
+    target  => "/etc/systemd/system/${timer_name}.timer",
+    order   => '02',
+    content => template("${module_name}/section/timer.erb"),
   }
 }

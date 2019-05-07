@@ -1,32 +1,3 @@
-[Unit]
-<% if defined?(@description) -%>
-Description=<%= @description %>
-<% end -%>
-<% if defined?(@after) -%>
-After=<%= @after %>
-<% end -%>
-<% if @wants.any? -%>
-Wants=<%= @wants.join(' ') %>
-<% end -%>
-<% if @after_units.any? -%>
-After=<%= @after_units.join(' ') %>
-<% end -%>
-<% if @before_units.any? -%>
-Before=<%= @before_units.join(' ') %>
-<% end -%>
-<% if @conflicts.any? -%>
-Conflicts=<%= @conflicts.join(' ') %>
-<% end -%>
-<% if @requires.any? -%>
-Requires=<%= @requires.join(' ') %>
-<% end -%>
-<% if @on_failure.any? -%>
-OnFailure=<%= @on_failure.join(' ') %>
-<% end -%>
-<% if defined?(@partof) -%>
-PartOf=<%= @partof %>
-<% end -%>
-
 [Service]
 <% if defined?(@execstart) -%>
   <%- if defined?(@dropin) -%>
@@ -85,8 +56,8 @@ StandardOutput=<%= @standard_output %>
 <% if defined?(@standard_error) -%>
 StandardError=<%= @standard_error %>
 <% end -%>
-<% if defined?(@syslogidentifier) -%>
-SyslogIdentifier=<%= @syslogidentifier %>
+<% if defined?(@syslog_identifier) -%>
+SyslogIdentifier=<%= @syslog_identifier %>
 <% end -%>
 <% if defined?(@syslog_facility) -%>
 SyslogFacility=<%= @syslog_facility %>
@@ -204,21 +175,4 @@ SuccessExitStatus=<%= @successexitstatus.join(' ') %>
 <% end -%>
 <% if defined?(@killsignal) -%>
 KillSignal=<%= @killsignal %>
-<% end -%>
-
-[Install]
-<% if defined?(@wantedby) -%>
-WantedBy=<%= @wantedby.join(' ') %>
-<% end -%>
-<% if @requiredby.any? -%>
-RequiredBy=<%= @requiredby.join(' ') %>
-<% end -%>
-<% if @service_alias.any? -%>
-Alias=<%= @service_alias.join(' ') %>
-<% end -%>
-<% if defined?(@default_instance) -%>
-DefaultInstance=<%= @default_instance %>
-<% end -%>
-<% if @also.any? -%>
-Also=<%= @also.join(' ') %>
 <% end -%>

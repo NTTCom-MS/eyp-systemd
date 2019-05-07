@@ -46,9 +46,10 @@ define systemd::service (
                           $oom_score_adjust            = undef,
                           $startlimitinterval          = undef,
                           $startlimitburst             = undef,
-                          $standard_output             = 'syslog',
-                          $standard_error              = 'syslog',
+                          $standard_output             = undef,
+                          $standard_error              = undef,
                           $syslog_facility             = undef,
+                          $syslog_identifier           = undef,
                           $killmode                    = undef,
                           $cpuquota                    = undef,
                           $tasksmax                    = undef,
@@ -75,8 +76,6 @@ define systemd::service (
     fail('Incompatible options: There are multiple execstop values and Type is not "oneshot"')
   }
 
-  $syslogidentifier = $servicename
-
   # if($restart!=undef)
   # {
   #   # Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always.
@@ -85,12 +84,29 @@ define systemd::service (
 
   include ::systemd
 
-  file { "/etc/systemd/system/${servicename}.service":
-    ensure  => 'present',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    content => template("${module_name}/service.erb"),
-    notify  => Exec['systemctl daemon-reload'],
+  concat { "/etc/systemd/system/${servicename}.service":
+    ensure => 'present',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    notify => Exec['systemctl daemon-reload'],
+  }
+
+  concat::fragment { "${servicename} unit":
+    target  => "/etc/systemd/system/${servicename}.service",
+    order   => '00',
+    content => template("${module_name}/section/unit.erb"),
+  }
+
+  concat::fragment { "${servicename} install":
+    target  => "/etc/systemd/system/${servicename}.service",
+    order   => '01',
+    content => template("${module_name}/section/install.erb"),
+  }
+
+  concat::fragment { "${servicename} service":
+    target  => "/etc/systemd/system/${servicename}.service",
+    order   => '02',
+    content => template("${module_name}/section/service.erb"),
   }
 }

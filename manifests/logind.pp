@@ -16,7 +16,7 @@ class systemd::logind(
                         $lid_switch_ignore_inhibited     = true,
                         $n_auto_vts                      = 6,
                         $power_key_ignore_inhibited      = false,
-                        $remove_ipc                      = yesno2bool($systemd::removeipc),
+                        $remove_ipc                      = false,
                         $reserve_vt                      = 6,
                         $runtime_directory_size          = '10%',
                         $sessions_max                    = 8192,
