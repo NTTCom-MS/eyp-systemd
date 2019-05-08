@@ -2,6 +2,16 @@ define systemd::target(
                         $target_name   = $name,
                         $description   = undef,
                         $allow_isolate = false,
+                        $after         = undef,
+                        $wants         = [],
+                        $after_units   = [],
+                        $before_units  = [],
+                        $conflicts     = [],
+                        $requires      = [],
+                        $on_failure    = [],
+                        $partof        = undef,
+                        $documentation = undef,
+                        
                       ) {
   include ::systemd
 
