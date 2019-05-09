@@ -10,7 +10,7 @@ HOSTS:
     docker_cmd: '["/usr/sbin/init"]'
     docker_image_commands:
       - 'rm -rf /var/run/network/*'
-      - 'yum install -y which gcc make crontabs tar wget iproute java-1.7.0-openjdk java-1.7.0-openjdk-devel'
+      - 'yum install -y telnet which gcc make crontabs tar wget iproute java-1.7.0-openjdk java-1.7.0-openjdk-devel'
 CONFIG:
   type: foss
   log_level: debug
