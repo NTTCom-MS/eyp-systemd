@@ -4,7 +4,7 @@ require_relative './version.rb'
 describe 'systemd class' do
   context 'socket' do
     it "cleanup" do
-      expect(shell("pkill sleep").exit_code).to be_zero
+      expect(shell("pkill sleep; echo").exit_code).to be_zero
     end
 
     # Using puppet_apply as a helper
