@@ -10,6 +10,7 @@ define systemd::socket(
                         $listen_stream    = undef,
                         $listen_datagram  = undef,
                         $socket_name      = $name,
+                        $accept           = undef,
                         # install
                         $also             = [],
                         $default_instance = undef,

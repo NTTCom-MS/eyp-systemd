@@ -15,3 +15,6 @@ After=<%= @after_units.join(' ') %>
 <% if @requires.any? -%>
 Requires=<%= @requires.join(' ') %>
 <% end -%>
+<% if defined?(@accept) -%>
+Accept=<%= scope.function_bool2yesno([@accept]) %>
+<% end -%>

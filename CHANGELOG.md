@@ -3,7 +3,9 @@
 ## 0.2.1
 
 * added **StandardInput** to **systemd::service** and **systemd::service::dropin**
-* added **ListenDatagram** to **systemd::socket**
+* added variables to **systemd::socket**:
+  - ListenDatagram
+  - Accept
 * added managed variables to defines:
   - service
   - service dropin
