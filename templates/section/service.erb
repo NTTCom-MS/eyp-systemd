@@ -50,6 +50,9 @@ ExecStartPost=<%= @execstartpost %>
 <% if defined?(@restart) -%>
 Restart=<%= @restart %>
 <% end -%>
+<% if defined?(@standard_input) -%>
+StandardInput=<%= @standard_input %>
+<% end -%>
 <% if defined?(@standard_output) -%>
 StandardOutput=<%= @standard_output %>
 <% end -%>

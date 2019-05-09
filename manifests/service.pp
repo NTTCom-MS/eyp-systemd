@@ -36,6 +36,7 @@ define systemd::service (
                           $oom_score_adjust            = undef,
                           $startlimitinterval          = undef,
                           $startlimitburst             = undef,
+                          $standard_input              = undef,
                           $standard_output             = undef,
                           $standard_error              = undef,
                           $syslog_facility             = undef,
