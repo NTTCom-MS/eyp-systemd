@@ -6,7 +6,7 @@ describe 'systemd class' do
     it "cleanup" do
       expect(shell("pkill sleep").exit_code).to be_zero
     end
-    
+
     # Using puppet_apply as a helper
     it 'should work with no errors' do
       pp = <<-EOF
@@ -25,7 +25,7 @@ describe 'systemd class' do
       systemd::service { 'vago@':
         description    => 'vago server',
         requires       => [ 'vago.socket' ],
-        execstart      => [ "/bin/sleep 30" ],
+        execstart      => [ '/bin/sleep 30' ],
         standard_input => 'socket',
         also           => [ 'vago.socket' ],
         before         => Service['vago.socket'],

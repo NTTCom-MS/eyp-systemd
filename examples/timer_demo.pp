@@ -7,7 +7,7 @@ systemd::service { 'test':
 
 systemd::timer { 'test':
   on_boot_sec => '1',
-  before    => Service['test'],
+  before      => Service['test'],
 }
 
 service { 'test.timer':

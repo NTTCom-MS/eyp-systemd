@@ -12,7 +12,7 @@ systemd::socket { 'vago':
 systemd::service { 'vago@':
   description    => 'vago server',
   requires       => [ 'vago.socket' ],
-  execstart      => [ "/bin/sleep 30" ],
+  execstart      => [ '/bin/sleep 30' ],
   standard_input => 'socket',
   also           => [ 'vago.socket' ],
   before         => Service['vago.socket'],

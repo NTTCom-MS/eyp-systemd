@@ -6,7 +6,7 @@ describe 'systemd timer type' do
     it "cleanup" do
       expect(shell("pkill sleep").exit_code).to be_zero
     end
-    
+
     # Using puppet_apply as a helper
     it 'should work with no errors' do
       pp = <<-EOF
@@ -20,7 +20,7 @@ describe 'systemd timer type' do
 
       systemd::timer { 'test':
         on_boot_sec => '1',
-        before    => Service['test'],
+        before      => Service['test'],
       }
 
       service { 'test.timer':
