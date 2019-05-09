@@ -2,7 +2,7 @@ require 'spec_helper_acceptance'
 require_relative './version.rb'
 
 describe 'systemd class' do
-  context 'basic setup' do
+  context 'service' do
     # Using puppet_apply as a helper
     it 'should work with no errors' do
       pp = <<-EOF
