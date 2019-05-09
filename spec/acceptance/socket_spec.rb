@@ -13,7 +13,7 @@ describe 'systemd class' do
         description   => 'vago Server Activation Socket',
         listen_stream => [ '6565' ],
         wantedby      => [ 'sockets.target' ],
-        accept => true,
+        accept        => true,
       }
 
 
