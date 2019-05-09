@@ -20,7 +20,7 @@ describe 'systemd class' do
         description    => 'vago server',
         requires       => [ 'vago.socket' ],
         documentation  => 'man:in.tftpd',
-        execstart      => [ "/bin/sleep 1" ],
+        execstart      => [ "/bin/sleep 30" ],
         standard_input => 'socket',
         also           => [ 'vago.socket' ],
       }
