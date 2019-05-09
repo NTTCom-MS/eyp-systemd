@@ -49,7 +49,9 @@ For systemd related questions please refer to [systemd man pages](https://www.fr
 This module requires pluginsync enabled for puppet <=4.0
 
 ### Basic examples
----
+
+You can also find some puppet code on the examples folder with some configurations intended for testing
+
 #### Systemd Service
 
 ```puppet
