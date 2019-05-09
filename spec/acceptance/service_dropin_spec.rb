@@ -53,7 +53,7 @@ describe 'systemd class' do
     end
 
     it "check sleep" do
-      expect(shell("ps -fea | grep \"sleep 100\"").exit_code).to be_zero
+      expect(shell("ps -fea | grep \"[s]leep 100\"").exit_code).to be_zero
     end
   end
 end

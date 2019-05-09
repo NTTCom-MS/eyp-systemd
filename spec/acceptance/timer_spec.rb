@@ -41,7 +41,7 @@ describe 'systemd timer type' do
     end
 
     it "check sleep" do
-      expect(shell("ps -fea | grep sleep").exit_code).to be_zero
+      expect(shell("ps -fea | grep [s]leep").exit_code).to be_zero
     end
   end
 end

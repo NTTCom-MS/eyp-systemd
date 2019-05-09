@@ -48,5 +48,17 @@ describe 'systemd class' do
       expect(shell("systemctl status vago.socket").exit_code).to be_zero
     end
 
+    it "check absensce sleep" do
+      expect(shell("if [ $(ps -fea | grep -c [s]leep) -eq 0 ]; then /bin/true; else /bin/false; fi; echo $?").exit_code).to be_zero
+    end
+
+    it "activate service" do
+      expect(shell("echo | telnet 127.0.0.1 6565").exit_code).to be_zero
+    end
+
+    it "check sleep" do
+      expect(shell("ps -fea | grep [s]leep").exit_code).to be_zero
+    end
+
   end
 end
