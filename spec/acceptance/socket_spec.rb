@@ -23,13 +23,8 @@ describe 'systemd class' do
         execstart      => [ "/bin/sleep 30" ],
         standard_input => 'socket',
         also           => [ 'vago.socket' ],
-        before         => Service['vago'],
       }
 
-      service { 'vago':
-        ensure  => 'running',
-        require => Class['::systemd'],
-      }
 
       EOF
 
