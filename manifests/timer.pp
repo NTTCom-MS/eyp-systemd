@@ -16,6 +16,7 @@ define systemd::timer (
                         $description          = undef,
                         $documentation        = undef,
                         $wants                = [],
+                        $after                = undef,
                         $after_units          = [],
                         $before_units         = [],
                         $requires             = [],
