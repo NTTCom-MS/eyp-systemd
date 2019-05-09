@@ -46,7 +46,9 @@ For systemd related questions please refer to [systemd man pages](https://www.fr
 
 ### Setup Requirements
 
-This module requires pluginsync enabled for puppet <=4.0
+This module is compatible for puppet 3.8 and newer versions, requires pluginsync enabled for puppet <=4.0
+
+Compatibility for puppet 3.8 will be kept at least until the next major release
 
 ### Basic examples
 
