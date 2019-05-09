@@ -1,10 +1,20 @@
 [Socket]
+<% if defined?(@listen_stream) -%>
 <% @listen_stream.each do |val| -%>
 ListenStream=<%= val %>
+<% end -%>
+<% end -%>
+<% if defined?(@listen_datagram) -%>
+<% @listen_datagram.each do |val| -%>
+ListenDatagram=<%= val %>
+<% end -%>
 <% end -%>
 <% if @after_units.any? -%>
 After=<%= @after_units.join(' ') %>
 <% end -%>
 <% if @requires.any? -%>
 Requires=<%= @requires.join(' ') %>
+<% end -%>
+<% if defined?(@accept) -%>
+Accept=<%= scope.function_bool2yesno([@accept]) %>
 <% end -%>

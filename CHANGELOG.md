@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## 0.2.1
+
+* added **StandardInput** to **systemd::service** and **systemd::service::dropin**
+* added variables to **systemd::socket**:
+  - ListenDatagram
+  - Accept
+* added managed variables to defines:
+  - service
+  - service dropin
+  - socket
+  - target
+  - timer
+* improved acceptance testing
+
 ## 0.2.0
 
 * Added **puppetlabs/concat** as a dependency

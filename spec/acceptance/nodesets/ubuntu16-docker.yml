@@ -9,7 +9,7 @@ HOSTS:
     docker_cmd: '["/sbin/init"]'
     docker_preserve_image: true
     docker_image_commands:
-      - 'apt-get install gcc make tar wget -y'
+      - 'apt-get install telnet gcc make tar wget -y'
 CONFIG:
   type: foss
   log_level: debug

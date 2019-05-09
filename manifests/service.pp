@@ -11,20 +11,10 @@ define systemd::service (
                           $group                       = 'root',
                           $forking                     = false,
                           $pid_file                    = undef,
-                          $description                 = undef,
-                          $after                       = undef,
                           $remain_after_exit           = undef,
                           $type                        = undef,
                           $env_vars                    = [],
                           $environment_files           = [],
-                          $wants                       = [],
-                          $wantedby                    = [ 'multi-user.target' ],
-                          $requiredby                  = [],
-                          $after_units                 = [],
-                          $before_units                = [],
-                          $requires                    = [],
-                          $conflicts                   = [],
-                          $on_failure                  = [],
                           $permissions_start_only      = false,
                           $timeoutstartsec             = undef,
                           $timeoutstopsec              = undef,
@@ -46,6 +36,7 @@ define systemd::service (
                           $oom_score_adjust            = undef,
                           $startlimitinterval          = undef,
                           $startlimitburst             = undef,
+                          $standard_input              = undef,
                           $standard_output             = undef,
                           $standard_error              = undef,
                           $syslog_facility             = undef,
@@ -55,10 +46,24 @@ define systemd::service (
                           $tasksmax                    = undef,
                           $successexitstatus           = [],
                           $killsignal                  = undef,
-                          $service_alias               = [],
+                          # install
                           $also                        = [],
                           $default_instance            = undef,
+                          $service_alias               = [],
+                          $wantedby                    = [ 'multi-user.target' ],
+                          $requiredby                  = [],
+                          # unit
+                          $description                 = undef,
+                          $documentation               = undef,
+                          $wants                       = [],
+                          $after                       = undef,
+                          $after_units                 = [],
+                          $before_units                = [],
+                          $requires                    = [],
+                          $conflicts                   = [],
+                          $on_failure                  = [],
                           $partof                      = undef,
+                          $allow_isolate               = undef,
                         ) {
 
   if($type!=undef and $forking==true)
@@ -92,19 +97,19 @@ define systemd::service (
     notify => Exec['systemctl daemon-reload'],
   }
 
-  concat::fragment { "${servicename} unit":
+  concat::fragment { "service ${servicename} unit":
     target  => "/etc/systemd/system/${servicename}.service",
     order   => '00',
     content => template("${module_name}/section/unit.erb"),
   }
 
-  concat::fragment { "${servicename} install":
+  concat::fragment { "service ${servicename} install":
     target  => "/etc/systemd/system/${servicename}.service",
     order   => '01',
     content => template("${module_name}/section/install.erb"),
   }
 
-  concat::fragment { "${servicename} service":
+  concat::fragment { "service ${servicename} service":
     target  => "/etc/systemd/system/${servicename}.service",
     order   => '02',
     content => template("${module_name}/section/service.erb"),

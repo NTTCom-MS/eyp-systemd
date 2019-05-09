@@ -46,10 +46,14 @@ For systemd related questions please refer to [systemd man pages](https://www.fr
 
 ### Setup Requirements
 
-This module requires pluginsync enabled for puppet <=4.0
+This module is compatible for puppet 3.8 and newer versions, requires pluginsync enabled for puppet <=4.0
+
+Compatibility for puppet 3.8 will be kept at least until the next major release
 
 ### Basic examples
----
+
+You can also find some puppet code on the examples folder with some configurations intended for testing
+
 #### Systemd Service
 
 ```puppet
@@ -373,6 +377,7 @@ systemd-journald is a system service that collects and stores logging data
 Has the same options as **systemd::service** plus the following options for the dropin itself management:
 * **dropin_order**: dropin priority - part of the filename, only useful for multiple dropin files (default: 99)
 * **dropin_name**: dropin name (default: override)
+* **purge_dropin_dir**: Flag to purge not managed dropins (default: true)
 
 #### systemd::sysvwrapper
 
@@ -405,6 +410,11 @@ For a detailed explanation of all the timer settings, remember to read `systemd.
 * **targetname**: Used to create the target file under /etc/systemd/system/ needs to be the same name as instantiated services referenced by partof (default: undef)
 * **allow_isolate**: this unit may be used with the systemctl isolate command. Otherwise, this will be refused  (default:undef)
 
+#### systemd::socket
+
+* **listen_stream**: (default: undef)
+* **listen_datagram**: (default: undef)
+
 ## Limitations
 
 Should work anywhere, tested on CentOS 7 and Ubuntu 16
@@ -417,6 +427,7 @@ have some test to check both presence and absence of any feature
 ### TODO
 
 * add deeper testing to functionality
+* review documentation
 
 ### Contributing
 

@@ -1,6 +1,7 @@
 define systemd::service::dropin (
                                   $dropin_order                = '99',
                                   $dropin_name                 = 'override',
+                                  $purge_dropin_dir            = true,
                                   $servicename                 = $name,
                                   $execstart                   = undef,
                                   $execstop                    = undef,
@@ -8,23 +9,15 @@ define systemd::service::dropin (
                                   $execstartpre                = undef,
                                   $execstartpost               = undef,
                                   $restart                     = undef,
-                                  $user                        = undef,
-                                  $group                       = undef,
+                                  $user                        = 'root',
+                                  $group                       = 'root',
+                                  $forking                     = false,
                                   $pid_file                    = undef,
-                                  $description                 = undef,
-                                  $after                       = undef,
                                   $remain_after_exit           = undef,
                                   $type                        = undef,
                                   $env_vars                    = [],
                                   $environment_files           = [],
-                                  $wants                       = [],
-                                  $requiredby                  = [],
-                                  $after_units                 = [],
-                                  $before_units                = [],
-                                  $requires                    = [],
-                                  $conflicts                   = [],
-                                  $on_failure                  = [],
-                                  $permissions_start_only      = undef,
+                                  $permissions_start_only      = false,
                                   $timeoutstartsec             = undef,
                                   $timeoutstopsec              = undef,
                                   $timeoutsec                  = undef,
@@ -37,7 +30,7 @@ define systemd::service::dropin (
                                   $runtime_directory           = undef,
                                   $runtime_directory_mode      = undef,
                                   $restart_sec                 = undef,
-                                  $private_tmp                 = undef,
+                                  $private_tmp                 = false,
                                   $working_directory           = undef,
                                   $root_directory              = undef,
                                   $umask                       = undef,
@@ -45,20 +38,34 @@ define systemd::service::dropin (
                                   $oom_score_adjust            = undef,
                                   $startlimitinterval          = undef,
                                   $startlimitburst             = undef,
+                                  $standard_input              = undef,
                                   $standard_output             = undef,
                                   $standard_error              = undef,
+                                  $syslog_facility             = undef,
+                                  $syslog_identifier           = undef,
                                   $killmode                    = undef,
                                   $cpuquota                    = undef,
                                   $tasksmax                    = undef,
                                   $successexitstatus           = [],
                                   $killsignal                  = undef,
-                                  $syslog_facility             = undef,
-                                  $syslog_identifier           = undef,
-                                  $purge_dropin_dir            = true,
-                                  $service_alias               = [],
+                                  # install
                                   $also                        = [],
                                   $default_instance            = undef,
+                                  $service_alias               = [],
+                                  $wantedby                    = [ 'multi-user.target' ],
+                                  $requiredby                  = [],
+                                  # unit
+                                  $description                 = undef,
+                                  $documentation               = undef,
+                                  $wants                       = [],
+                                  $after                       = undef,
+                                  $after_units                 = [],
+                                  $before_units                = [],
+                                  $requires                    = [],
+                                  $conflicts                   = [],
+                                  $on_failure                  = [],
                                   $partof                      = undef,
+                                  $allow_isolate               = undef,
                                 ) {
 
   # if($restart!=undef)
@@ -86,19 +93,19 @@ define systemd::service::dropin (
     notify => Exec['systemctl daemon-reload'],
   }
 
-  concat::fragment { "${dropin_name} unit":
+  concat::fragment { "service dropin ${dropin_name} unit":
     target  => "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf",
     order   => '00',
     content => template("${module_name}/section/unit.erb"),
   }
 
-  concat::fragment { "${dropin_name} install":
+  concat::fragment { "service dropin ${dropin_name} install":
     target  => "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf",
     order   => '01',
     content => template("${module_name}/section/install.erb"),
   }
 
-  concat::fragment { "${dropin_name} service":
+  concat::fragment { "service dropin ${dropin_name} service":
     target  => "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf",
     order   => '02',
     content => template("${module_name}/section/service.erb"),

@@ -2,7 +2,11 @@ require 'spec_helper_acceptance'
 require_relative './version.rb'
 
 describe 'systemd timer type' do
-  context 'timer setup' do
+  context 'timer' do
+    it "cleanup" do
+      expect(shell("pkill sleep; echo").exit_code).to be_zero
+    end
+
     # Using puppet_apply as a helper
     it 'should work with no errors' do
       pp = <<-EOF
@@ -11,12 +15,12 @@ describe 'systemd timer type' do
 
       systemd::service { 'test':
         execstart => '/bin/sleep 60',
-        before    => Service['test'],
+        before    => Service['test.timer'],
       }
 
       systemd::timer { 'test':
         on_boot_sec => '1',
-        before    => Service['test'],
+        before      => Service['test.timer'],
       }
 
       service { 'test.timer':
@@ -33,7 +37,12 @@ describe 'systemd timer type' do
 
     describe file("/etc/systemd/system/test.timer") do
       it { should be_file }
-      its(:content) { should match 'on_boot_sec=1' }
+      its(:content) { should match 'OnBootSec=1' }
+    end
+
+    describe file("/etc/systemd/system/test.service") do
+      it { should be_file }
+      its(:content) { should match '/bin/sleep 60' }
     end
 
     it "systemctl status" do
@@ -41,7 +50,7 @@ describe 'systemd timer type' do
     end
 
     it "check sleep" do
-      expect(shell("ps -fea | grep sleep").exit_code).to be_zero
+      expect(shell("ps -fea | grep [s]leep").exit_code).to be_zero
     end
   end
 end

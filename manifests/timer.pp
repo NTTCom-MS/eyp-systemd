@@ -15,8 +15,20 @@ define systemd::timer (
                         # unit
                         $description          = undef,
                         $documentation        = undef,
+                        $wants                = [],
+                        $after                = undef,
+                        $after_units          = [],
+                        $before_units         = [],
+                        $requires             = [],
+                        $conflicts            = [],
+                        $on_failure           = [],
+                        $partof               = undef,
+                        $allow_isolate        = undef,
                         # install
-                        $wantedby             = [],
+                        $also                 = [],
+                        $default_instance     = undef,
+                        $service_alias        = [],
+                        $wantedby             = [ 'multi-user.target' ],
                         $requiredby           = [],
                       ) {
   # Timer section
@@ -57,19 +69,19 @@ define systemd::timer (
     notify => Exec['systemctl daemon-reload'],
   }
 
-  concat::fragment { "${timer_name} unit":
+  concat::fragment { "timer ${timer_name} unit":
     target  => "/etc/systemd/system/${timer_name}.timer",
     order   => '00',
     content => template("${module_name}/section/unit.erb"),
   }
 
-  concat::fragment { "${timer_name} install":
+  concat::fragment { "timer ${timer_name} install":
     target  => "/etc/systemd/system/${timer_name}.timer",
     order   => '01',
     content => template("${module_name}/section/install.erb"),
   }
 
-  concat::fragment { "${timer_name} timer":
+  concat::fragment { "timer ${timer_name} timer":
     target  => "/etc/systemd/system/${timer_name}.timer",
     order   => '02',
     content => template("${module_name}/section/timer.erb"),

@@ -2,7 +2,11 @@ require 'spec_helper_acceptance'
 require_relative './version.rb'
 
 describe 'systemd class' do
-  context 'basic setup' do
+  context 'service' do
+    it "cleanup" do
+      expect(shell("pkill sleep; echo").exit_code).to be_zero
+    end
+
     # Using puppet_apply as a helper
     it 'should work with no errors' do
       pp = <<-EOF
@@ -43,7 +47,7 @@ describe 'systemd class' do
     end
 
     it "check sleep" do
-      expect(shell("ps -fea | grep sleep").exit_code).to be_zero
+      expect(shell("ps -fea | grep [s]leep").exit_code).to be_zero
     end
   end
 end
