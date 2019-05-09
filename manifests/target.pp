@@ -23,7 +23,7 @@ define systemd::target(
     notify => Exec['systemctl daemon-reload'],
   }
 
-  concat::fragment {"${target_name} unit":
+  concat::fragment {"target ${target_name} unit":
     target  => "/etc/systemd/system/${target_name}.target",
     order   => '00',
     content => template("${module_name}/section/unit.erb"),

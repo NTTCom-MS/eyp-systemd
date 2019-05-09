@@ -97,19 +97,19 @@ define systemd::service (
     notify => Exec['systemctl daemon-reload'],
   }
 
-  concat::fragment { "${servicename} unit":
+  concat::fragment { "service ${servicename} unit":
     target  => "/etc/systemd/system/${servicename}.service",
     order   => '00',
     content => template("${module_name}/section/unit.erb"),
   }
 
-  concat::fragment { "${servicename} install":
+  concat::fragment { "service ${servicename} install":
     target  => "/etc/systemd/system/${servicename}.service",
     order   => '01',
     content => template("${module_name}/section/install.erb"),
   }
 
-  concat::fragment { "${servicename} service":
+  concat::fragment { "service ${servicename} service":
     target  => "/etc/systemd/system/${servicename}.service",
     order   => '02',
     content => template("${module_name}/section/service.erb"),
