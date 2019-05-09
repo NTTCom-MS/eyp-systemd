@@ -37,6 +37,11 @@ describe 'systemd timer type' do
 
     describe file("/etc/systemd/system/test.timer") do
       it { should be_file }
+      its(:content) { should match 'OnBootSec=1' }
+    end
+
+    describe file("/etc/systemd/system/test.service") do
+      it { should be_file }
       its(:content) { should match '/bin/sleep 60' }
     end
 
