@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.2.1
+
+* added managed variables to defines:
+  - service
+  - service dropin
+  - socket
+  - target
+  - timer
+* improved acceptance testing
+
 ## 0.2.0
 
 * Added **puppetlabs/concat** as a dependency
