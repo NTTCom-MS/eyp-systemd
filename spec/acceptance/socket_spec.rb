@@ -9,11 +9,20 @@ describe 'systemd class' do
 
       class { 'systemd': }
 
-      systemd::socket { 'test':
-        listen_stream => '7878',
-        after         => 'network.target',
-        requires      => [ 'network.target' ],
+      systemd::socket { 'vago':
+        description   => 'vago Server Activation Socket',
+        listen_stream => [ '6565' ],
         wantedby      => [ 'sockets.target' ],
+      }
+
+
+      systemd::service { 'vago':
+        description    => 'vago server',
+        requires       => [ 'vago.socket' ],
+        documentation  => 'man:in.tftpd',
+        execstart      => [ "/bin/sleep 1" ],
+        standard_input => 'socket',
+        also           => [ 'vago.socket' ],
       }
 
       EOF
@@ -23,13 +32,13 @@ describe 'systemd class' do
       expect(apply_manifest(pp).exit_code).to eq(0)
     end
 
-    describe file("/etc/systemd/system/test.socket") do
+    describe file("/etc/systemd/system/vago.socket") do
       it { should be_file }
-      its(:content) { should match 'ListenStream=7878' }
+      its(:content) { should match 'ListenStream=6565' }
     end
 
     it "systemctl status" do
-      expect(shell("systemctl status test.socket").exit_code).to be_zero
+      expect(shell("systemctl status vago.socket").exit_code).to be_zero
     end
 
   end
