@@ -64,5 +64,9 @@ describe 'systemd class' do
       expect(shell("ps -fea | grep [s]leep").exit_code).to be_zero
     end
 
+    describe port(6565) do
+      it { should be_listening }
+    end
+
   end
 end
