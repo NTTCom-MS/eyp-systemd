@@ -423,6 +423,7 @@ have some test to check both presence and absence of any feature
 ### TODO
 
 * add deeper testing to functionality
+* review documentation
 
 ### Contributing
 
