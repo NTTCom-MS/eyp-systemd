@@ -3,6 +3,10 @@ require_relative './version.rb'
 
 describe 'systemd class' do
   context 'service dropin' do
+    it "cleanup" do
+      expect(shell("pkill sleep").exit_code).to be_zero
+    end
+    
     # Using puppet_apply as a helper
     it 'should work with no errors' do
       pp = <<-EOF
