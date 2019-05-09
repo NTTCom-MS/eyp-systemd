@@ -45,9 +45,10 @@ define systemd::service (
                           $tasksmax                    = undef,
                           $successexitstatus           = [],
                           $killsignal                  = undef,
-                          $service_alias               = [],
+                          # install
                           $also                        = [],
                           $default_instance            = undef,
+                          $service_alias               = [],
                           $wantedby                    = [ 'multi-user.target' ],
                           $requiredby                  = [],
                           # unit

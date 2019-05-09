@@ -1,5 +1,6 @@
 define systemd::target(
                         $target_name   = $name,
+                        # unit
                         $description   = undef,
                         $documentation = undef,
                         $wants         = [],

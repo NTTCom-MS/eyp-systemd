@@ -25,7 +25,10 @@ define systemd::timer (
                         $partof               = undef,
                         $allow_isolate        = undef,
                         # install
-                        $wantedby             = [],
+                        $also                 = [],
+                        $default_instance     = undef,
+                        $service_alias        = [],
+                        $wantedby             = [ 'multi-user.target' ],
                         $requiredby           = [],
                       ) {
   # Timer section

@@ -9,12 +9,24 @@
 define systemd::socket(
                         $listen_stream,
                         $socket_name = $name,
-                        $after_units = [],
-                        $requires    = [],
-                        # unit
-                        $description = undef,
                         # install
-                        $wantedby    = [ 'multi-user.target' ],
+                        $also                        = [],
+                        $default_instance            = undef,
+                        $service_alias               = [],
+                        $wantedby                    = [ 'multi-user.target' ],
+                        $requiredby                  = [],
+                        # unit
+                        $description                 = undef,
+                        $documentation               = undef,
+                        $wants                       = [],
+                        $after                       = undef,
+                        $after_units                 = [],
+                        $before_units                = [],
+                        $requires                    = [],
+                        $conflicts                   = [],
+                        $on_failure                  = [],
+                        $partof                      = undef,
+                        $allow_isolate               = undef,
                       ) {
   if versioncmp($::puppetversion, '4.0.0') >= 0
   {
