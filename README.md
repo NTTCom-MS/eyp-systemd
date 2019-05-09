@@ -373,6 +373,7 @@ systemd-journald is a system service that collects and stores logging data
 Has the same options as **systemd::service** plus the following options for the dropin itself management:
 * **dropin_order**: dropin priority - part of the filename, only useful for multiple dropin files (default: 99)
 * **dropin_name**: dropin name (default: override)
+* **purge_dropin_dir**: Flag to purge not managed dropins (default: true)
 
 #### systemd::sysvwrapper
 
@@ -404,6 +405,11 @@ For a detailed explanation of all the timer settings, remember to read `systemd.
 * **description**: A meaningful description of the unit. This text is displayed for example in the output of the systemctl status command (default: undef)
 * **targetname**: Used to create the target file under /etc/systemd/system/ needs to be the same name as instantiated services referenced by partof (default: undef)
 * **allow_isolate**: this unit may be used with the systemctl isolate command. Otherwise, this will be refused  (default:undef)
+
+#### systemd::socket
+
+* **listen_stream**: (default: undef)
+* **listen_datagram**: (default: undef)
 
 ## Limitations
 

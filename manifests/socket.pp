@@ -7,26 +7,27 @@
 # [Install]
 # WantedBy=sockets.target
 define systemd::socket(
-                        $listen_stream,
-                        $socket_name = $name,
+                        $listen_stream    = undef,
+                        $listen_datagram  = undef,
+                        $socket_name      = $name,
                         # install
-                        $also                        = [],
-                        $default_instance            = undef,
-                        $service_alias               = [],
-                        $wantedby                    = [ 'multi-user.target' ],
-                        $requiredby                  = [],
+                        $also             = [],
+                        $default_instance = undef,
+                        $service_alias    = [],
+                        $wantedby         = [ 'multi-user.target' ],
+                        $requiredby       = [],
                         # unit
-                        $description                 = undef,
-                        $documentation               = undef,
-                        $wants                       = [],
-                        $after                       = undef,
-                        $after_units                 = [],
-                        $before_units                = [],
-                        $requires                    = [],
-                        $conflicts                   = [],
-                        $on_failure                  = [],
-                        $partof                      = undef,
-                        $allow_isolate               = undef,
+                        $description      = undef,
+                        $documentation    = undef,
+                        $wants            = [],
+                        $after            = undef,
+                        $after_units      = [],
+                        $before_units     = [],
+                        $requires         = [],
+                        $conflicts        = [],
+                        $on_failure       = [],
+                        $partof           = undef,
+                        $allow_isolate    = undef,
                       ) {
   if versioncmp($::puppetversion, '4.0.0') >= 0
   {

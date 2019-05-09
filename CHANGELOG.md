@@ -2,6 +2,7 @@
 
 ## 0.2.1
 
+* added **ListenDatagram** to **systemd::socket**
 * added managed variables to defines:
   - service
   - service dropin
