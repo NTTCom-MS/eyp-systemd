@@ -15,6 +15,14 @@ define systemd::timer (
                         # unit
                         $description          = undef,
                         $documentation        = undef,
+                        $wants                = [],
+                        $after_units          = [],
+                        $before_units         = [],
+                        $requires             = [],
+                        $conflicts            = [],
+                        $on_failure           = [],
+                        $partof               = undef,
+                        $allow_isolate        = undef,
                         # install
                         $wantedby             = [],
                         $requiredby           = [],

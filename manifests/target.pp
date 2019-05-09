@@ -1,7 +1,7 @@
 define systemd::target(
                         $target_name   = $name,
                         $description   = undef,
-                        $allow_isolate = false,
+                        $allow_isolate = undef,
                       ) {
   include ::systemd
 
