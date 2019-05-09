@@ -57,7 +57,7 @@ describe 'systemd class' do
     end
 
     it "activate service" do
-      expect(shell("echo | telnet 127.0.0.1 6565").exit_code).to be_zero
+      expect(shell("echo | telnet 127.0.0.1 6565 | grep \"Escape character\"").exit_code).to be_zero
     end
 
     it "check sleep" do
