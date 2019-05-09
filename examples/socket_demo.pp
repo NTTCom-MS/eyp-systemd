@@ -5,6 +5,7 @@ systemd::socket { 'vago':
   listen_stream => [ '6565' ],
   wantedby      => [ 'sockets.target' ],
   accept        => true,
+  before        => Service['vago.socket'],
 }
 
 
@@ -14,10 +15,9 @@ systemd::service { 'vago@':
   execstart      => [ "/bin/sleep 30" ],
   standard_input => 'socket',
   also           => [ 'vago.socket' ],
-  before         => Service['vago'],
+  before         => Service['vago.socket'],
 }
 
-service { 'vago':
-  ensure  => 'running',
-  require => Class['::systemd'],
+service { 'vago.socket':
+  ensure => 'running',
 }

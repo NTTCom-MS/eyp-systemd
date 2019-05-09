@@ -14,6 +14,7 @@ describe 'systemd class' do
         listen_stream => [ '6565' ],
         wantedby      => [ 'sockets.target' ],
         accept        => true,
+        before        => Service['vago.socket'],
       }
 
 
@@ -23,6 +24,11 @@ describe 'systemd class' do
         execstart      => [ "/bin/sleep 30" ],
         standard_input => 'socket',
         also           => [ 'vago.socket' ],
+        before         => Service['vago.socket'],
+      }
+
+      service { 'vago.socket':
+        ensure => 'running',
       }
 
 
@@ -36,6 +42,10 @@ describe 'systemd class' do
     describe file("/etc/systemd/system/vago.socket") do
       it { should be_file }
       its(:content) { should match 'ListenStream=6565' }
+    end
+
+    it "systemctl status" do
+      expect(shell("systemctl status vago.socket").exit_code).to be_zero
     end
 
   end
