@@ -28,17 +28,9 @@ describe 'systemd class' do
       its(:content) { should match 'ListenStream=7878' }
     end
 
-    describe file("/etc/systemd/logind.conf") do
-      it { should be_file }
-      its(:content) { should match 'RemoveIPC=no' }
-    end
-
     it "systemctl status" do
-      expect(shell("systemctl status test").exit_code).to be_zero
+      expect(shell("systemctl status test.socket").exit_code).to be_zero
     end
 
-    it "check sleep" do
-      expect(shell("ps -fea | grep sleep").exit_code).to be_zero
-    end
   end
 end
