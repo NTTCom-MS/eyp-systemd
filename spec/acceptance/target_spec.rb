@@ -25,9 +25,5 @@ describe 'systemd timer type' do
       its(:content) { should match 'demo target acceptance' }
     end
 
-    it "systemctl status" do
-      expect(shell("systemctl status demotarget.target").exit_code).to be_zero
-    end
-
   end
 end

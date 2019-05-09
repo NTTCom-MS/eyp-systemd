@@ -37,9 +37,5 @@ describe 'systemd class' do
       its(:content) { should match 'ListenStream=6565' }
     end
 
-    it "systemctl status" do
-      expect(shell("systemctl status vago.socket").exit_code).to be_zero
-    end
-
   end
 end
