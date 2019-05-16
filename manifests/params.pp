@@ -13,7 +13,7 @@ class systemd::params {
             /^1[5-9].*$/:
             {
             }
-            /^2[0-8].*$/:
+            /^[23][0-9].*$/:
             {
             }
             default: { fail('Unsupported RHEL/CentOS version!')  }
@@ -23,7 +23,7 @@ class systemd::params {
         {
           case $::operatingsystemrelease
           {
-            /^7.*$/:
+            /^[78].*$/:
             {
             }
             default: { fail('Unsupported RHEL/CentOS version!')  }
