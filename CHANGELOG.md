@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.2
+
+* Added support for RHEL8 and Fedora 29 and 30
+
 ## 0.2.1
 
 * added **StandardInput** to **systemd::service** and **systemd::service::dropin**

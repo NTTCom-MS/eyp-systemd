@@ -1,6 +1,6 @@
 {
   "name": "eyp-systemd",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "eyp",
   "summary": "management of systemd services, services dropins, sockets, timers, timesyncd, journald, logind and resolved",
   "license": "Apache-2.0",
@@ -15,23 +15,23 @@
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
-      "operatingsystemrelease": [ "7" ]
+      "operatingsystemrelease": [ "7", "8" ]
     },
     {
       "operatingsystem": "CentOS",
-      "operatingsystemrelease": [ "7" ]
+      "operatingsystemrelease": [ "7", "8" ]
     },
     {
       "operatingsystem": "Scientific",
-      "operatingsystemrelease": [ "7" ]
+      "operatingsystemrelease": [ "7", "8" ]
     },
     {
       "operatingsystem": "OEL",
-      "operatingsystemrelease": [ "7" ]
+      "operatingsystemrelease": [ "7", "8" ]
     },
     {
       "operatingsystem": "OracleLinux",
-      "operatingsystemrelease": [ "7" ]
+      "operatingsystemrelease": [ "7", "8" ]
     },
     {
       "operatingsystem": "Fedora",
