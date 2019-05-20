@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.3
+
+* service droping bugfix: thanks to [ArVincentr](https://github.com/ArVincentr) for this [PR-133](https://github.com/NTTCom-MS/eyp-systemd/pull/133)
+
 ## 0.2.2
 
 * Added support for RHEL8 and Fedora 29 and 30
