@@ -1,8 +1,12 @@
 # CHANGELOG
 
+## 0.2.4
+
+* BUGFIX: changed name for service dropins - thanks to [ArVincentr](https://github.com/ArVincentr) for this [PR-135](https://github.com/NTTCom-MS/eyp-systemd/pull/135)
+
 ## 0.2.3
 
-* service droping bugfix: thanks to [ArVincentr](https://github.com/ArVincentr) for this [PR-133](https://github.com/NTTCom-MS/eyp-systemd/pull/133)
+* BUGFIX: changed unsafe default values for service dropin - thanks to [ArVincentr](https://github.com/ArVincentr) for this [PR-133](https://github.com/NTTCom-MS/eyp-systemd/pull/133)
 
 ## 0.2.2
 
