@@ -13,8 +13,6 @@ describe 'systemd class' do
 
       class { 'systemd': }
 
-      class { 'systemd::logind': }
-
       # test
 
       systemd::service { 'test':
@@ -49,11 +47,6 @@ describe 'systemd class' do
     describe file("/etc/systemd/system/test.service") do
       it { should be_file }
       its(:content) { should match 'ExecStart=/bin/sleep 60' }
-    end
-
-    describe file("/etc/systemd/logind.conf") do
-      it { should be_file }
-      its(:content) { should match 'RemoveIPC=no' }
     end
 
     it "systemctl status test" do
