@@ -60,6 +60,7 @@ define systemd::service (
                           $after_units                 = [],
                           $before_units                = [],
                           $requires                    = [],
+                          $binds_to                    = [],
                           $conflicts                   = [],
                           $on_failure                  = [],
                           $partof                      = undef,

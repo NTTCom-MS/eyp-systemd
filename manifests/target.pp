@@ -8,6 +8,7 @@ define systemd::target(
                         $after_units   = [],
                         $before_units  = [],
                         $requires      = [],
+                        $binds_to      = [],
                         $conflicts     = [],
                         $on_failure    = [],
                         $partof        = undef,
