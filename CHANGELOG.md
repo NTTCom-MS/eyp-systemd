@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.2.5
+
+* added **BindsTo** option - fixes [issue 118](https://github.com/NTTCom-MS/eyp-systemd/issues/118)
+* fixed permissions on the forge build - fixes [issue 132](https://github.com/NTTCom-MS/eyp-systemd/issues/132)
+
 ## 0.2.4
 
 * BUGFIX: changed name for service dropins - thanks to [ArVincentr](https://github.com/ArVincentr) for this [PR-135](https://github.com/NTTCom-MS/eyp-systemd/pull/135)
