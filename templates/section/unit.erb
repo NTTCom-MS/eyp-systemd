@@ -20,6 +20,9 @@ Conflicts=<%= @conflicts.join(' ') %>
 <% if @requires.any? -%>
 Requires=<%= @requires.join(' ') %>
 <% end -%>
+<% if @binds_to.any? -%>
+BindsTo=<%= @binds_to.join(' ') %>
+<% end -%>
 <% if @on_failure.any? -%>
 OnFailure=<%= @on_failure.join(' ') %>
 <% end -%>
