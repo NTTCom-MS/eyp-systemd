@@ -15,6 +15,8 @@ describe 'systemd class' do
 
       class { 'systemd::logind': }
 
+      # test
+
       systemd::service { 'test':
         execstart => '/bin/sleep 60',
         before    => Service['test'],
@@ -30,7 +32,7 @@ describe 'systemd class' do
         require => Class['::systemd'],
       }
 
-      // test2
+      # test2
 
       systemd::service { 'test2':
         execstart => '/bin/sleep 600',
