@@ -22,9 +22,27 @@ describe 'systemd class' do
 
       systemd::service::dropin { 'test':
         execstart => '/bin/sleep 100',
+        before    => Service['test'],
       }
 
       service { 'test':
+        ensure  => 'running',
+        require => Class['::systemd'],
+      }
+
+      // test2
+
+      systemd::service { 'test2':
+        execstart => '/bin/sleep 600',
+        before    => Service['test2'],
+      }
+
+      systemd::service::dropin { 'test2':
+        execstart => '/bin/sleep 200',
+        before    => Service['test2'],
+      }
+
+      service { 'test2':
         ensure  => 'running',
         require => Class['::systemd'],
       }
@@ -56,8 +74,16 @@ describe 'systemd class' do
       expect(shell("systemctl status test").exit_code).to be_zero
     end
 
-    it "check sleep" do
+    it "check sleep test" do
       expect(shell("ps -fea | grep \"[s]leep 100\"").exit_code).to be_zero
+    end
+
+    it "systemctl status test2" do
+      expect(shell("systemctl status test2").exit_code).to be_zero
+    end
+
+    it "check sleep test2" do
+      expect(shell("ps -fea | grep \"[s]leep 200\"").exit_code).to be_zero
     end
   end
 end

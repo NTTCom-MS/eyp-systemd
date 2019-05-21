@@ -25,6 +25,16 @@ describe 'systemd class' do
         require => Class['::systemd'],
       }
 
+      systemd::service { 'test2':
+        execstart => '/bin/sleep 120',
+        before    => Service['test2'],
+      }
+
+      service { 'test2':
+        ensure  => 'running',
+        require => Class['::systemd'],
+      }
+
       EOF
 
       # Run it twice and test for idempotency
@@ -42,8 +52,12 @@ describe 'systemd class' do
       its(:content) { should match 'RemoveIPC=no' }
     end
 
-    it "systemctl status" do
+    it "systemctl status test" do
       expect(shell("systemctl status test").exit_code).to be_zero
+    end
+
+    it "systemctl status test2" do
+      expect(shell("systemctl status test2").exit_code).to be_zero
     end
 
     it "check sleep" do
