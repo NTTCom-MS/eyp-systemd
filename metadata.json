@@ -1,6 +1,6 @@
 {
   "name": "eyp-systemd",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "author": "eyp",
   "summary": "management of systemd services, services dropins, sockets, timers, timesyncd, journald, logind and resolved",
   "license": "Apache-2.0",
@@ -43,7 +43,7 @@
     },
     {
       "operatingsystem": "Debian",
-      "operatingsystemrelease": [ "8", "9" ]
+      "operatingsystemrelease": [ "8", "9", "10" ]
 
     },
     {
