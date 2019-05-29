@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.6
+
+* added support for **Debian 10**
+
 ## 0.2.5
 
 * added **BindsTo** option - fixes [issue 118](https://github.com/NTTCom-MS/eyp-systemd/issues/118)
