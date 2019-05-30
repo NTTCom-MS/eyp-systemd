@@ -52,6 +52,9 @@ class systemd::params {
             /^[89].*$/:
             {
             }
+            /^10.*$/:
+            {
+            }
             default: { fail("Unsupported Debian version! - ${::operatingsystemrelease}")  }
           }
         }
