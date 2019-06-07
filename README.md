@@ -143,13 +143,27 @@ systemd::service { 'tomcat7':
 }
 ```
 
-System-V compatibility mode. The following code is used in **eyp-mcaffee** to enable the ma service on CentOS 7
+System-V compatibility mode. A slightly different versions of the following code is used in **eyp-docker** to ensure a given container is running on CentOS 7
 
 ```puppet
-systemd::sysvwrapper { 'ma':
-  initscript => '/etc/init.d/ma',
-  notify     => Service['ma'],
-  before     => Service['ma'],
+file { "/etc/init.d/dockercontainer_${container_id}":
+  ensure  => 'present',
+  owner   => 'root',
+  group   => 'root',
+  mode    => '0755',
+  content => file("${module_name}/container_init.sh"),
+}
+
+systemd::sysvwrapper { "dockercontainer_${container_id}":
+  initscript => "/etc/init.d/dockercontainer_${container_id}",
+  notify     => Service["dockercontainer_${container_id}"],
+  before     => Service["dockercontainer_${container_id}"],
+}
+
+service { "dockercontainer_${container_id}":
+  ensure  => 'running',
+  enable  => true,
+  require => File["/etc/init.d/dockercontainer_${container_id}"],
 }
 ```
 
