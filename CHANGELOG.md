@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.7
+
+* configurable restart for **systemd::sysvwrapper**
+
 ## 0.2.6
 
 * added support for **Debian 10**
