@@ -337,6 +337,14 @@ systemd-journald is a system service that collects and stores logging data
 
 ### defines
 
+#### systemd::mount
+
+* **what**: Takes an absolute path of a device node, file or other resource to mount. See mount(8) for details. If this refers to a device node, a dependency on the respective device unit is automatically created. (See systemd.device(5) for more information.) This option is mandatory.
+* **where**: Takes an absolute path of a directory for the mount point; in particular, the destination cannot be a symbolic link. If the mount point does not exist at the time of mounting, it is created. This string must be reflected in the unit filename. (See above.) This option is mandatory. (default: resource's name)
+* **type**: Takes a string for the file system type. See mount(8) for details. This setting is optional.
+* **options**: Mount options to use when mounting. This takes a comma-separated list of options. This setting is optional. Note that the usual specifier expansion is applied to this setting, literal percent characters should hence be written as "%%".
+(...)
+
 #### systemd::service
 
 * **execstart**: command to start daemon (default: undef)
