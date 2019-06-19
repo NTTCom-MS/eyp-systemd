@@ -46,7 +46,8 @@ define systemd::mount(
     include ::systemd
   }
 
-  $mount_name = regsubst($where, '/', '-', 'G')
+  $mount_name_1 = regsubst($where, '/', '-', 'G')
+  $mount_name = regsubst($mount_name_1, '^-', '', '')
 
   concat { "/etc/systemd/system/${mount_name}.mount":
     ensure => 'present',
