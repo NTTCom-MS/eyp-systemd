@@ -245,6 +245,53 @@ Restart=on-failure
 User=monitoring
 ```
 
+### systemd::mount example
+
+```
+systemd::mount { '/boot/efi':
+  what    => '/dev/sda1',
+  type    => 'vfat',
+  options => [ 'rw', 'relatime', 'fmask=0077', 'dmask=0077', 'codepage=437', 'iocharset=iso8859-1', 'shortname=mixed', 'errors=remount-ro' ],
+}
+```
+
+/boot/efi management using systemd:
+
+```
+jprats@croscat:~/git/eyp-systemd$ cat /etc/systemd/system/boot-efi.mount
+[Unit]
+[Install]
+WantedBy=multi-user.target
+[Mount]
+What=/dev/sda1
+Where=/boot/efi
+Type=vfat
+Options=rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro
+```
+
+status output:
+
+```
+jprats@croscat:~/git/eyp-systemd$ systemctl status boot-efi.mount
+● boot-efi.mount - /boot/efi
+   Loaded: loaded (/etc/systemd/system/boot-efi.mount; disabled; vendor preset: enabled)
+   Active: active (mounted) since mar 2019-06-18 09:20:23 CEST; 1 day 4h ago
+    Where: /boot/efi
+     What: /dev/sda1
+    Tasks: 0
+   Memory: 56.0K
+      CPU: 1ms
+
+```
+
+mount command:
+
+```
+jprats@croscat:~/git/eyp-systemd$ mount | grep sda1
+/dev/sda1 on /boot/efi type vfat (rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro)
+```
+
+
 ## Reference
 ---
 ### classes
