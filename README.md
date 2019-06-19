@@ -487,7 +487,7 @@ For a detailed explanation of all the timer settings, remember to read `systemd.
 
 ## Limitations
 
-Should work anywhere, tested on CentOS 7 and Ubuntu 16
+Should work anywhere, enforced testing on CentOS 7 and Ubuntu 16 using travis-ci
 
 ## Development
 
