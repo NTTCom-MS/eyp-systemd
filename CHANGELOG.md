@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.8
+
+* added define for mounts: **systemd::mount**
+
 ## 0.2.7
 
 * configurable restart for **systemd::sysvwrapper**

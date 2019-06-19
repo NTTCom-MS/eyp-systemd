@@ -1,0 +1,9 @@
+[Mount]
+What=<%= @what %>
+Where=<%= @where %>
+<% if defined?(@type) -%>
+Type=<%= @type %>
+<% end -%>
+<% if @options.any? -%>
+Options=<%= @options.join(',') %>
+<% end -%>
