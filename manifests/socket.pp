@@ -7,6 +7,7 @@
 # [Install]
 # WantedBy=sockets.target
 define systemd::socket(
+                        $ensure      = 'present',
                         $listen_stream,
                         $socket_name = $name,
                         $after_units = [],
@@ -24,7 +25,7 @@ define systemd::socket(
   }
 
   file { "/etc/systemd/system/${socket_name}.socket":
-    ensure  => 'present',
+    ensure  => $ensure,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',

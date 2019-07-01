@@ -1,5 +1,6 @@
 # puppet2sitepp @systemdservices
 define systemd::service (
+                          $ensure                      = 'present',
                           $servicename                 = $name,
                           $execstart                   = undef,
                           $execstop                    = undef,
@@ -91,7 +92,7 @@ define systemd::service (
   }
 
   file { "/etc/systemd/system/${servicename}.service":
-    ensure  => 'present',
+    ensure  => $ensure,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
