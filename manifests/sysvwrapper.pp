@@ -1,4 +1,5 @@
 define systemd::sysvwrapper (
+                              $ensure               = 'present',
                               $initscript,
                               $servicename          = $name,
                               $check_time           = '10m',
@@ -16,7 +17,7 @@ define systemd::sysvwrapper (
   }
 
   file { "${initscript}.sysvwrapper.status":
-    ensure  => 'present',
+    ensure  => $ensure,
     owner   => 'root',
     group   => 'root',
     mode    => '0750',
@@ -24,7 +25,7 @@ define systemd::sysvwrapper (
   }
 
   file { "${initscript}.sysvwrapper.wrapper":
-    ensure  => 'present',
+    ensure  => $ensure,
     owner   => 'root',
     group   => 'root',
     mode    => '0750',

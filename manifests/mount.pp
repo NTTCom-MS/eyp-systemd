@@ -13,6 +13,7 @@
 # WantedBy=multi-user.target
 #
 define systemd::mount(
+                        $ensure           = 'present',
                         $what,
                         $where            = $name,
                         $type             = undef,
@@ -49,7 +50,7 @@ define systemd::mount(
   $mount_name = regsubst(regsubst($where, '/', '-', 'G'), '^-', '', '')
 
   concat { "/etc/systemd/system/${mount_name}.mount":
-    ensure => 'present',
+    ensure => $ensure,
     owner  => 'root',
     group  => 'root',
     mode   => '0644',

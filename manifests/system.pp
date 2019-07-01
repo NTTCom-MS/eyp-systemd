@@ -1,4 +1,5 @@
 class systemd::system(
+                        $ensure                           = 'present',
                         $cpu_affinity                     = undef,
                         $capability_bounding_set          = undef,
                         $crash_change_vt                  = undef,
@@ -54,7 +55,7 @@ class systemd::system(
                         $timer_slack_nsec                 = undef
                       ) {
   file { '/etc/systemd/system.conf':
-    ensure  => 'present',
+    ensure  => $ensure,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',

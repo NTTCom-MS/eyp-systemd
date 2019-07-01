@@ -1,4 +1,5 @@
 class systemd::logind(
+                        $ensure                          = 'present',
                         $handle_hibernate_key            = 'hibernate',
                         $handle_lid_switch               = 'suspend',
                         $handle_lid_switch_docked        = 'ignore',
@@ -59,7 +60,7 @@ class systemd::logind(
 
 
   file { '/etc/systemd/logind.conf':
-    ensure  => 'present',
+    ensure  => $ensure,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
