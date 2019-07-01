@@ -13,7 +13,6 @@
 # WantedBy=multi-user.target
 #
 define systemd::mount(
-                        $ensure           = 'present',
                         $what,
                         $where            = $name,
                         $type             = undef,
@@ -37,6 +36,8 @@ define systemd::mount(
                         $on_failure       = [],
                         $partof           = undef,
                         $allow_isolate    = undef,
+                        # global
+                        $ensure           = 'present',
                       ) {
   if versioncmp($::puppetversion, '4.0.0') >= 0
   {

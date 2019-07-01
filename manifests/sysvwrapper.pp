@@ -1,6 +1,6 @@
 define systemd::sysvwrapper (
-                              $ensure               = 'present',
                               $initscript,
+                              $ensure               = 'present',
                               $servicename          = $name,
                               $check_time           = '10m',
                               $wait_time_on_startup = '1s',
