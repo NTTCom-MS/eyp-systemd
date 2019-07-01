@@ -36,6 +36,8 @@ define systemd::mount(
                         $on_failure       = [],
                         $partof           = undef,
                         $allow_isolate    = undef,
+                        # global
+                        $ensure           = 'present',
                       ) {
   if versioncmp($::puppetversion, '4.0.0') >= 0
   {
@@ -49,7 +51,7 @@ define systemd::mount(
   $mount_name = regsubst(regsubst($where, '/', '-', 'G'), '^-', '', '')
 
   concat { "/etc/systemd/system/${mount_name}.mount":
-    ensure => 'present',
+    ensure => $ensure,
     owner  => 'root',
     group  => 'root',
     mode   => '0644',

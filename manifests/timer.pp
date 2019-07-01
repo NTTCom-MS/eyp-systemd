@@ -1,4 +1,5 @@
 define systemd::timer (
+                        $ensure               = 'present',
                         $timer_name           = $name,
                         $on_active_sec        = undef,
                         $on_boot_sec          = undef,
@@ -63,7 +64,7 @@ define systemd::timer (
   }
 
   concat { "/etc/systemd/system/${timer_name}.timer":
-    ensure => 'present',
+    ensure => $ensure,
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
