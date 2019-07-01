@@ -1,4 +1,5 @@
 define systemd::target(
+                        $ensure        = 'present',
                         $target_name   = $name,
                         # unit
                         $description   = undef,
@@ -17,7 +18,7 @@ define systemd::target(
   include ::systemd
 
   concat { "/etc/systemd/system/${target_name}.target":
-    ensure => 'present',
+    ensure => $ensure,
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
