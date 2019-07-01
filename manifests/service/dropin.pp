@@ -1,4 +1,5 @@
 define systemd::service::dropin (
+                                  $ensure                      = 'present',
                                   $dropin_order                = '99',
                                   $dropin_name                 = 'override',
                                   $servicename                 = $name,
@@ -77,7 +78,7 @@ define systemd::service::dropin (
   $dropin = true
 
   file { "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf":
-    ensure  => 'present',
+    ensure  => $ensure,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
