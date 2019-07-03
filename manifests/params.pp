@@ -65,7 +65,7 @@ class systemd::params {
     {
       case $::operatingsystemrelease
       {
-        /^1[23].*/:
+        /^1[235].*/:
         {
         }
         /^42.*/:
