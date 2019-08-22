@@ -20,6 +20,24 @@ ExecStop=<%= val %>
 ExecStop=<%= @execstop %>
   <%- end -%>
 <% end -%>
+<% if defined?(@execstoppre) -%>
+  <%- if @execstoppre.kind_of?(Array) -%>
+    <%- @execstoppre.each do |val| -%>
+ExecStopPre=<%= val %>
+    <%- end -%>
+  <%- else -%>
+ExecStopPre=<%= @execstoppre %>
+  <%- end -%>
+<% end -%>
+<% if defined?(@execstoppost) -%>
+  <%- if @execstoppost.kind_of?(Array) -%>
+    <%- @execstoppost.each do |val| -%>
+ExecStopPost=<%= val %>
+    <%- end -%>
+  <%- else -%>
+ExecStopPost=<%= @execstoppost %>
+  <%- end -%>
+<% end -%>
 <% if defined?(@execreload) -%>
   <%- if @execreload.kind_of?(Array) -%>
     <%- @execreload.each do |val| -%>
