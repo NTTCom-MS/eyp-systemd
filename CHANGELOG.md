@@ -4,7 +4,7 @@
 
 * Added back support for SuSE 11.4 - thanks to [svenbs](https://github.com/svenbs) for this [PR-155](https://github.com/NTTCom-MS/eyp-systemd/pull/155)
 * Added support for SLES 15 - thanks to [msurato](https://github.com/msurato) for this [PR-151](https://github.com/NTTCom-MS/eyp-systemd/pull/151)
-* Added **ExecStopPre** and **ExecStopPost** - thanks to [FcoCalero](https://github.com/FcoCalero) for this [PR-154](https://github.com/NTTCom-MS/eyp-systemd/pull/154)
+* Added **ExecStopPre** and **ExecStopPost** - thanks to [FcoCalero](https://github.com/FcoCalero) for this [PR-154](https://github.com/NTTCom-MS/eyp-systemd/pull/154) merged with some changes on [PR-156](https://github.com/NTTCom-MS/eyp-systemd/pull/156)
 
 ## 0.2.9
 
