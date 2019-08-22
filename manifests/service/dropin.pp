@@ -6,6 +6,8 @@ define systemd::service::dropin (
                                   $servicename                 = $name,
                                   $execstart                   = undef,
                                   $execstop                    = undef,
+                                  $execstoppre                 = undef,
+                                  $execstoppost                = undef,
                                   $execreload                  = undef,
                                   $execstartpre                = undef,
                                   $execstartpost               = undef,
