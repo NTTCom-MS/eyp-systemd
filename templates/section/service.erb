@@ -197,3 +197,6 @@ SuccessExitStatus=<%= @successexitstatus.join(' ') %>
 <% if defined?(@killsignal) -%>
 KillSignal=<%= @killsignal %>
 <% end -%>
+<% if @capability_bounding_set.any? -%>
+CapabilityBoundingSet=<%= @capability_bounding_set.join(' ') %>
+<% end -%>

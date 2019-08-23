@@ -51,6 +51,7 @@ define systemd::service::dropin (
                                   $tasksmax                    = undef,
                                   $successexitstatus           = [],
                                   $killsignal                  = undef,
+                                  $capability_bounding_set     = [],
                                   # install
                                   $also                        = [],
                                   $default_instance            = undef,

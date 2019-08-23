@@ -1,6 +1,6 @@
 {
   "name": "eyp-systemd",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "author": "eyp",
   "summary": "management of systemd services, services dropins, sockets, timers, mounts, timesyncd, journald, logind and resolved",
   "license": "Apache-2.0",

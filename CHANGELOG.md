@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.11
+
+* Added **capability_bounding_set** to **systemd::service** and **systemd::service::dropin**
+
 ## 0.2.10
 
 * Added back support for SuSE 11.4 - thanks to [svenbs](https://github.com/svenbs) for this [PR-155](https://github.com/NTTCom-MS/eyp-systemd/pull/155)
