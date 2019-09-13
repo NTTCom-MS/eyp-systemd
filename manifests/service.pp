@@ -17,6 +17,7 @@ define systemd::service (
                           $remain_after_exit           = undef,
                           $type                        = undef,
                           $env_vars                    = [],
+                          $unset_env_vars              = [],
                           $environment_files           = [],
                           $permissions_start_only      = false,
                           $timeoutstartsec             = undef,
@@ -85,6 +86,20 @@ define systemd::service (
   {
     fail('Incompatible options: There are multiple execstop values and Type is not "oneshot"')
   }
+
+  # TODO: puppet4 / puppet 6 compatibility
+  # if(size($unset_env_vars)>0)
+  # {
+  #   if(defined($::eyp_systemd_release))
+  #   {
+  #     $systemd_release=0+$::eyp_systemd_release
+  #
+  #     if($systemd_release < 235)
+  #     {
+  #       fail("ERROR: UnsetEnvironment is not available for systemd < 235 - current release: ${systemd_release}")
+  #     }
+  #   }
+  # }
 
   # if($restart!=undef)
   # {

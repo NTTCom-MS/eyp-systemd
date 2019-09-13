@@ -19,6 +19,7 @@ define systemd::service::dropin (
                                   $remain_after_exit           = undef,
                                   $type                        = undef,
                                   $env_vars                    = [],
+                                  $unset_env_vars              = [],
                                   $environment_files           = [],
                                   $permissions_start_only      = undef,
                                   $timeoutstartsec             = undef,
@@ -77,6 +78,20 @@ define systemd::service::dropin (
   # {
   #   # Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always.
   #   validate_re($restart, [ '^no$', '^on-success$', '^on-failure$', '^on-abnormal$', '^on-watchdog$', '^on-abort$', '^always$'], "Not a supported restart type: ${restart} - Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always")
+  # }
+
+  # TODO: puppet4 / puppet 6 compatibility
+  # if(size($unset_env_vars)>0)
+  # {
+  #   if(defined($::eyp_systemd_release))
+  #   {
+  #     $systemd_release=0+$::eyp_systemd_release
+  #
+  #     if($systemd_release < 235)
+  #     {
+  #       fail("ERROR: UnsetEnvironment is not available for systemd < 235 - current release: ${systemd_release}")
+  #     }
+  #   }
   # }
 
   if versioncmp($::puppetversion, '4.0.0') >= 0
