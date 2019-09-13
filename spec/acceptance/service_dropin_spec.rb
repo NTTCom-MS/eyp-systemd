@@ -21,9 +21,8 @@ describe 'systemd class' do
       }
 
       systemd::service::dropin { 'test':
-        execstart      => '/bin/sleep 100',
-        unset_env_vars => [ 'DEMO_UNSET' ],
-        before         => Service['test'],
+        execstart => '/bin/sleep 100',
+        before    => Service['test'],
       }
 
       service { 'test':
@@ -64,7 +63,6 @@ describe 'systemd class' do
     describe file("/etc/systemd/system/test.service.d/99-override.conf") do
       it { should be_file }
       its(:content) { should match 'ExecStart=/bin/sleep 100' }
-      its(:content) { should match 'UnsetEnvironment=DEMO_UNSET' }
     end
 
     it "systemctl status" do
