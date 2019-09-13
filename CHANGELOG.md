@@ -2,6 +2,7 @@
 
 ## 0.2.12
 
+* Added flag for systemd release: **eyp_systemd_release**
 * Added support for **UnsetEnvironment** to **systemd::service** and **systemd::service::dropin** - fixes [issue 152](https://github.com/NTTCom-MS/eyp-systemd/issues/152)
 
 ## 0.2.11
