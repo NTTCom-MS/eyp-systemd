@@ -19,6 +19,7 @@ define systemd::service::dropin (
                                   $remain_after_exit           = undef,
                                   $type                        = undef,
                                   $env_vars                    = [],
+                                  $unset_env_vars              = [],
                                   $environment_files           = [],
                                   $permissions_start_only      = undef,
                                   $timeoutstartsec             = undef,

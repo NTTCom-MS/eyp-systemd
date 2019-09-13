@@ -17,6 +17,7 @@ define systemd::service (
                           $remain_after_exit           = undef,
                           $type                        = undef,
                           $env_vars                    = [],
+                          $unset_env_vars              = [],
                           $environment_files           = [],
                           $permissions_start_only      = false,
                           $timeoutstartsec             = undef,

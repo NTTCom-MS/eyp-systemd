@@ -16,8 +16,9 @@ describe 'systemd class' do
       # test
 
       systemd::service { 'test':
-        execstart => '/bin/sleep 60',
-        before    => Service['test'],
+        execstart      => '/bin/sleep 60',
+        unset_env_vars => 'DEMO_UNSET'
+        before         => Service['test'],
       }
 
       service { 'test':

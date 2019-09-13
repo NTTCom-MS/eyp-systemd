@@ -106,6 +106,11 @@ Type=<%= @type %>
 Environment=<%= env %>
   <%- end -%>
 <% end -%>
+<% if @unset_env_vars.any? -%>
+  <%- @unset_env_vars.each do |env| -%>
+UnsetEnvironment=<%= env %>
+  <%- end -%>
+<% end -%>
 <% if @environment_files.any? -%>
   <%- @environment_files.each do |env_file| -%>
 EnvironmentFile=<%= env_file %>

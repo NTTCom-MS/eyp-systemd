@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.12
+
+* Added support for **UnsetEnvironment** to **systemd::service** and **systemd::service::dropin** - fixes [issue 152](https://github.com/NTTCom-MS/eyp-systemd/issues/152)
+
 ## 0.2.11
 
 * Added **capability_bounding_set** to **systemd::service** and **systemd::service::dropin**

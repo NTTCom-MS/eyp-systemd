@@ -21,8 +21,9 @@ describe 'systemd class' do
       }
 
       systemd::service::dropin { 'test':
-        execstart => '/bin/sleep 100',
-        before    => Service['test'],
+        execstart      => '/bin/sleep 100',
+        unset_env_vars => 'DEMO_UNSET'
+        before         => Service['test'],
       }
 
       service { 'test':
