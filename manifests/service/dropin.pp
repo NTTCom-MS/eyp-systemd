@@ -80,7 +80,7 @@ define systemd::service::dropin (
   #   validate_re($restart, [ '^no$', '^on-success$', '^on-failure$', '^on-abnormal$', '^on-watchdog$', '^on-abort$', '^always$'], "Not a supported restart type: ${restart} - Takes one of no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, or always")
   # }
 
-  if($unset_env_vars.any)
+  if(any($unset_env_vars))
   {
     if(defined($::eyp_systemd_release))
     {

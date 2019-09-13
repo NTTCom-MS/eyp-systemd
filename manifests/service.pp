@@ -87,7 +87,7 @@ define systemd::service (
     fail('Incompatible options: There are multiple execstop values and Type is not "oneshot"')
   }
 
-  if($unset_env_vars.any)
+  if(any($unset_env_vars))
   {
     if(defined($::eyp_systemd_release))
     {
