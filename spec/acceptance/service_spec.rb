@@ -48,6 +48,7 @@ describe 'systemd class' do
     describe file("/etc/systemd/system/test.service") do
       it { should be_file }
       its(:content) { should match 'ExecStart=/bin/sleep 60' }
+      its(:content) { should match 'UnsetEnvironment=DEMO_UNSET' }
     end
 
     it "systemctl status test" do
