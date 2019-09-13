@@ -97,7 +97,6 @@ define systemd::service (
       {
         fail("ERROR: UnsetEnvironment is not available for systemd < 235 - current release: ${systemd_release}")
       }
-
     }
   }
 
