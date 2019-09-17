@@ -35,13 +35,13 @@ define systemd::tmpfile (
 
     concat::fragment { "tmpfiles.d ${item_name} header":
       target  => "/etc/tmpfiles.d/${item_name}.conf",
-      order   => "0-00",
+      order   => '0-00',
       content => "# Type Path        Mode UID  GID  Age Argument\n\n",
     }
 
   }
 
-  concat::fragment { "tmpfiles.d ${item_name} $path":
+  concat::fragment { "tmpfiles.d ${item_name} ${path}":
     target  => "/etc/tmpfiles.d/${item_name}.conf",
     order   => "1-${order}",
     content => template("${module_name}/tmpfiles/tmpfile.erb"),
