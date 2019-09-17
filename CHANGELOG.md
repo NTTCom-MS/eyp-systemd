@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.13
+
+* added basic **tmpfiles.d** support using **systemd::tmpfile** 
+
 ## 0.2.12
 
 * Added flag for systemd release: **eyp_systemd_release**
