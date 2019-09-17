@@ -17,7 +17,7 @@ define systemd::tmpfile (
                           $mode        = '-',
                           $user        = '-',
                           $group       = '-',
-                          $group       = '-',
+                          $age         = '-',
                           $argument    = undef,
                           $item_name   = $name,
                           $order       = '42',
