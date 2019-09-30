@@ -2,7 +2,8 @@
 
 ## 0.2.13
 
-* added basic **tmpfiles.d** support using **systemd::tmpfile** 
+* added basic **tmpfiles.d** support using **systemd::tmpfile**
+* Fix to be able to unset wantedby default value - thanks to [TuningYourCode](https://github.com/TuningYourCode) for this [PR-162](https://github.com/NTTCom-MS/eyp-systemd/pull/162)
 
 ## 0.2.12
 
@@ -21,7 +22,7 @@
 
 ## 0.2.9
 
-* Added the ability to removed created files by adding ensure option  - thanks to [TuningYourCode](https://github.com/TuningYourCode) for this [PR-148](https://github.com/NTTCom-MS/eyp-systemd/pull/148)
+* Added the ability to removed created files by adding ensure option - thanks to [TuningYourCode](https://github.com/TuningYourCode) for this [PR-148](https://github.com/NTTCom-MS/eyp-systemd/pull/148)
 
 ## 0.2.8
 

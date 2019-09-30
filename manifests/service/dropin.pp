@@ -57,7 +57,7 @@ define systemd::service::dropin (
                                   $also                        = [],
                                   $default_instance            = undef,
                                   $service_alias               = [],
-                                  $wantedby                    = [ 'multi-user.target' ],
+                                  $wantedby                    = [],
                                   $requiredby                  = [],
                                   # unit
                                   $description                 = undef,
