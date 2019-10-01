@@ -1,6 +1,9 @@
 [Install]
-<% if @wantedby.any? -%>
+
+<% if defined?(@wantedby) -%>
+  <%- if @wantedby.any? -%>
 WantedBy=<%= @wantedby.join(' ') %>
+  <%- end -%>
 <% end -%>
 <% if @requiredby.any? -%>
 RequiredBy=<%= @requiredby.join(' ') %>
