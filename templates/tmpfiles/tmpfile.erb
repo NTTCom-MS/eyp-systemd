@@ -1,0 +1,4 @@
+<% if defined?(@description) -%>
+# <%= @description %>
+<% end -%>
+<%= @type %> <%= @path %> <%= @mode %> <%= @user %> <%= @group %> <%= @age %><% if defined?(@argument) %> <%= @argument %><% end %>

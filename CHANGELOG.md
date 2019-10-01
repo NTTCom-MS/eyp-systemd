@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.2.13
+
+* added basic **tmpfiles.d** support using **systemd::tmpfile**
+* added automount support via **systemd::automount**
+* Fix to be able to unset wantedby default value - thanks to [TuningYourCode](https://github.com/TuningYourCode) for this [PR-162](https://github.com/NTTCom-MS/eyp-systemd/pull/162) - *slightly modified for compatibility with older versions*
+
 ## 0.2.12
 
 * Added flag for systemd release: **eyp_systemd_release**
@@ -17,7 +23,7 @@
 
 ## 0.2.9
 
-* Added the ability to removed created files by adding ensure option  - thanks to [TuningYourCode](https://github.com/TuningYourCode) for this [PR-148](https://github.com/NTTCom-MS/eyp-systemd/pull/148)
+* Added the ability to removed created files by adding ensure option - thanks to [TuningYourCode](https://github.com/TuningYourCode) for this [PR-148](https://github.com/NTTCom-MS/eyp-systemd/pull/148)
 
 ## 0.2.8
 
