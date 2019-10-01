@@ -1,17 +1,3 @@
-#
-# [Unit]
-# Description=Things devices
-# After=network.target
-#
-# [Mount]
-# What=172.16.24.192:/mnt/things
-# Where=/mnt/things
-# Type=nfs
-# Options=_netdev,auto
-#
-# [Install]
-# WantedBy=multi-user.target
-#
 define systemd::automount (
                             $what,
                             $where            = $name,
