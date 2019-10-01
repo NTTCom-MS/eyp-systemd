@@ -3,7 +3,7 @@
 ## 0.2.13
 
 * added basic **tmpfiles.d** support using **systemd::tmpfile**
-* Fix to be able to unset wantedby default value - thanks to [TuningYourCode](https://github.com/TuningYourCode) for this [PR-162](https://github.com/NTTCom-MS/eyp-systemd/pull/162)
+* Fix to be able to unset wantedby default value - thanks to [TuningYourCode](https://github.com/TuningYourCode) for this [PR-162](https://github.com/NTTCom-MS/eyp-systemd/pull/162) - *slightly modified for compatibility with older versions*
 
 ## 0.2.12
 
