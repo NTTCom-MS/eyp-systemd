@@ -17,8 +17,8 @@ define systemd::automount (
                             $where            = $name,
                             $type             = undef,
                             $options          = [],
-                            $directory_mode   = '0755',
-                            $timeout_idle_sec = '0',
+                            $directory_mode   = undef,
+                            $timeout_idle_sec = undef,
                             # install
                             $also             = [],
                             $default_instance = undef,
