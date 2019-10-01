@@ -17,7 +17,7 @@
 
 ## Overview
 
-management of systemd services, services dropins, sockets, timers, timesyncd, journald, logind and resolved daemons
+management of systemd services, services dropins, sockets, timers, mounts, automounts, tmpfiles, timesyncd, journald, logind and resolved
 
 ## Module Description
 
@@ -34,9 +34,12 @@ For systemd related questions please refer to [systemd man pages](https://www.fr
 
 ### What systemd affects
 
-- Creates service definitions: **/etc/systemd/system/${servicename}.service**
-- Creates socket definitions: **/etc/systemd/system/${servicename}.socket**
-- Creates timer definitions: **/etc/systemd/system/${servicename}.timer**
+- Creates service definitions: **/etc/systemd/system/${service_name}.service**
+- Creates socket definitions: **/etc/systemd/system/${socker_name}.socket**
+- Creates timer definitions: **/etc/systemd/system/${timer_name}.timer**
+- Creates mount definitions: **/etc/systemd/system/${mount_name}.mount**
+- Creates automount definitions: **/etc/systemd/system/${automount_name}.automount**
+- Creates tmpfliles definitions: **/etc/tmpfiles.d/${item_name}.conf**
 - Creates drop-in definitions: **/etc/systemd/system/${servicename}/${dropin_order}-${dropin_name}.service**
 - Creates systemd/sys-v compatibility scripts
 - Manages **/etc/systemd/logind.conf**

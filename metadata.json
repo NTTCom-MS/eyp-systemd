@@ -2,7 +2,7 @@
   "name": "eyp-systemd",
   "version": "0.2.13",
   "author": "eyp",
-  "summary": "management of systemd services, services dropins, sockets, timers, mounts, timesyncd, journald, logind and resolved",
+  "summary": "management of systemd services, services dropins, sockets, timers, mounts, automounts, tmpfiles, timesyncd, journald, logind and resolved",
   "license": "Apache-2.0",
   "source": "https://github.com/NTTCom-MS/eyp-systemd",
   "project_page": "https://github.com/NTTCom-MS/eyp-systemd",
