@@ -1,0 +1,17 @@
+[Automount]
+Where=<%= @where %>
+<% if defined?(@directory_mode) -%>
+DirectoryMode=<%= @directory_mode %>
+<% end -%>
+<% if defined?(@timeout_idle_sec) -%>
+TimeoutIdleSec=<%= @timeout_idle_sec %>
+<% end -%>
+
+[Mount]
+What=<%= @what %>
+<% if defined?(@type) -%>
+Type=<%= @type %>
+<% end -%>
+<% if @options.any? -%>
+Options=<%= @options.join(',') %>
+<% end -%>
