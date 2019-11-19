@@ -17,7 +17,7 @@
 
 ## Overview
 
-management of systemd services, services dropins, sockets, timers, timesyncd, journald, logind and resolved daemons
+management of systemd services, services dropins, sockets, timers, mounts, automounts, tmpfiles, timesyncd, journald, logind and resolved
 
 ## Module Description
 
@@ -34,9 +34,12 @@ For systemd related questions please refer to [systemd man pages](https://www.fr
 
 ### What systemd affects
 
-- Creates service definitions: **/etc/systemd/system/${servicename}.service**
-- Creates socket definitions: **/etc/systemd/system/${servicename}.socket**
-- Creates timer definitions: **/etc/systemd/system/${servicename}.timer**
+- Creates service definitions: **/etc/systemd/system/${service_name}.service**
+- Creates socket definitions: **/etc/systemd/system/${socker_name}.socket**
+- Creates timer definitions: **/etc/systemd/system/${timer_name}.timer**
+- Creates mount definitions: **/etc/systemd/system/${mount_name}.mount**
+- Creates automount definitions: **/etc/systemd/system/${automount_name}.automount**
+- Creates tmpfliles definitions: **/etc/tmpfiles.d/${item_name}.conf**
 - Creates drop-in definitions: **/etc/systemd/system/${servicename}/${dropin_order}-${dropin_name}.service**
 - Creates systemd/sys-v compatibility scripts
 - Manages **/etc/systemd/logind.conf**
@@ -418,6 +421,8 @@ systemd-journald is a system service that collects and stores logging data
 * **requiredby**: Array, this has the effect that a dependency of type **Requires=** is added from the listed unit to the current unit (default: [])
 * **permissions_start_only**: If **true**, the permission-related execution options, as configured with User= and similar options, are only applied to the process started with ExecStart=, and not to the various other ExecStartPre=, ExecStartPost=, ExecReload=, ExecStop=, and ExecStopPost= commands. If **false**, the setting is applied to all configured commands the same way (default: false)
 * **execstartpre**: Additional commands that are executed before the command in ExecStart= Syntax is the same as for ExecStart=, except that multiple command lines are allowed and the commands are executed one after the other, serially. (default: undef)
+* **execsstoppre**: Additional commands that are executed before the command in ExecStop= Syntax is the same as for ExecStop=, except that multiple command lines are allowed and the commands are executed one after the other, serially. (default: undef)
+* **execsstoppost**: Additional commands that are executed after the command in ExecStop= Syntax is the same as for ExecStop=, except that multiple command lines are allowed and the commands are executed one after the other, serially. (default: undef)
 * **timeoutstartsec**:Configures the time to wait for start-up. If a daemon service does not signal start-up completion within the configured time, the service will be considered failed and will be shut down again. Takes a unit-less value in seconds, or a time span value such as "5min 20s". Pass "infinity" to disable the timeout logic (default: undef)
 * **timeoutstopsec**: Configures the time to wait for stop. If a service is asked to stop, but does not terminate in the specified time, it will be terminated forcibly via SIGTERM, and after another timeout of equal duration with SIGKILL. Takes a unit-less value in seconds, or a time span value such as "5min 20s". Pass "infinity" to disable the timeout logic. (default: undef)
 * **timeoutsec**: A shorthand for configuring both **TimeoutStartSec=** and **TimeoutStopSec=** to the specified value. (default: undef)

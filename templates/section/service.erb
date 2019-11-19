@@ -20,6 +20,24 @@ ExecStop=<%= val %>
 ExecStop=<%= @execstop %>
   <%- end -%>
 <% end -%>
+<% if defined?(@execstoppre) -%>
+  <%- if @execstoppre.kind_of?(Array) -%>
+    <%- @execstoppre.each do |val| -%>
+ExecStopPre=<%= val %>
+    <%- end -%>
+  <%- else -%>
+ExecStopPre=<%= @execstoppre %>
+  <%- end -%>
+<% end -%>
+<% if defined?(@execstoppost) -%>
+  <%- if @execstoppost.kind_of?(Array) -%>
+    <%- @execstoppost.each do |val| -%>
+ExecStopPost=<%= val %>
+    <%- end -%>
+  <%- else -%>
+ExecStopPost=<%= @execstoppost %>
+  <%- end -%>
+<% end -%>
 <% if defined?(@execreload) -%>
   <%- if @execreload.kind_of?(Array) -%>
     <%- @execreload.each do |val| -%>
@@ -86,6 +104,11 @@ Type=<%= @type %>
 <% if @env_vars.any? -%>
   <%- @env_vars.each do |env| -%>
 Environment=<%= env %>
+  <%- end -%>
+<% end -%>
+<% if @unset_env_vars.any? -%>
+  <%- @unset_env_vars.each do |env| -%>
+UnsetEnvironment=<%= env %>
   <%- end -%>
 <% end -%>
 <% if @environment_files.any? -%>
@@ -178,4 +201,7 @@ SuccessExitStatus=<%= @successexitstatus.join(' ') %>
 <% end -%>
 <% if defined?(@killsignal) -%>
 KillSignal=<%= @killsignal %>
+<% end -%>
+<% if @capability_bounding_set.any? -%>
+CapabilityBoundingSet=<%= @capability_bounding_set.join(' ') %>
 <% end -%>

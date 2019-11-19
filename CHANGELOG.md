@@ -1,8 +1,29 @@
 # CHANGELOG
 
+## 0.2.13
+
+* added basic **tmpfiles.d** support using **systemd::tmpfile**
+* added automount support via **systemd::automount**
+* Fix to be able to unset wantedby default value - thanks to [TuningYourCode](https://github.com/TuningYourCode) for this [PR-162](https://github.com/NTTCom-MS/eyp-systemd/pull/162) - *slightly modified for compatibility with older versions*
+
+## 0.2.12
+
+* Added flag for systemd release: **eyp_systemd_release**
+* Added support for **UnsetEnvironment** to **systemd::service** and **systemd::service::dropin** - fixes [issue 152](https://github.com/NTTCom-MS/eyp-systemd/issues/152)
+
+## 0.2.11
+
+* Added **capability_bounding_set** to **systemd::service** and **systemd::service::dropin**
+
+## 0.2.10
+
+* Added back support for SuSE 11.4 - thanks to [svenbs](https://github.com/svenbs) for this [PR-155](https://github.com/NTTCom-MS/eyp-systemd/pull/155)
+* Added support for SLES 15 - thanks to [msurato](https://github.com/msurato) for this [PR-151](https://github.com/NTTCom-MS/eyp-systemd/pull/151)
+* Added **ExecStopPre** and **ExecStopPost** - thanks to [FcoCalero](https://github.com/FcoCalero) for this [PR-154](https://github.com/NTTCom-MS/eyp-systemd/pull/154)
+
 ## 0.2.9
 
-* Added the ability to removed created files by adding ensure option  - thanks to [TuningYourCode](https://github.com/TuningYourCode) for this [PR-148](https://github.com/NTTCom-MS/eyp-systemd/pull/148)
+* Added the ability to removed created files by adding ensure option - thanks to [TuningYourCode](https://github.com/TuningYourCode) for this [PR-148](https://github.com/NTTCom-MS/eyp-systemd/pull/148)
 
 ## 0.2.8
 
