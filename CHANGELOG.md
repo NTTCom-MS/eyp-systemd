@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.14
+
+* Allow multiple oncalendar for **systemd::timer** - thanks to [TuningYourCode](https://github.com/TuningYourCode) for this [PR-166](https://github.com/NTTCom-MS/eyp-systemd/pull/166)
+
 ## 0.2.13
 
 * added basic **tmpfiles.d** support using **systemd::tmpfile**
