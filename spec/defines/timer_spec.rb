@@ -27,6 +27,22 @@ describe 'systemd::timer' do
             .with_content(/^OnCalendar=06:00:00$/)
         end
       end
+      context 'with multiple calendar parameters' do
+        let(:params) do
+          {
+            on_calendar: [
+              '06:00:00',
+              '08:00:00',
+            ]
+          }
+        end
+        it { should compile.with_all_deps }
+        it do
+          should contain_file('/etc/systemd/system/foobar.timer')
+            .with_content(/^OnCalendar=06:00:00$/)
+            .with_content(/^OnCalendar=08:00:00$/)
+        end
+      end
       context 'with on_boot_sec parameters' do
         let(:params) do
           {
