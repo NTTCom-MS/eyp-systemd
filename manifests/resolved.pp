@@ -8,6 +8,7 @@ class systemd::resolved (
                           $dns_stub_listener     = true,
                           $dnssec                = false,
                           $cache                 = true,
+                          $domains               = [],
                         ) inherits systemd::params {
 
 

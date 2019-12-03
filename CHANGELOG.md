@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.2.14
+
+* Added domains option to **systemd::resolved** - fixes [issue 186](https://github.com/NTTCom-MS/eyp-systemd/issues/168)
+* Added Resolve section - fixes [issue 167](https://github.com/NTTCom-MS/eyp-systemd/issues/167)
+* Allow multiple oncalendar for **systemd::timer** - thanks to [TuningYourCode](https://github.com/TuningYourCode) for this [PR-166](https://github.com/NTTCom-MS/eyp-systemd/pull/166)
+
 ## 0.2.13
 
 * added basic **tmpfiles.d** support using **systemd::tmpfile**

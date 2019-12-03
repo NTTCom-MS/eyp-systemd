@@ -11,13 +11,18 @@
 # Defaults can be restored by simply deleting this file.
 #
 # See resolved.conf(5) for details
+
+[Resolve]
+
 <% if @dns.any? -%>
 DNS=<%= @dns.join(' ') %>
 <% end -%>
 <% if @fallback_dns.any? -%>
 FallbackDNS=<%= @fallback_dns.join(' ') %>
 <% end -%>
-#Domains=
+<% if @domains.any? -%>
+Domains=<%= @domains.join(' ') %>
+<% end -%>
 #LLMNR=no
 #MulticastDNS=no
 DNSSEC=<%= scope.function_bool2yesno([@dnssec]) %>
