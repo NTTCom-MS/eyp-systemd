@@ -326,6 +326,7 @@ Base class for refreshing systemd on demand
 * **dns_stub_listener**:     (default: true)
 * **dnssec**:                (default: false)
 * **cache**:                 (default: true)
+* **domains**: A space-separated list of domains. These domains are used as search suffixes when resolving single-label host names (default: [])
 
 #### systemd::logind
 
