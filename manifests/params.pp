@@ -19,6 +19,16 @@ class systemd::params {
             default: { fail('Unsupported RHEL/CentOS version!')  }
           }
         }
+        'Amazon':
+        {
+          case $::operatingsystemrelease
+          {
+            /^[2].*$/:
+            {
+            }
+            default: { fail('Unsupported RHEL/CentOS version!')  }
+          }
+        }
         default:
         {
           case $::operatingsystemrelease
