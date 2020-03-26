@@ -2,7 +2,7 @@
 
 ## 0.2.15
 
-* Added support for **Amazon Linux 2** - thanks to [chrisfu](https://github.com/chrisfu) for this [PR-172](https://github.com/NTTCom-MS/eyp-systemd/pull/172)
+* Added support for **Amazon Linux 2** - thanks to [Chris Merrett](https://github.com/chrisfu) for this [PR-172](https://github.com/NTTCom-MS/eyp-systemd/pull/172)
 
 ## 0.2.14
 
