@@ -41,14 +41,8 @@ define systemd::mount(
                         # global
                         $ensure                          = 'present',
                       ) {
-  if versioncmp($::puppetversion, '4.0.0') >= 0
-  {
-    contain ::systemd
-  }
-  else
-  {
-    include ::systemd
-  }
+
+  contain ::systemd
 
   $mount_name = regsubst(regsubst($where, '/', '-', 'G'), '^-', '', '')
 

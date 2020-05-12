@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.3.0
+
+* INCOMPATIBLE CHANGE:
+  - dropped support for puppet 3.8 - fixes [61](https://github.com/NTTCom-MS/eyp-systemd/issues/61) and [174](https://github.com/NTTCom-MS/eyp-systemd/issues/174)
+* Added support for **Ubuntu 20.04**
+* Added **ConditionPathIsSymbolicLink** and **DefaultDependencies** to the Unit section - thanks to [Telepuz](https://github.com/Telepuz) for this [PR-175](https://github.com/NTTCom-MS/eyp-systemd/pull/175)
+
 ## 0.2.15
 
 * Added support for **Amazon Linux 2** - thanks to [Chris Merrett](https://github.com/chrisfu) for this [PR-172](https://github.com/NTTCom-MS/eyp-systemd/pull/172)

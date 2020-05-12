@@ -79,15 +79,15 @@ define systemd::service (
     fail('Incompatible options: type / forking')
   }
 
-  if($type != 'oneshot' and is_array($execstart) and count($execstart) > 1)
-  {
-    fail('Incompatible options: There are multiple execstart values and Type is not "oneshot"')
-  }
-
-  if($type != 'oneshot' and is_array($execstop) and count($execstop) > 1)
-  {
-    fail('Incompatible options: There are multiple execstop values and Type is not "oneshot"')
-  }
+  # if($type != 'oneshot' and is_array($execstart) and count($execstart) > 1)
+  # {
+  #   fail('Incompatible options: There are multiple execstart values and Type is not "oneshot"')
+  # }
+  #
+  # if($type != 'oneshot' and is_array($execstop) and count($execstop) > 1)
+  # {
+  #   fail('Incompatible options: There are multiple execstop values and Type is not "oneshot"')
+  # }
 
   # TODO: puppet4 / puppet 6 compatibility
   # if(size($unset_env_vars)>0)

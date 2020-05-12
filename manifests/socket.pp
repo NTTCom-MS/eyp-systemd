@@ -34,14 +34,8 @@ define systemd::socket(
                         $condition_path_is_symbolic_link = undef,
                         $default_dependencies            = undef,
                       ) {
-  if versioncmp($::puppetversion, '4.0.0') >= 0
-  {
-    contain ::systemd
-  }
-  else
-  {
-    include ::systemd
-  }
+
+  contain ::systemd
 
   concat { "/etc/systemd/system/${socket_name}.socket":
     ensure => $ensure,
