@@ -35,3 +35,9 @@ Documentation = <%= @documentation %>
 <% if defined?(@allow_isolate) -%>
 AllowIsolate=<%= scope.function_bool2yesno([@allow_isolate]) %>
 <% end -%>
+<% if defined?(@condition_path_is_symbolic_link) -%>
+ConditionPathIsSymbolicLink = <%= @condition_path_is_symbolic_link %>
+<% end -%>
+<% if defined?(@default_dependencies) -%>
+DefaultDependencies = <%= @default_dependencies %>
+<% end -%>
