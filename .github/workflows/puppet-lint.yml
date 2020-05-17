@@ -23,8 +23,8 @@ jobs:
     - name: apt update
       run: sudo apt-get update
 
-    - name: install bundle
-      run: sudo apt-get install ruby-bundler -y
+    - name: install dependencies
+      run: sudo apt-get install ruby-bundler puppet-agent -y
 
     # Runs a single command using the runners shell
     - name: puppet-lint
