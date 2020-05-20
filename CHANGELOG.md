@@ -6,6 +6,7 @@
   - dropped support for puppet 3.8 - fixes [61](https://github.com/NTTCom-MS/eyp-systemd/issues/61) and [174](https://github.com/NTTCom-MS/eyp-systemd/issues/174)
 * Added support for **Ubuntu 20.04**
 * Added **ConditionPathIsSymbolicLink** and **DefaultDependencies** to the Unit section - thanks to [Telepuz](https://github.com/Telepuz) for this [PR-175](https://github.com/NTTCom-MS/eyp-systemd/pull/175)
+* Added github Actions with basic testing
 
 ## 0.2.15
 
