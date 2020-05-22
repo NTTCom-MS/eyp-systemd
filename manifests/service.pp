@@ -111,6 +111,8 @@ define systemd::service (
 
   include ::systemd
 
+  $servicename_filtered = regsubst(regsubst(regsubst($servicename, '/', '-', 'G'), '^-', '', ''), '@', '_at_', 'G')
+
   concat { "/etc/systemd/system/${servicename}.service":
     ensure => $ensure,
     owner  => 'root',
@@ -119,19 +121,19 @@ define systemd::service (
     notify => Exec['systemctl daemon-reload'],
   }
 
-  concat::fragment { "service ${servicename} unit":
+  concat::fragment { "service ${servicename_filtered} unit":
     target  => "/etc/systemd/system/${servicename}.service",
     order   => '00',
     content => template("${module_name}/section/unit.erb"),
   }
 
-  concat::fragment { "service ${servicename} install":
+  concat::fragment { "service ${servicename_filtered} install":
     target  => "/etc/systemd/system/${servicename}.service",
     order   => '01',
     content => template("${module_name}/section/install.erb"),
   }
 
-  concat::fragment { "service ${servicename} service":
+  concat::fragment { "service ${servicename_filtered} service":
     target  => "/etc/systemd/system/${servicename}.service",
     order   => '02',
     content => template("${module_name}/section/service.erb"),

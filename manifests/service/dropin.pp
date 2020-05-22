@@ -98,6 +98,8 @@ define systemd::service::dropin (
 
   contain ::systemd
 
+  $servicename_filtered = regsubst(regsubst(regsubst($servicename, '/', '-', 'G'), '^-', '', ''), '@', '_at_', 'G')
+
   $dropin = true
 
   concat { "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf":
@@ -108,19 +110,19 @@ define systemd::service::dropin (
     notify => Exec['systemctl daemon-reload'],
   }
 
-  concat::fragment { "service dropin ${servicename} ${dropin_name} unit":
+  concat::fragment { "service dropin ${servicename_filtered} ${dropin_name} unit":
     target  => "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf",
     order   => '00',
     content => template("${module_name}/section/unit.erb"),
   }
 
-  concat::fragment { "service dropin ${servicename} ${dropin_name} install":
+  concat::fragment { "service dropin ${servicename_filtered} ${dropin_name} install":
     target  => "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf",
     order   => '01',
     content => template("${module_name}/section/install.erb"),
   }
 
-  concat::fragment { "service dropin ${servicename} ${dropin_name} service":
+  concat::fragment { "service dropin ${servicename_filtered} ${dropin_name} service":
     target  => "/etc/systemd/system/${servicename}.service.d/${dropin_order}-${dropin_name}.conf",
     order   => '02',
     content => template("${module_name}/section/service.erb"),
