@@ -7,6 +7,7 @@
 * Added support for **Ubuntu 20.04**
 * Added **ConditionPathIsSymbolicLink** and **DefaultDependencies** to the Unit section - thanks to [Telepuz](https://github.com/Telepuz) for this [PR-175](https://github.com/NTTCom-MS/eyp-systemd/pull/175)
 * Renamed concat fragments for better compatibility
+* Added github Actions with basic testing
 
 ## 0.2.15
 
