@@ -52,6 +52,9 @@ class systemd::params {
             /^1[68].*$/:
             {
             }
+            /^20.*$/:
+            {
+            }
             default: { fail("Unsupported Ubuntu version! - ${::operatingsystemrelease}")  }
           }
         }

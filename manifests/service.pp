@@ -1,75 +1,77 @@
 # puppet2sitepp @systemdservices
 define systemd::service (
-                          $ensure                      = 'present',
-                          $servicename                 = $name,
-                          $execstart                   = undef,
-                          $execstop                    = undef,
-                          $execstoppre                 = undef,
-                          $execstoppost                = undef,
-                          $execreload                  = undef,
-                          $execstartpre                = undef,
-                          $execstartpost               = undef,
-                          $restart                     = undef,
-                          $user                        = 'root',
-                          $group                       = 'root',
-                          $forking                     = false,
-                          $pid_file                    = undef,
-                          $remain_after_exit           = undef,
-                          $type                        = undef,
-                          $env_vars                    = [],
-                          $unset_env_vars              = [],
-                          $environment_files           = [],
-                          $permissions_start_only      = false,
-                          $timeoutstartsec             = undef,
-                          $timeoutstopsec              = undef,
-                          $timeoutsec                  = undef,
-                          $restart_prevent_exit_status = undef,
-                          $limit_memlock               = undef,
-                          $limit_nofile                = undef,
-                          $limit_nproc                 = undef,
-                          $limit_nice                  = undef,
-                          $limit_core                  = undef,
-                          $runtime_directory           = undef,
-                          $runtime_directory_mode      = undef,
-                          $restart_sec                 = undef,
-                          $private_tmp                 = false,
-                          $working_directory           = undef,
-                          $root_directory              = undef,
-                          $umask                       = undef,
-                          $nice                        = undef,
-                          $oom_score_adjust            = undef,
-                          $startlimitinterval          = undef,
-                          $startlimitburst             = undef,
-                          $standard_input              = undef,
-                          $standard_output             = undef,
-                          $standard_error              = undef,
-                          $syslog_facility             = undef,
-                          $syslog_identifier           = undef,
-                          $killmode                    = undef,
-                          $cpuquota                    = undef,
-                          $tasksmax                    = undef,
-                          $successexitstatus           = [],
-                          $killsignal                  = undef,
-                          $capability_bounding_set     = [],
+                          $ensure                          = 'present',
+                          $servicename                     = $name,
+                          $execstart                       = undef,
+                          $execstop                        = undef,
+                          $execstoppre                     = undef,
+                          $execstoppost                    = undef,
+                          $execreload                      = undef,
+                          $execstartpre                    = undef,
+                          $execstartpost                   = undef,
+                          $restart                         = undef,
+                          $user                            = 'root',
+                          $group                           = 'root',
+                          $forking                         = false,
+                          $pid_file                        = undef,
+                          $remain_after_exit               = undef,
+                          $type                            = undef,
+                          $env_vars                        = [],
+                          $unset_env_vars                  = [],
+                          $environment_files               = [],
+                          $permissions_start_only          = false,
+                          $timeoutstartsec                 = undef,
+                          $timeoutstopsec                  = undef,
+                          $timeoutsec                      = undef,
+                          $restart_prevent_exit_status     = undef,
+                          $limit_memlock                   = undef,
+                          $limit_nofile                    = undef,
+                          $limit_nproc                     = undef,
+                          $limit_nice                      = undef,
+                          $limit_core                      = undef,
+                          $runtime_directory               = undef,
+                          $runtime_directory_mode          = undef,
+                          $restart_sec                     = undef,
+                          $private_tmp                     = false,
+                          $working_directory               = undef,
+                          $root_directory                  = undef,
+                          $umask                           = undef,
+                          $nice                            = undef,
+                          $oom_score_adjust                = undef,
+                          $startlimitinterval              = undef,
+                          $startlimitburst                 = undef,
+                          $standard_input                  = undef,
+                          $standard_output                 = undef,
+                          $standard_error                  = undef,
+                          $syslog_facility                 = undef,
+                          $syslog_identifier               = undef,
+                          $killmode                        = undef,
+                          $cpuquota                        = undef,
+                          $tasksmax                        = undef,
+                          $successexitstatus               = [],
+                          $killsignal                      = undef,
+                          $capability_bounding_set         = [],
                           # install
-                          $also                        = [],
-                          $default_instance            = undef,
-                          $service_alias               = [],
-                          $wantedby                    = [ 'multi-user.target' ],
-                          $requiredby                  = [],
+                          $also                            = [],
+                          $default_instance                = undef,
+                          $service_alias                   = [],
+                          $wantedby                        = [ 'multi-user.target' ],
+                          $requiredby                      = [],
                           # unit
-                          $description                 = undef,
-                          $documentation               = undef,
-                          $wants                       = [],
-                          $after                       = undef,
-                          $after_units                 = [],
-                          $before_units                = [],
-                          $requires                    = [],
-                          $binds_to                    = [],
-                          $conflicts                   = [],
-                          $on_failure                  = [],
-                          $partof                      = undef,
-                          $allow_isolate               = undef,
+                          $description                     = undef,
+                          $documentation                   = undef,
+                          $wants                           = [],
+                          $after                           = undef,
+                          $after_units                     = [],
+                          $before_units                    = [],
+                          $requires                        = [],
+                          $binds_to                        = [],
+                          $conflicts                       = [],
+                          $on_failure                      = [],
+                          $partof                          = undef,
+                          $allow_isolate                   = undef,
+                          $condition_path_is_symbolic_link = undef,
+                          $default_dependencies            = undef,
                         ) {
 
   if($type!=undef and $forking==true)
@@ -77,15 +79,15 @@ define systemd::service (
     fail('Incompatible options: type / forking')
   }
 
-  if($type != 'oneshot' and is_array($execstart) and count($execstart) > 1)
-  {
-    fail('Incompatible options: There are multiple execstart values and Type is not "oneshot"')
-  }
-
-  if($type != 'oneshot' and is_array($execstop) and count($execstop) > 1)
-  {
-    fail('Incompatible options: There are multiple execstop values and Type is not "oneshot"')
-  }
+  # if($type != 'oneshot' and is_array($execstart) and count($execstart) > 1)
+  # {
+  #   fail('Incompatible options: There are multiple execstart values and Type is not "oneshot"')
+  # }
+  #
+  # if($type != 'oneshot' and is_array($execstop) and count($execstop) > 1)
+  # {
+  #   fail('Incompatible options: There are multiple execstop values and Type is not "oneshot"')
+  # }
 
   # TODO: puppet4 / puppet 6 compatibility
   # if(size($unset_env_vars)>0)
@@ -109,6 +111,8 @@ define systemd::service (
 
   include ::systemd
 
+  $servicename_filtered = regsubst(regsubst(regsubst($servicename, '/', '-', 'G'), '^-', '', ''), '@', '_at_', 'G')
+
   concat { "/etc/systemd/system/${servicename}.service":
     ensure => $ensure,
     owner  => 'root',
@@ -117,19 +121,19 @@ define systemd::service (
     notify => Exec['systemctl daemon-reload'],
   }
 
-  concat::fragment { "service ${servicename} unit":
+  concat::fragment { "service ${servicename_filtered} unit":
     target  => "/etc/systemd/system/${servicename}.service",
     order   => '00',
     content => template("${module_name}/section/unit.erb"),
   }
 
-  concat::fragment { "service ${servicename} install":
+  concat::fragment { "service ${servicename_filtered} install":
     target  => "/etc/systemd/system/${servicename}.service",
     order   => '01',
     content => template("${module_name}/section/install.erb"),
   }
 
-  concat::fragment { "service ${servicename} service":
+  concat::fragment { "service ${servicename_filtered} service":
     target  => "/etc/systemd/system/${servicename}.service",
     order   => '02',
     content => template("${module_name}/section/service.erb"),

@@ -1,6 +1,6 @@
 {
   "name": "eyp-systemd",
-  "version": "0.2.15",
+  "version": "0.3.0",
   "author": "eyp",
   "summary": "management of systemd services, services dropins, sockets, timers, mounts, automounts, tmpfiles, timesyncd, journald, logind and resolved",
   "license": "Apache-2.0",
@@ -39,7 +39,7 @@
     },
     {
       "operatingsystem": "Ubuntu",
-      "operatingsystemrelease": [ "16.04", "18.04" ]
+      "operatingsystemrelease": [ "16.04", "18.04", "20.04" ]
     },
     {
       "operatingsystem": "Debian",
@@ -62,7 +62,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 3.8.0"
+      "version_requirement": ">= 4.0.0"
     }
   ]
 }

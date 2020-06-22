@@ -14,39 +14,35 @@
 #
 define systemd::mount(
                         $what,
-                        $where            = $name,
-                        $type             = undef,
-                        $options          = [],
+                        $where                           = $name,
+                        $type                            = undef,
+                        $options                         = [],
                         # install
-                        $also             = [],
-                        $default_instance = undef,
-                        $service_alias    = [],
-                        $wantedby         = [ 'multi-user.target' ],
-                        $requiredby       = [],
+                        $also                            = [],
+                        $default_instance                = undef,
+                        $service_alias                   = [],
+                        $wantedby                        = [ 'multi-user.target' ],
+                        $requiredby                      = [],
                         # unit
-                        $description      = undef,
-                        $documentation    = undef,
-                        $wants            = [],
-                        $after            = undef,
-                        $after_units      = [],
-                        $before_units     = [],
-                        $requires         = [],
-                        $binds_to         = [],
-                        $conflicts        = [],
-                        $on_failure       = [],
-                        $partof           = undef,
-                        $allow_isolate    = undef,
+                        $description                     = undef,
+                        $documentation                   = undef,
+                        $wants                           = [],
+                        $after                           = undef,
+                        $after_units                     = [],
+                        $before_units                    = [],
+                        $requires                        = [],
+                        $binds_to                        = [],
+                        $conflicts                       = [],
+                        $on_failure                      = [],
+                        $partof                          = undef,
+                        $allow_isolate                   = undef,
+                        $condition_path_is_symbolic_link = undef,
+                        $default_dependencies            = undef,
                         # global
-                        $ensure           = 'present',
+                        $ensure                          = 'present',
                       ) {
-  if versioncmp($::puppetversion, '4.0.0') >= 0
-  {
-    contain ::systemd
-  }
-  else
-  {
-    include ::systemd
-  }
+
+  contain ::systemd
 
   $mount_name = regsubst(regsubst($where, '/', '-', 'G'), '^-', '', '')
 
