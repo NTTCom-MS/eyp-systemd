@@ -6,7 +6,7 @@ define systemd::sysvwrapper (
                               $wait_time_on_startup = '1s',
                               $restart              = 'no',
                             ) {
-  contain ::systemd
+  include ::systemd
 
   file { "${initscript}.sysvwrapper.status":
     ensure  => $ensure,

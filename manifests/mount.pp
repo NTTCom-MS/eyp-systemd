@@ -42,7 +42,7 @@ define systemd::mount(
                         $ensure                          = 'present',
                       ) {
 
-  contain ::systemd
+  include ::systemd
 
   $mount_name = regsubst(regsubst($where, '/', '-', 'G'), '^-', '', '')
 

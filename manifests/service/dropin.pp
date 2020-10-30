@@ -96,7 +96,7 @@ define systemd::service::dropin (
   #   }
   # }
 
-  contain ::systemd
+  include ::systemd
 
   $servicename_filtered = regsubst(regsubst(regsubst($servicename, '/', '-', 'G'), '^-', '', ''), '@', '_at_', 'G')
 
